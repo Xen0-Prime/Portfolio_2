@@ -1,0 +1,604 @@
+/* ===== Styles pour page projets ===== */
+
+/* Page Header */
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 4rem 0 3rem;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Project Detail Cards */
+.project-detail-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    transition: var(--transition);
+}
+
+.project-detail-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+}
+
+.project-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.project-detail-header h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Project Badges */
+.project-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.badge-java { background: #f39c12; }
+.badge-mobile { background: #e74c3c; }
+.badge-web { background: #27ae60; }
+.badge-stage { background: #8e44ad; }
+
+/* Project Content */
+.project-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.project-overview h3,
+.project-features h3,
+.project-challenges h3,
+.project-links h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.feature-item {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.feature-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+}
+
+/* Tech Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tech-category {
+    background: var(--white);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.tech-category h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+}
+
+.tech-list li {
+    padding: 0.3rem 0;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.tech-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+/* Challenge Boxes */
+.challenge-box {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-left: 3px solid #fdcb6e;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.challenge-box strong {
+    color: #b8860b;
+}
+
+/* Project Links */
+.project-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.project-link-card {
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.project-link-card:hover {
+    border-color: var(--secondary-color);
+    background: var(--bg-light);
+    transform: translateY(-2px);
+}
+
+.project-link-card h4 {
+    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.project-link-card p {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 3rem 0 2rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .project-detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-detail-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .features-grid,
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-links-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    
+    .project-detail-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Projets - Introduction */
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    padding: 0 10%;
+}
+
+/* Project Detail Sections */
+.project-detail-section {
+    padding: 3rem 0;
+}
+
+.project-detail-section.bg-light {
+    background: var(--bg-light);
+}
+
+.project-detail-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.project-detail-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.project-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--bg-light);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.project-detail-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Project Badges */
+.project-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.badge:hover::before {
+    left: 100%;
+}
+
+.badge-java { background: #f89820; }
+.badge-database { background: #336791; }
+.badge-mobile { background: #61dafb; }
+.badge-react { background: #61dafb; }
+.badge-web { background: #e34c26; }
+.badge-php { background: #777bb4; }
+.badge-stage { background: #28a745; }
+.badge-iot { background: #ff6b6b; }
+
+/* Project Content */
+.project-content {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.project-overview h3,
+.project-features h3,
+.project-tech h3,
+.project-competences h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Features List */
+.features-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.features-list li {
+    background: linear-gradient(135deg, var(--bg-light), #f0f2f5);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 0 8px 8px 0;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.features-list li:hover {
+    background: linear-gradient(135deg, #f8f9fa, var(--white));
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+/* Tech Grid */
+.tech-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;}
+
+.tech-item {
+    background: linear-gradient(135deg, var(--bg-light), #f0f2f5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(60, 130, 200, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--secondary-color);
+}
+
+.tech-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.tech-item:hover {
+    background: linear-gradient(135deg, #f8f9fa, var(--bg-light));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tech-item:hover::before {
+    width: 6px;
+}
+
+.tech-item strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+/* Competences */
+.competences-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.comp-badge {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.comp-badge:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Project Links */
+.project-links {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn span, .btn i {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+    transform: translateY(-2px);
+}
+
+.mt-2 {
+    margin-top: 0.5rem !important;
+}
+
+/* Animations */
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-detail-section {
+    animation: slideInFromBottom 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 4rem 0 3rem;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .project-detail-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .project-detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-detail-header h2 {
+        font-size: 2rem;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .intro-text {
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-detail-card {
+        padding: 1.5rem;
+    }
+    
+    .project-detail-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .competences-badges {
+        justify-content: center;
+    }
+}

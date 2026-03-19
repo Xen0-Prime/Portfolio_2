@@ -1,0 +1,845 @@
+/* ===== Styles pour page veille technologique ===== */
+
+/* Page Header */
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 4rem 0 3rem;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Veille - Introduction */
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    padding: 0 10%;
+}
+
+/* Veille Detail Sections */
+.veille-detail-section {
+    padding: 3rem 0;
+}
+
+.veille-detail-section.bg-light {
+    background: var(--bg-light);
+}
+
+.veille-detail-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    transition: var(--transition);
+}
+
+.veille-detail-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+}
+
+.veille-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.veille-detail-header h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Veille Badges */
+.veille-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.badge-mobile { background: #61dafb; }
+.badge-innovation { background: #ff6b6b; }
+.badge-hardware { background: #ff9500; }
+.badge-performance { background: #007acc; }
+.badge-ai { background: #ff4081; }
+.badge-ml { background: #4caf50; }
+.badge-security { background: #f44336; }
+.badge-network { background: #9c27b0; }
+.badge-gaming { background: #e91e63; }
+.badge-graphics { background: #673ab7; }
+.badge-frameworks { background: #3f51b5; }
+
+/* Veille Content */
+.veille-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.veille-overview h3,
+.veille-recent h3,
+.veille-impact h3,
+.veille-sources h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* News Grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.news-item {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+    transition: var(--transition);
+    position: relative;
+}
+
+.news-item:hover {
+    background: #f1f3f4;
+    border-left-color: var(--primary-color);
+}
+
+.news-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.news-item p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.date {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Impact List */
+.impact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.impact-list li {
+    background: var(--bg-light);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 0 8px 8px 0;
+    transition: var(--transition);
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.impact-list li:hover {
+    background: #f1f3f4;
+    border-left-color: var(--primary-color);
+}
+
+.impact-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Sources */
+.sources-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.source-tag {
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.source-tag:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Methodology Section */
+.veille-methodology {
+    padding: 4rem 0;
+    margin-top: 3rem;
+}
+
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.method-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+    border-top: 3px solid var(--secondary-color);
+}
+
+.method-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+}
+
+.method-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.method-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.method-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--bg-light);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.method-card li:last-child {
+    border-bottom: none;
+}
+
+.method-card li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 3rem 0 2rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .veille-detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .veille-detail-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .news-grid,
+    .methodology-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .date {
+        position: static;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+    
+    .intro-text {
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    
+    .veille-detail-card {
+        padding: 1.5rem;
+    }
+    
+    .veille-detail-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .sources-grid {
+        justify-content: center;
+    }
+    
+    .impact-list li {
+        padding-left: 2rem;
+    }
+    
+    .method-card {
+        padding: 1.5rem;
+    }
+}
+
+.method-card li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Veille - Introduction */
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    padding: 0 10%;
+}
+
+/* Buttons small */
+.btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+}
+
+/* Veille Detail Sections */
+.veille-detail-section {
+    padding: 3rem 0;
+}
+
+.veille-detail-section.bg-light {
+    background: var(--bg-light);
+}
+
+.veille-detail-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.veille-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.veille-detail-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.veille-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--bg-light);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.veille-detail-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Veille Badges */
+.veille-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.badge:hover::before {
+    left: 100%;
+}
+
+.badge-mobile { background: #61dafb; }
+.badge-innovation { background: #ff6b6b; }
+.badge-hardware { background: #ff9500; }
+.badge-performance { background: #007acc; }
+.badge-ai { background: #ff4081; }
+.badge-ml { background: #4caf50; }
+.badge-security { background: #f44336; }
+.badge-network { background: #9c27b0; }
+.badge-gaming { background: #e91e63; }
+.badge-graphics { background: #673ab7; }
+.badge-frameworks { background: #3f51b5; }
+
+/* Veille Content */
+.veille-content {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.veille-overview h3,
+.veille-recent h3,
+.veille-impact h3,
+.veille-sources h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* News Grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.news-item {
+    background: linear-gradient(135deg, var(--white), var(--bg-light));
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--secondary-color);
+    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.news-item:hover {
+    background: linear-gradient(135deg, var(--white), #f8f9fa);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-left-color: var(--primary-color);
+}
+
+.news-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.news-item p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.date {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Impact List */
+.impact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.impact-list li {
+    background: linear-gradient(135deg, var(--bg-light), #f0f2f5);
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 0 10px 10px 0;
+    transition: var(--transition);
+    position: relative;
+    padding-left: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.impact-list li:hover {
+    background: linear-gradient(135deg, #f8f9fa, var(--white));
+    transform: translateX(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+.impact-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Sources */
+.sources-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.source-tag {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.source-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.source-tag:hover::before {
+    left: 100%;
+}
+
+.source-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: var(--white);
+}
+
+/* Methodology Section */
+.veille-methodology {
+    padding: 4rem 0;
+    margin-top: 3rem;
+}
+
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.method-card {
+    background: linear-gradient(135deg, var(--white), var(--bg-light));
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: var(--transition);
+    border-top: 4px solid var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.method-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.method-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.method-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.method-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.method-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--bg-light);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.method-card li:last-child {
+    border-bottom: none;
+}
+
+.method-card li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn span, .btn i {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.veille-detail-section {
+    animation: slideInFromBottom 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 4rem 0 3rem;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .veille-detail-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .veille-detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .veille-detail-header h2 {
+        font-size: 2rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .methodology-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .date {
+        position: static;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+    
+    .intro-text {
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .veille-detail-card {
+        padding: 1.5rem;
+    }
+    
+    .veille-detail-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .sources-grid {
+        justify-content: center;
+    }
+    
+    .impact-list li {
+        padding-left: 2rem;
+    }
+    
+    .method-card {
+        padding: 2rem 1.5rem;
+    }
+}

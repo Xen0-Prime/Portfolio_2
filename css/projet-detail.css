@@ -1,0 +1,442 @@
+/* ===== Project Detail Styles ===== */
+
+.project-detail-hero {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 4rem 0 3rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--white);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    opacity: 1;
+    transform: translateX(-5px);
+}
+
+.project-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.project-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===== Content Grid ===== */
+.project-content {
+    padding: 4rem 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+}
+
+.main-content {
+    min-width: 0;
+}
+
+/* ===== Content Sections ===== */
+.content-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.content-section h3 {
+    color: var(--secondary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.content-section p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.content-section ul {
+    margin-left: 1.5rem;
+    color: var(--text-light);
+}
+
+.content-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Objective List ===== */
+.objective-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.objective-list li {
+    padding: 0.8rem 0;
+    padding-left: 2rem;
+    position: relative;
+    border-left: 2px solid var(--secondary-color);
+    margin-left: 1rem;
+}
+
+.objective-list li::before {
+    content: '✓';
+    position: absolute;
+    left: -1.3rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+    background-color: var(--white);
+}
+
+/* ===== Feature Cards ===== */
+.feature-card {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.feature-card ul {
+    margin-left: 1.5rem;
+}
+
+/* ===== Tech Grid ===== */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.tech-item {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.tech-item h4 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.tech-item p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* ===== Code Block ===== */
+pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ===== Difficulty Items ===== */
+.difficulty-item {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e74c3c;
+}
+
+.difficulty-item h4 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.difficulty-item p {
+    margin-bottom: 0;
+}
+
+.difficulty-item strong {
+    color: var(--text-color);
+}
+
+/* ===== Skills Developed ===== */
+.skills-developed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.skill-category {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 3px solid var(--secondary-color);
+}
+
+.skill-category h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.skill-category ul {
+    margin-left: 1.5rem;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+}
+
+.sidebar-card {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* ===== Info List ===== */
+.info-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.info-list dt {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.info-list dd {
+    color: var(--text-light);
+    margin-left: 0;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-list dd:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ===== Tech Badges ===== */
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ===== Sidebar Links ===== */
+.sidebar-link {
+    display: block;
+    padding: 0.8rem;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.sidebar-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* ===== Project Mini ===== */
+.project-mini {
+    display: block;
+    padding: 1rem;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.project-mini:hover {
+    border-color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+/* ===== Image Containers (pour futures captures d'écran) ===== */
+.screenshot-container {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.screenshot-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    .sidebar-card {
+        display: inline-block;
+        width: calc(50% - 0.75rem);
+        vertical-align: top;
+        margin-right: 1.5rem;
+    }
+
+    .sidebar-card:nth-child(2n) {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 2rem;
+    }
+
+    .project-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .project-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sidebar-card {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .tech-grid,
+    .skills-developed {
+        grid-template-columns: 1fr;
+    }
+
+    pre {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-content {
+        padding: 2rem 0;
+    }
+
+    .content-section {
+        margin-bottom: 2rem;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .navbar,
+    .back-link,
+    .sidebar,
+    .footer {
+        display: none;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-detail-hero {
+        background: var(--primary-color);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
