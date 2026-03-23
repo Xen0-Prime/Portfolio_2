@@ -290,10 +290,10 @@
     </section>
 
     <!-- Veille Section -->
-     # Votre veille technologique sera détaillée dans la page veille.php, avec des sujets d'actualité, des analyses et des sources de veille.
     <section id="veille" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Veille Technologique</h2>
+            <a href="veille.php" class="btn btn-all-projects mb-4">Voir tous les sujets de veille →</a>
             <div class="veille-content">
                 <p class="veille-intro">
                     Dans le cadre du BTS SIO, je maintiens une veille technologique active sur les

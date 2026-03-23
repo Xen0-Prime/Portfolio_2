@@ -2,37 +2,41 @@
 
 /* Page Header */
 .page-header {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
-    padding: 4rem 0 3rem;
+    padding: 3rem 0 2.5rem;
     text-align: center;
     margin-top: 70px;
 }
 
 .page-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .page-subtitle {
     font-size: 1.2rem;
     opacity: 0.9;
+    font-weight: 300;
 }
 
 /* Stage Cards */
 .stage-card {
     background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
 }
 
 .stage-card:hover {
-    box-shadow: var(--shadow);
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-left-color: var(--primary-color);
 }
 
 .stage-badge {
@@ -41,10 +45,15 @@
     right: 2rem;
     background: var(--secondary-color);
     color: var(--white);
-    padding: 0.5rem 1.5rem;
-    border-radius: 0 0 15px 15px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 0 0 12px 12px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.stage-badge:hover {
+    background: var(--primary-color);
 }
 
 .stage-badge-2 {
@@ -52,8 +61,8 @@
 }
 
 .stage-content {
-    padding: 2.5rem;
-    padding-top: 4rem;
+    padding: 2rem;
+    padding-top: 3.5rem;
 }
 
 /* Stage Header */
@@ -61,63 +70,62 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .stage-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
 }
 
 .stage-company {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-light);
     margin: 0;
 }
 
 .stage-duration {
     text-align: right;
-    flex-shrink: 0;
 }
 
 .duration-badge {
     display: block;
     background: var(--bg-light);
     color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
 }
 
 .duration-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-light);
 }
 
 /* Detail Sections */
 .detail-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .detail-section h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .detail-section p {
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 /* Missions List */
@@ -128,16 +136,17 @@
 
 .missions-list li {
     background: var(--bg-light);
-    padding: 1rem;
-    border-left: 4px solid var(--secondary-color);
-    margin-bottom: 0.8rem;
-    border-radius: 0 8px 8px 0;
+    padding: 0.8rem;
+    border-left: 3px solid var(--secondary-color);
+    margin-bottom: 0.6rem;
+    border-radius: 0 6px 6px 0;
     transition: var(--transition);
 }
 
 .missions-list li:hover {
     background: #f1f3f4;
     border-left-color: var(--primary-color);
+    transform: translateX(3px);
 }
 
 .missions-list strong {
