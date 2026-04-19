@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>Mes Stages - Portfolio BTS SIO</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/stages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -52,14 +53,14 @@
                             <p class="stage-company">Fast Computer Company</p>
                         </div>
                         <div class="stage-duration">
-                            <span class="duration-badge">📅 Dates du stage</span>
+                            <span class="duration-badge"><i class="fas fa-calendar-alt"></i> Dates du stage</span>
                             <span class="duration-text">12 Mai 2025 - 21 Juin 2025 (6 semaines)</span>
                         </div>
                     </div>
 
                     <div class="stage-details">
                         <div class="detail-section">
-                            <h3>🎯 Contexte de l'entreprise</h3>
+                            <h3> Contexte de l'entreprise</h3>
                             <p>
                                 Décrivez l'entreprise : secteur d'activité, taille, services proposés, 
                                 clientèle cible. Expliquez le contexte dans lequel vous avez effectué votre stage.
@@ -67,7 +68,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>💼 Missions confiées</h3>
+                            <h3><i class="fas fa-briefcase"></i> Missions confiées</h3>
                             <ul class="missions-list">
                                 <li>
                                     <strong>Mission 1 :</strong> Création d'un site vitrine pour l'entreprise, comprenant la conception de l'interface, le développement front-end et back-end, et la mise en ligne du site.
@@ -79,7 +80,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>🛠️ Technologies utilisées</h3>
+                            <h3><i class="fas fa-tools"></i>️ Technologies utilisées</h3>
                             <div class="tech-tags">
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
@@ -90,7 +91,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>📚 Compétences développées</h3>
+                            <h3><i class="fas fa-book"></i> Compétences développées</h3>
                             <div class="competences-grid">
                                 <div class="competence-item">
                                     <h4>Bloc B1</h4>
@@ -117,7 +118,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>💡 Apports du stage</h3>
+                            <h3><i class="fas fa-lightbulb"></i> Apports du stage</h3>
                             <p>
                                 Expliquez ce que ce stage vous a apporté : compétences techniques, 
                                 compétences humaines, découverte du monde professionnel, confirmation 
@@ -126,7 +127,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>🔍 Difficultés rencontrées</h3>
+                            <h3><i class="fas fa-search"></i> Difficultés rencontrées</h3>
                             <div class="difficulty-box">
                                 <p>
                                     <strong>Défi 1 :</strong> Diificultés avec la base de données MySQL, notamment pour la gestion des relations entre les tables. J'ai surmonté ce défi en suivant des tutoriels en ligne et en m'aidant de l'IA.
@@ -142,15 +143,15 @@
 
                     <!-- Documents téléchargeables -->
                     <div class="stage-documents">
-                        <h3>📄 Documents</h3>
+                        <h3><i class="fas fa-file-alt"></i> Documents</h3>
                         <div class="documents-grid">
                             <a href="docs/Attestation_Stage1.pdf" class="document-card" download>
-                                <div class="document-icon">📑</div>
+                                <div class="document-icon"><i class="fas fa-file-alt"></i></div>
                                 <div class="document-info">
                                     <h4>Attestation de stage</h4>
                                     <p>Format PDF</p>
                                 </div>
-                                <div class="download-icon">⬇️</div>
+                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
                             </a>
                         </div>
                     </div>
@@ -168,21 +169,21 @@
                             <p class="stage-company">Orange Caraïbes</p>
                         </div>
                         <div class="stage-duration">
-                            <span class="duration-badge">📅 Dates du stage</span>
+                            <span class="duration-badge"><i class="fas fa-calendar-alt"></i> Dates du stage</span>
                             <span class="duration-text"> 8 Décembre 2025 - 16 Janvier 2026 (6 semaines)</span>
                         </div>
                     </div>
 
                     <div class="stage-details">
                         <div class="detail-section">
-                            <h3>🎯 Contexte de l'entreprise</h3>
+                            <h3> Contexte de l'entreprise</h3>
                             <p>
 
                             </p>
                         </div>
 
                         <div class="detail-section">
-                            <h3>💼 Missions confiées</h3>
+                            <h3><i class="fas fa-briefcase"></i> Missions confiées</h3>
                             <ul class="missions-list">
                                 <li>
                                     <strong> Création d'une interface pour analyser les données de l'objet connecté</strong> Mise en place d'une interface web pour visualiser et analyser les données collectées par un objet connecté, permettant aux utilisateurs de suivre les performances telles que : l'humidité, pression, température et gyroscope.
@@ -197,7 +198,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>🛠️ Technologies utilisées</h3>
+                            <h3><i class="fas fa-tools"></i>️ Technologies utilisées</h3>
                             <div class="tech-tags">
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
@@ -210,7 +211,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>📚 Compétences développées</h3>
+                            <h3><i class="fas fa-book"></i> Compétences développées</h3>
                             <div class="competences-grid">
                                 <div class="competence-item">
                                     <h4>Bloc B1</h4>
@@ -237,7 +238,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>📈 Évolution par rapport au stage de 1ère année</h3>
+                            <h3><i class="fas fa-chart-line"></i> Évolution par rapport au stage de 1ère année</h3>
                             <p>
                                 Une entreprise plus grande et plus structurée, avec des processus de travail plus formalisés.
                                 Des missions plus complexes et plus variées, impliquant des technologies plus avancées.
@@ -247,7 +248,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>💡 Apports du stage</h3>
+                            <h3><i class="fas fa-lightbulb"></i> Apports du stage</h3>
                             <p>
                                 Ce stage m'a permis de développer mes compétences techniques en travaillant sur des technologies plus avancées et en réalisant des missions plus complexes. 
                                 J'ai également développé mes compétences humaines en travaillant dans une équipe plus grande et plus structurée, avec des processus de travail plus formalisés.
@@ -257,7 +258,7 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>🔍 Difficultés rencontrées</h3>
+                            <h3><i class="fas fa-search"></i> Difficultés rencontrées</h3>
                             <div class="difficulty-box">
                                 <p>
                                     <strong>Défi 1 :</strong> Difficultés pour la mise en place de la communication MQTT entre l'objet connecté et l'interface web. J'ai surmonté ce défi en suivant des tutoriels en ligne, en consultant la documentation de MQTT et en demandant de l'aide à mes collègues.
@@ -273,15 +274,15 @@
 
                     <!-- Documents téléchargeables -->
                     <div class="stage-documents">
-                        <h3>📄 Documents</h3>
+                        <h3><i class="fas fa-file-alt"></i> Documents</h3>
                         <div class="documents-grid">
                             <a href="docs/Attestation_Stage2.pdf" class="document-card" download>
-                                <div class="document-icon">📑</div>
+                                <div class="document-icon"><i class="fas fa-file-alt"></i></div>
                                 <div class="document-info">
                                     <h4>Attestation de stage</h4>
                                     <p>Format PDF</p>
                                 </div>
-                                <div class="download-icon">⬇️</div>
+                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
                             </a>
 
 
@@ -295,7 +296,7 @@
                 <h2 class="section-title">Bilan de mes expériences</h2>
                 <div class="bilan-content">
                     <div class="bilan-card">
-                        <h3>🎯 Objectifs atteints</h3>
+                        <h3> Objectifs atteints</h3>
                         <ul>
                             <li>Objectif 1 : Description</li>
                             <li>Objectif 2 : Description</li>
@@ -305,7 +306,7 @@
                     </div>
 
                     <div class="bilan-card">
-                        <h3>🚀 Projet professionnel</h3>
+                        <h3><i class="fas fa-rocket"></i> Projet professionnel</h3>
                         <p>
                             Expliquez comment ces stages ont confirmé ou réorienté votre projet professionnel. 
                             Quel type de poste visez-vous après le BTS ? Dans quel secteur souhaitez-vous 
@@ -314,7 +315,7 @@
                     </div>
 
                     <div class="bilan-card">
-                        <h3>💪 Points forts développés</h3>
+                        <h3><i class="fas fa-dumbbell"></i> Points forts développés</h3>
                         <div class="skills-badges">
                             <span class="skill-badge">Autonomie</span>
                             <span class="skill-badge">Travail d'équipe</span>
@@ -326,12 +327,12 @@
                     </div>
                         <div class="documents-grid">
                             <a href="docs/Tableau_synthèse.pdf" class="document-card" download>
-                                <div class="document-icon">📊</div>
+                                <div class="document-icon"><i class="fas fa-chart-bar"></i></div>
                                     <div class="document-info">
                                         <h4>Tableau de synthèse</h4>
                                         <p>Format PDF</p>
                                     </div>
-                                <div class="download-icon">⬇️</div>
+                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
                             </a>
                         </div>
                 </div>

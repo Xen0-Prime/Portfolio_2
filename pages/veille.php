@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>Veille Technologique - Portfolio BTS SIO</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/veille.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -52,7 +53,7 @@
         <div class="container">
             <div class="veille-detail-card">
                 <div class="veille-detail-header">
-                    <h2>📱 Smartphones & Mobilité</h2>
+                    <h2><i class="fas fa-mobile-alt"></i> Smartphones & Mobilité</h2>
                     <div class="veille-badges">
                         <span class="badge badge-mobile">Mobile</span>
                         <span class="badge badge-innovation">Innovation</span>
@@ -61,7 +62,7 @@
                 
                 <div class="veille-content">
                     <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
+                        <h3>Pourquoi cette veille ?</h3>
                         <p>
                             Les smartphones évoluent constamment avec de nouvelles technologies : 5G, IA intégrée, 
                             réalité augmentée, interface utilisateur. Cette veille m'aide à comprendre les 
@@ -70,7 +71,7 @@
                     </div>
 
                     <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
+                        <h3><i class="fas fa-newspaper"></i> Actualités récentes</h3>
                         <div class="news-grid">
                             <div class="news-item">
                                 <h4>Intelligence artificielle embarquée</h4>
@@ -91,7 +92,7 @@
                     </div>
 
                     <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Impact sur le développement</h3>
                         <ul class="impact-list">
                             <li>Nouvelles API pour exploiter l'IA embarquée</li>
                             <li>Adaptation des interfaces pour écrans pliables</li>
@@ -101,12 +102,12 @@
                     </div>
 
                     <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
+                        <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">GSMArena</span>
-                            <span class="source-tag">Android Developers</span>
-                            <span class="source-tag">iPhone iOS</span>
-                            <span class="source-tag">XDA Developers</span>
+                            <span class="source-tag">Jojol</span>
+                            <span class="source-tag">Monsieur GRrr</span>
+                            <span class="source-tag">Brandon le Proktor</span>
+                            <span class="source-tag">Leo TechMaker</span>
                         </div>
                     </div>
                 </div>
@@ -119,7 +120,7 @@
         <div class="container">
             <div class="veille-detail-card">
                 <div class="veille-detail-header">
-                    <h2>💻 Hardware & Composants PC</h2>
+                    <h2><i class="fas fa-laptop"></i> Hardware & Composants PC</h2>
                     <div class="veille-badges">
                         <span class="badge badge-hardware">Hardware</span>
                         <span class="badge badge-performance">Performance</span>
@@ -128,7 +129,7 @@
                 
                 <div class="veille-content">
                     <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
+                        <h3> Pourquoi cette veille ?</h3>
                         <p>
                             L'évolution rapide des composants PC (processeurs, cartes graphiques, stockage) 
                             influence directement les performances des applications que je développe. 
@@ -137,7 +138,7 @@
                     </div>
 
                     <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
+                        <h3><i class="fas fa-newspaper"></i> Actualités récentes</h3>
                         <div class="news-grid">
                             <div class="news-item">
                                 <h4>Processeurs ARM pour PC</h4>
@@ -158,7 +159,7 @@
                     </div>
 
                     <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Impact sur le développement</h3>
                         <ul class="impact-list">
                             <li>Optimisation multi-architecture (x86, ARM)</li>
                             <li>Exploitation du stockage ultra-rapide</li>
@@ -168,12 +169,11 @@
                     </div>
 
                     <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
+                        <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Tom's Hardware</span>
-                            <span class="source-tag">AnandTech</span>
-                            <span class="source-tag">Gamers Nexus</span>
-                            <span class="source-tag">PCWorld</span>
+                            <span class="source-tag">Leo TechMaker</span>
+                            <span class="source-tag">French Hardware</span>
+                            <span class="source-tag">KAPPA Studio</span>
                         </div>
                     </div>
                 </div>
@@ -181,12 +181,12 @@
         </div>
     </section>
 
-    <!-- Intelligence Artificielle -->
+    <!-- Intelligence Artificielle Sources à suivre -->
     <section id="intelligence-artificielle" class="veille-detail-section">
         <div class="container">
             <div class="veille-detail-card">
                 <div class="veille-detail-header">
-                    <h2>🤖 Intelligence Artificielle</h2>
+                    <h2><i class="fas fa-robot"></i> Intelligence Artificielle</h2>
                     <div class="veille-badges">
                         <span class="badge badge-ai">IA</span>
                         <span class="badge badge-ml">Machine Learning</span>
@@ -195,7 +195,7 @@
                 
                 <div class="veille-content">
                     <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
+                        <h3> Pourquoi cette veille ?</h3>
                         <p>
                             L'IA transforme le développement logiciel : assistants de code, génération automatique, 
                             analyse de données intelligente. Cette veille m'aide à intégrer ces outils dans 
@@ -204,7 +204,7 @@
                     </div>
 
                     <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
+                        <h3><i class="fas fa-newspaper"></i> Actualités récentes</h3>
                         <div class="news-grid">
                             <div class="news-item">
                                 <h4>IA générative pour le code</h4>
@@ -225,7 +225,7 @@
                     </div>
 
                     <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Impact sur le développement</h3>
                         <ul class="impact-list">
                             <li>Assistance intelligente à la programmation</li>
                             <li>Génération automatique de tests</li>
@@ -235,10 +235,10 @@
                     </div>
 
                     <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
+                        <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Hugging Face</span>
-                            <span class="source-tag">OpenAI Blog</span>
+                            <span class="source-tag"></span>
+                            <span class="source-tag"></span>
                             <span class="source-tag">Google AI</span>
                             <span class="source-tag">Anthropic</span>
                         </div>
@@ -253,7 +253,7 @@
         <div class="container">
             <div class="veille-detail-card">
                 <div class="veille-detail-header">
-                    <h2>🔒 Réseaux & Cybersécurité</h2>
+                    <h2><i class="fas fa-lock"></i> Réseaux & Cybersécurité</h2>
                     <div class="veille-badges">
                         <span class="badge badge-security">Sécurité</span>
                         <span class="badge badge-network">Réseaux</span>
@@ -262,7 +262,7 @@
                 
                 <div class="veille-content">
                     <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
+                        <h3> Pourquoi cette veille ?</h3>
                         <p>
                             La cybersécurité est cruciale dans tous mes développements. Cette veille m'aide 
                             à rester informé des nouvelles menaces, des bonnes pratiques de sécurisation 
@@ -271,7 +271,7 @@
                     </div>
 
                     <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
+                        <h3><i class="fas fa-newspaper"></i> Actualités récentes</h3>
                         <div class="news-grid">
                             <div class="news-item">
                                 <h4>Sécurité post-quantique</h4>
@@ -292,7 +292,7 @@
                     </div>
 
                     <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Impact sur le développement</h3>
                         <ul class="impact-list">
                             <li>Implémentation de protocoles sécurisés</li>
                             <li>Chiffrement et protection des données</li>
@@ -302,12 +302,10 @@
                     </div>
 
                     <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
+                        <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">ANSSI</span>
-                            <span class="source-tag">Krebs on Security</span>
-                            <span class="source-tag">SANS Institute</span>
-                            <span class="source-tag">Security Week</span>
+                            <span class="source-tag">V2F</span>
+                            <span class="source-tag">Micode</span>
                         </div>
                     </div>
                 </div>
@@ -320,7 +318,7 @@
         <div class="container">
             <div class="veille-detail-card">
                 <div class="veille-detail-header">
-                    <h2>🎮 Gaming & Technologies Ludiques</h2>
+                    <h2><i class="fas fa-gamepad"></i> Gaming & Technologies Ludiques</h2>
                     <div class="veille-badges">
                         <span class="badge badge-gaming">Gaming</span>
                         <span class="badge badge-graphics">Graphiques</span>
@@ -329,7 +327,7 @@
                 
                 <div class="veille-content">
                     <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
+                        <h3> Pourquoi cette veille ?</h3>
                         <p>
                             L'industrie du jeu vidéo pousse l'innovation technologique : moteurs 3D, 
                             réalité virtuelle, cloud gaming. Ces technologies trouvent souvent des 
@@ -338,7 +336,7 @@
                     </div>
 
                     <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
+                        <h3><i class="fas fa-newspaper"></i> Actualités récentes</h3>
                         <div class="news-grid">
                             <div class="news-item">
                                 <h4>Unreal Engine 6 en développement</h4>
@@ -359,7 +357,7 @@
                     </div>
 
                     <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Impact sur le développement</h3>
                         <ul class="impact-list">
                             <li>Techniques de rendu 3D avancées</li>
                             <li>Optimisation des performances graphiques</li>
@@ -369,12 +367,12 @@
                     </div>
 
                     <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
+                        <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Unity Learn</span>
-                            <span class="source-tag">Epic Games</span>
-                            <span class="source-tag">Gamasutra</span>
-                            <span class="source-tag">Game Developer</span>
+                            <span class="source-tag">Leo TechMaker</span>
+                            <span class="source-tag">Playstation France</span>
+                            <span class="source-tag">Nintendo France</span>
+                            <span class="source-tag">Edouard_EMB</span>
                         </div>
                     </div>
                 </div>
@@ -382,80 +380,14 @@
         </div>
     </section>
 
-    <!-- Développement Mobile -->
-    <section id="developpement-mobile" class="veille-detail-section bg-light">
-        <div class="container">
-            <div class="veille-detail-card">
-                <div class="veille-detail-header">
-                    <h2>📱 Développement Mobile</h2>
-                    <div class="veille-badges">
-                        <span class="badge badge-mobile">Mobile</span>
-                        <span class="badge badge-frameworks">Frameworks</span>
-                    </div>
-                </div>
-                
-                <div class="veille-content">
-                    <div class="veille-overview">
-                        <h3>🎯 Pourquoi cette veille ?</h3>
-                        <p>
-                            Le développement mobile évolue rapidement : nouveaux frameworks cross-platform, 
-                            APIs natives, outils de développement. Cette veille me permet de rester à jour 
-                            sur les meilleures pratiques et technologies émergentes.
-                        </p>
-                    </div>
 
-                    <div class="veille-recent">
-                        <h3>📰 Actualités récentes</h3>
-                        <div class="news-grid">
-                            <div class="news-item">
-                                <h4>Flutter 4.0 et Dart 4</h4>
-                                <p>Amélioration significative des performances et nouvelle architecture de rendu.</p>
-                                <span class="date">Février 2026</span>
-                            </div>
-                            <div class="news-item">
-                                <h4>SwiftUI pour macOS</h4>
-                                <p>Apple étend SwiftUI pour le développement d'applications desktop native.</p>
-                                <span class="date">Janvier 2026</span>
-                            </div>
-                            <div class="news-item">
-                                <h4>React Native 0.75</h4>
-                                <p>Nouvelle architecture Fabric stable et amélioration des performances.</p>
-                                <span class="date">Décembre 2025</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="veille-impact">
-                        <h3>💡 Impact sur le développement</h3>
-                        <ul class="impact-list">
-                            <li>Choix optimal de framework selon le projet</li>
-                            <li>Optimisation des performances mobiles</li>
-                            <li>Design adaptatif multi-plateforme</li>
-                            <li>Intégration des APIs natives</li>
-                        </ul>
-                    </div>
-
-                    <div class="veille-sources">
-                        <h3>📚 Sources suivies</h3>
-                        <div class="sources-grid">
-                            <span class="source-tag">React Native</span>
-                            <span class="source-tag">Flutter Dev</span>
-                            <span class="source-tag">Android Developers</span>
-                            <span class="source-tag">iOS Dev</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vue d'ensemble et méthode -->
+    <!-- Vue d'ensemble et méthode à refaire -->
     <section class="veille-methodology bg-light">
         <div class="container">
             <h2 class="section-title">Ma Méthode de Veille</h2>
             <div class="methodology-grid">
                 <div class="method-card">
-                    <h3>🔍 Recherche</h3>
+                    <h3><i class="fas fa-search"></i> Recherche</h3>
                     <ul>
                         <li>Lecture quotidienne de sources spécialisées</li>
                         <li>Suivi des leaders d'opinion sur les réseaux</li>
@@ -463,7 +395,7 @@
                     </ul>
                 </div>
                 <div class="method-card">
-                    <h3>📝 Organisation</h3>
+                    <h3><i class="fas fa-pen"></i> Organisation</h3>
                     <ul>
                         <li>Synthèse hebdomadaire des informations</li>
                         <li>Classification par domaine et impact</li>
@@ -471,7 +403,7 @@
                     </ul>
                 </div>
                 <div class="method-card">
-                    <h3>🎯 Application</h3>
+                    <h3> Application</h3>
                     <ul>
                         <li>Test des nouvelles technologies</li>
                         <li>Adaptation des projets en cours</li>
