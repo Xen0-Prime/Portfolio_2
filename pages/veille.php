@@ -237,8 +237,6 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag"></span>
-                            <span class="source-tag"></span>
                             <span class="source-tag">Google AI</span>
                             <span class="source-tag">Anthropic</span>
                         </div>

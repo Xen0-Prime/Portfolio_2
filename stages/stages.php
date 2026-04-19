@@ -62,8 +62,9 @@
                         <div class="detail-section">
                             <h3> Contexte de l'entreprise</h3>
                             <p>
-                                Décrivez l'entreprise : secteur d'activité, taille, services proposés, 
-                                clientèle cible. Expliquez le contexte dans lequel vous avez effectué votre stage.
+                                Fast Computer Company est une entreprise spécialisée dans la vente et la réparation d'ordinateurs et de périphériques informatiques. 
+                                Elle propose également des services de maintenance et de support technique pour les particuliers et les entreprises.
+                                J'ai effectué mon stage au sein de l'équipe de développement web de l'entreprise, qui est responsable de la création et de la maintenance du site web de l'entreprise, ainsi que de la création de contenus numériques pour promouvoir les produits et services de l'entreprise.
                             </p>
                         </div>
 
@@ -96,22 +97,23 @@
                                 <div class="competence-item">
                                     <h4>Bloc B1</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Recueil et analyse des besoins client pour la conception du site vitrine</li>
+                                        <li>Rédaction d'une documentation technique du projet web</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
                                     <h4>Bloc B2</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Développement d'un site web complet (front-end et back-end) en HTML, CSS, JavaScript et PHP</li>
+                                        <li>Conception et gestion d'une base de données MySQL pour le site vitrine</li>
+                                        <li>Déploiement et mise en ligne du site web sur un hébergeur</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
                                     <h4>Bloc B3</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Sécurisation des formulaires web contre les injections SQL</li>
+                                        <li>Gestion des accès à la base de données avec des comptes utilisateurs restreints</li>
                                     </ul>
                                 </div>
                             </div>
@@ -120,9 +122,8 @@
                         <div class="detail-section">
                             <h3><i class="fas fa-lightbulb"></i> Apports du stage</h3>
                             <p>
-                                Expliquez ce que ce stage vous a apporté : compétences techniques, 
-                                compétences humaines, découverte du monde professionnel, confirmation 
-                                de votre orientation, etc.
+                                Durant ce stage j'ai appris à travailler en autonomie sur des projets concrets, en respectant les délais et les exigences de l'entreprise.
+                                J'ai améliorer mes compétences techniques en développant un site web complet, en utilisant des technologies variées et en résolvant des problèmes techniques rencontrés lors du développement.
                             </p>
                         </div>
 
@@ -178,7 +179,7 @@
                         <div class="detail-section">
                             <h3> Contexte de l'entreprise</h3>
                             <p>
-
+                                Orange Caraïbes est une entreprise spécialisée dans les télécommunications, offrant des services de téléphonie mobile, d'internet et de télévision. Elle est présente dans plusieurs îles des Caraïbes et vise à fournir des solutions de communication innovantes à ses clients.
                             </p>
                         </div>
 
@@ -216,22 +217,22 @@
                                 <div class="competence-item">
                                     <h4>Bloc B1</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Planification et suivi de l'avancement du projet à l'aide d'un diagramme de Gantt</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
                                     <h4>Bloc B2</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Mise en œuvre du protocole MQTT pour la communication IoT en temps réel</li>
+                                        <li>Développement d'une visualisation 3D interactive de l'objet connecté avec Three.js</li>
+                                        <li>Intégration de Supabase pour le stockage et l'exploitation des données collectées</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
                                     <h4>Bloc B3</h4>
                                     <ul>
-                                        <li>Compétence acquise 1</li>
-                                        <li>Compétence acquise 2</li>
+                                        <li>Sécurisation du broker MQTT par authentification et contrôle d'accès</li>
+                                        <li>Mise en place de règles de sécurité sur la base de données Supabase pour protéger les données collectées</li>
                                     </ul>
                                 </div>
                             </div>
@@ -298,19 +299,18 @@
                     <div class="bilan-card">
                         <h3> Objectifs atteints</h3>
                         <ul>
-                            <li>Objectif 1 : Description</li>
-                            <li>Objectif 2 : Description</li>
-                            <li>Objectif 3 : Description</li>
-                            <li>Objectif 4 : Description</li>
+                            <li>Objectif 1 : Travailler en autonomie sur des projets concrets</li>
+                            <li>Objectif 2 : Développer des compétences techniques en développement web</li>
+                            <li>Objectif 3 : Apprendre de nouvelles technologies utilisées en entreprises</li>
+                            <li>Objectif 4 : Comprendre le fonctionnement d'une entreprise de télécommunications</li>
                         </ul>
                     </div>
 
                     <div class="bilan-card">
                         <h3><i class="fas fa-rocket"></i> Projet professionnel</h3>
                         <p>
-                            Expliquez comment ces stages ont confirmé ou réorienté votre projet professionnel. 
-                            Quel type de poste visez-vous après le BTS ? Dans quel secteur souhaitez-vous 
-                            travailler ?
+                            Ces stages m'ont permis de confirmer mon orientation professionnelle vers le développement web, en me donnant l'opportunité de travailler sur des projets concrets et de découvrir les technologies utilisées en entreprise. 
+                            J'ai également développé des compétences humaines essentielles pour travailler en équipe et m'adapter à un environnement professionnel.
                         </p>
                     </div>
 
@@ -318,7 +318,6 @@
                         <h3><i class="fas fa-dumbbell"></i> Points forts développés</h3>
                         <div class="skills-badges">
                             <span class="skill-badge">Autonomie</span>
-                            <span class="skill-badge">Travail d'équipe</span>
                             <span class="skill-badge">Adaptabilité</span>
                             <span class="skill-badge">Communication</span>
                             <span class="skill-badge">Rigueur</span>
