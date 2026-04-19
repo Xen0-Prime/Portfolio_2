@@ -281,7 +281,7 @@
                         <span class="tech-badge">PHPMyAdmin</span>
                         <span class="tech-badge">MySQL</span>
                     </div>
-                    <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Voyage" class="project-link">Voir le projet →</a>
+                    <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Projet_Voyage" class="project-link">Voir le projet →</a>
                     <a href="projets.php#projet-voyage" class="btn btn-primary mt-2">Voir les détails →</a>
                 </div>
 
@@ -301,8 +301,8 @@
                         <span class="tech-badge">PHPMyAdmin</span>
                         <span class="tech-badge">PostgreSQL</span>
                     </div>
-                    <a href=" class="project-link">Voir le projet →</a>
-                    <a href="">Voir les détails →</a>
+                    <a href="https://github.com/Xen0-Prime/borne-kebab.git" class="project-link">Voir le projet →</a>
+                    <a href="projets.php#projet-symfony">Voir les détails →</a>
                 </div>
 
 

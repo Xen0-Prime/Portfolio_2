@@ -437,7 +437,7 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Voyage" class="btn btn-secondary" target="_blank">
+                        <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Projet_Voyage" class="btn btn-secondary" target="_blank">
                             <i class="fab fa-github"></i> Code source
                         </a>
                     </div>
@@ -447,7 +447,7 @@
     </section>
 
         <!-- Projet 6: Appli Symfony -->
-    <section id="gestion-stock" class="project-detail-section">
+    <section id="projet-symfony" class="project-detail-section">
         <div class="container">
             <div class="project-detail-card">
                 <div class="project-detail-header">
@@ -514,7 +514,7 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="" class="btn btn-secondary" target="_blank">
+                        <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/borne-kebab" class="btn btn-secondary" target="_blank">
                             <i class="fab fa-github"></i> Code source
                         </a>
                     </div>
