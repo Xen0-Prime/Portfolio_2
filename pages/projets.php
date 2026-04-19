@@ -514,7 +514,7 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Gestion%20de%20stock" class="btn btn-secondary" target="_blank">
+                        <a href="" class="btn btn-secondary" target="_blank">
                             <i class="fab fa-github"></i> Code source
                         </a>
                     </div>
