@@ -446,6 +446,84 @@
         </div>
     </section>
 
+        <!-- Projet 6: Appli Symfony -->
+    <section id="gestion-stock" class="project-detail-section">
+        <div class="container">
+            <div class="project-detail-card">
+                <div class="project-detail-header">
+                    <h2>Application Symfony</h2>
+                    <div class="project-badges">
+                        <span class="badge badge-php">PHP</span>
+                        <span class="badge badge-database">Base de données</span>
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-overview">
+                        <h3>Description du projet</h3>
+                        <p>
+                            Application de gestion de stock développée en PHP avec le framework Symfony.
+                            Le contexte de ce projet est de créer une interface pour les bornes dans les fast foods, permettant de gérer les commandes et les stocks en temps réel. L'application est connectée à une base de données PostgreSQL pour la persistance des données.
+                            Mon application est une borne pour customiser son kebab, ajouter, modifier ou supprimer des éléments dans le kebab, et valider la commande. L'application est conçue pour être utilisée sur des bornes tactiles dans les fast foods, offrant une expérience utilisateur fluide et intuitive.
+                        </p>
+                    </div>
+
+                    <div class="project-features">
+                        <h3>Fonctionnalités principales</h3>
+                        <ul class="features-list">
+                            <li>Consultation de la carte</li>
+                            <li>Personnalisation des kebabs</li>
+                            <li>Gestion du panier</li>
+                            <li>Validation des commandes</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-tech">
+                        <h3>Technologies utilisées</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <strong>Langage :</strong> PHP 8
+                            </div>
+                            <div class="tech-item">
+                                <strong>Framework :</strong> Symfony 5
+                            </div>
+                            <div class="tech-item">
+                                <strong>Base de données :</strong> PostgreSQL
+                            </div>
+                            <div class="tech-item">
+                                <strong>Connecteur :</strong> Doctrine ORM
+                            </div>
+                            <div class="tech-item">
+                                <strong>IDE :</strong> PhpStorm
+                            </div>
+                            <div class="tech-item">
+                                <strong>Gestion BD :</strong> PHPMyAdmin
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-competences">
+                        <h3>Compétences développées</h3>
+                        <div class="competences-badges">
+                            <span class="comp-badge">Programmation orientée objet</span>
+                            <span class="comp-badge">Interface graphique</span>
+                            <span class="comp-badge">Base de données relationnelles</span>
+                            <span class="comp-badge">SQL</span>
+                            <span class="comp-badge">Architecture MVC</span>
+                        </div>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Gestion%20de%20stock" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

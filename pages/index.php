@@ -285,6 +285,27 @@
                     <a href="projets.php#projet-voyage" class="btn btn-primary mt-2">Voir les détails →</a>
                 </div>
 
+                <!-- Projet 6 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Projet Symfony</h3>
+                        <span class="project-tag">Web</span>
+                    </div>
+                    <p class="project-description">
+                        Description du projet Symfony. À personnaliser selon votre projet.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Symfony</span>
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">PHPMyAdmin</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                    <a href=" class="project-link">Voir le projet →</a>
+                    <a href="">Voir les détails →</a>
+                </div>
+
+
             </div>
         </div>
     </section>
