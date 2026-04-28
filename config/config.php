@@ -9,8 +9,8 @@ define('CONTACT_EMAIL_FROM', 'noreply@portfolio-killian.fr'); // expéditeur (do
 
 // --- Supabase ---
 // Récupère ces valeurs sur : https://app.supabase.com → ton projet → Settings → API
-define('SUPABASE_URL',     'https://VOTRE_PROJECT_REF.supabase.co');   // ex: https://abcdefgh.supabase.co
-define('SUPABASE_ANON_KEY','VOTRE_ANON_KEY');                          // clé "anon public"
+define('SUPABASE_URL',     'https://vgyadinxazpkccjhdwwd.supabase.co');   // ex: https://abcdefgh.supabase.co
+define('SUPABASE_ANON_KEY','sb_publishable_CEOq7NxU0FzRZ8TnnCdsxw_JI71DEiy');                          // clé "anon public"
 
 // --- Table Supabase pour les messages de contact ---
 define('SUPABASE_TABLE',   'contact_messages');
