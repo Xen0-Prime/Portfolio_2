@@ -4,8 +4,8 @@
 // ============================================================
 
 // --- Email de destination (où tu veux recevoir les messages) ---
-define('CONTACT_EMAIL',    'narassonmohamedalykillian@gmail.com');
-define('CONTACT_EMAIL_FROM', 'noreply@portfolio-killian.fr'); // expéditeur (domaine du serveur)
+define('CONTACT_EMAIL',    'knarassonmohamedaly@gmail.com');
+define('CONTACT_EMAIL_FROM', 'narassonmohamedaly@gmail.com'); // expéditeur (domaine du serveur)
 
 // --- Supabase ---
 // Récupère ces valeurs sur : https://app.supabase.com → ton projet → Settings → API
