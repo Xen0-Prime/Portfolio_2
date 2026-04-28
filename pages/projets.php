@@ -332,7 +332,7 @@ function competence_tags(string $id, array $map): string {
         <div class="container">
             <div class="project-detail-card">
                 <div class="project-detail-header">
-                    <h2>Projet Symfony — Borne Kebab</h2>
+                    <h2>Projet Symfony — St-Gentlemen</h2>
                     <div class="project-badges">
                         <span class="badge badge-web">Web</span>
                         <span class="badge badge-symfony">Symfony</span>
@@ -355,7 +355,7 @@ function competence_tags(string $id, array $map): string {
                         </div>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/Xen0-Prime/borne-kebab.git" class="btn btn-primary" target="_blank">Voir le projet →</a>
+                        <a href="https://github.com/Xen0-Prime/st-gentlemen.git" class="btn btn-primary" target="_blank">Voir le projet →</a>
                     </div>
                 </div>
             </div>
