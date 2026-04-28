@@ -1,0 +1,250 @@
+/* ===== Dashboard BTS SIO — Structure C ===== */
+
+/* Hero compact */
+.hero-compact {
+    padding: 3rem 0 2rem;
+    min-height: unset;
+}
+.hero-compact .hero-title {
+    font-size: 2rem;
+}
+.hero-compact .hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Titre du dashboard */
+.dashboard-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.6rem;
+}
+.title-tag {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+.dashboard-intro {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* Grille 3×2 des blocs compétences */
+.competences-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 900px) {
+    .competences-dashboard { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+    .competences-dashboard { grid-template-columns: 1fr; }
+}
+
+/* Bloc compétence générique */
+.bloc-competence {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 1.4rem 1.25rem 1.1rem;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-surface);
+    cursor: pointer;
+}
+.bloc-competence::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.bloc-competence:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+.bloc-competence:hover::before { opacity: 0.06; }
+
+/* Couleurs par bloc (accent différent) */
+.bloc-b1 { border-top: 3px solid #0ea5e9; }
+.bloc-b2 { border-top: 3px solid #8b5cf6; }
+.bloc-b3 { border-top: 3px solid #06d6a0; }
+.bloc-b4 { border-top: 3px solid #f59e0b; }
+.bloc-b5 { border-top: 3px solid #ef4444; }
+.bloc-b6 { border-top: 3px solid #ec4899; }
+
+.bloc-b1:hover { border-color: #0ea5e9; box-shadow: 0 8px 30px rgba(14,165,233,0.15); }
+.bloc-b2:hover { border-color: #8b5cf6; box-shadow: 0 8px 30px rgba(139,92,246,0.15); }
+.bloc-b3:hover { border-color: #06d6a0; box-shadow: 0 8px 30px rgba(6,214,160,0.15); }
+.bloc-b4:hover { border-color: #f59e0b; box-shadow: 0 8px 30px rgba(245,158,11,0.15); }
+.bloc-b5:hover { border-color: #ef4444; box-shadow: 0 8px 30px rgba(239,68,68,0.15); }
+.bloc-b6:hover { border-color: #ec4899; box-shadow: 0 8px 30px rgba(236,72,153,0.15); }
+
+/* Contenu du bloc */
+.bloc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.bloc-code {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.bloc-arrow {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.bloc-competence:hover .bloc-arrow {
+    transform: translateX(4px);
+    color: var(--primary-color);
+}
+
+.bloc-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+.bloc-desc {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+.bloc-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+.bloc-badge {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-light);
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    padding: 0.2em 0.7em;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+.bloc-competence:hover .bloc-badge {
+    background: var(--secondary-color);
+    color: var(--white);
+    border-color: var(--secondary-color);
+}
+
+/* Raccourcis rapides */
+.quick-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    background: var(--bg-surface);
+    transition: var(--transition);
+}
+.quick-link:hover {
+    color: var(--primary-color);
+    border-color: var(--secondary-color);
+    background: var(--bg-light);
+}
+.ql-icon {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+/* ===== projets.php — filtre compétence ===== */
+.competence-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.competence-filter-label {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+.competence-active-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.3em 0.9em;
+    border-radius: 20px;
+    background: var(--secondary-color);
+    color: var(--white);
+}
+.filter-reset {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.3em 0.8em;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: var(--transition);
+}
+.filter-reset:hover {
+    color: var(--primary-color);
+    border-color: var(--text-light);
+}
+
+/* projet masqué par filtre */
+.project-detail-section.hidden {
+    display: none;
+}
+
+/* Badge compétences sur fiche projet */
+.competence-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+}
+.ctag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.15em 0.55em;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+}
+.ctag-b1 { border-color: #0ea5e9; color: #0ea5e9; }
+.ctag-b2 { border-color: #8b5cf6; color: #8b5cf6; }
+.ctag-b3 { border-color: #06d6a0; color: #06d6a0; }
+.ctag-b4 { border-color: #f59e0b; color: #f59e0b; }
+.ctag-b5 { border-color: #ef4444; color: #ef4444; }
+.ctag-b6 { border-color: #ec4899; color: #ec4899; }
