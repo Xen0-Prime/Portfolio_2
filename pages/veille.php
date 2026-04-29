@@ -69,7 +69,7 @@
             <div class="featured-label">À la une</div>
             <div class="featured-card">
                 <div class="featured-visual">
-                    <span class="featured-visual-icon">🤖</span>
+                    <img src="../stages/docs/claude.png" alt="Claude AI" class="featured-image" style="width:1.2em;height:1.2em;object-fit:contain;">
                     <span class="featured-visual-cat">Intelligence Artificielle</span>
                 </div>
                 <div class="featured-body">
