@@ -17,6 +17,7 @@
                 <li><a href="projets.php">Projets</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
                 <li><a href="veille.php">Veille</a></li>
+                <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -150,6 +151,52 @@
             </div>
         </div>
     </main>
+
+    <!-- Frise chronologique — Formation -->
+    <section class="section section-timeline">
+        <div class="container">
+            <h2 class="section-title dashboard-title">
+                <span class="title-tag">Formation</span> Mon parcours
+            </h2>
+            <p class="dashboard-intro">Chronologie de ma formation académique et professionnelle.</p>
+
+            <div class="timeline-wrapper">
+
+                <div class="timeline-item">
+                    <div class="timeline-marker timeline-current"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">2024 – 2026</div>
+                        <h3 class="timeline-title">BTS SIO — option SLAM</h3>
+                        <span class="timeline-school">LGT Baimbridge, Guadeloupe</span>
+                        <span class="timeline-badge">En cours</span>
+                        <ul class="timeline-subjects">
+                            <li>CEJM — Culture économique, juridique et managériale</li>
+                            <li>AP — Accompagnement personnalisé</li>
+                            <li>Cybersécurité</li>
+                            <li>Algorithmie &amp; programmation</li>
+                            <li>Base de données</li>
+                            <li>Développement d'applications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">2022 – 2024</div>
+                        <h3 class="timeline-title">Baccalauréat STL</h3>
+                        <span class="timeline-school">LGT Providence, Guadeloupe</span>
+                        <ul class="timeline-subjects">
+                            <li>Biochimie-Biologie</li>
+                            <li>Physique-Chimie &amp; Mathématiques</li>
+                            <li>Sciences physiques et chimiques en laboratoire</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">

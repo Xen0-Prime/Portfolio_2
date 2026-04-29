@@ -63,6 +63,7 @@ function competence_tags(string $id, array $map): string {
                 <li><a href="projets.php" class="active">Projets</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
                 <li><a href="veille.php">Veille</a></li>
+                <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">

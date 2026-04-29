@@ -19,6 +19,7 @@
                 <li><a href="index.php#competences">Compétences</a></li>
                 <li><a href="projets.php">Projets</a></li>
                 <li><a href="veille.php" class="active">Veille</a></li>
+                <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
             </ul>
