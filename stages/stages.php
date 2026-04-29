@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -22,294 +23,409 @@
                 <li><a href="../pages/contact.php">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- ─── Header masthead ─── -->
+    <header class="stages-header">
         <div class="container">
-            <h1 class="page-title">Mes Stages</h1>
-            <p class="page-subtitle">Expériences professionnelles BTS SIO SLAM</p>
+            <div class="stages-masthead">
+                <h1 class="stages-title">Mes Stages</h1>
+                <div class="stages-meta">
+                    <span class="meta-tag">BTS SIO SLAM</span>
+                    2 entreprises · 12 semaines · 2025–2026
+                </div>
+            </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Stages Content -->
-    <section class="section">
+    <!-- ─── Timeline section ─── -->
+    <section class="stages-section">
         <div class="container">
-            
-            <!-- Stage 1ère année -->
-            <div class="stage-card">
-                <div class="stage-badge">1ère année</div>
-                
-                <div class="stage-content">
-                    <div class="stage-header">
-                        <div class="stage-title-group">
-                            <h2 class="stage-title">Stage de 1ère année</h2>
-                            <p class="stage-company">Fast Computer Company</p>
-                        </div>
-                        <div class="stage-duration">
-                            <span class="duration-badge"><i class="fas fa-calendar-alt"></i> Dates du stage</span>
-                            <span class="duration-text">12 Mai 2025 - 21 Juin 2025 (6 semaines)</span>
-                        </div>
+            <div class="stages-timeline">
+
+                <!-- ═══ STAGE 1 — Fast Computer Company ═══ -->
+                <div class="timeline-entry">
+
+                    <div class="timeline-year-col">
+                        <span class="timeline-year-label">Stage</span>
+                        <span class="timeline-year-num y1">S1</span>
                     </div>
 
-                    <div class="stage-details">
-                        <div class="detail-section">
-                            <h3> Contexte de l'entreprise</h3>
-                            <p>
-                                Fast Computer Company est une entreprise spécialisée dans la vente et la réparation d'ordinateurs et de périphériques informatiques. 
-                                Elle propose également des services de maintenance et de support technique pour les particuliers et les entreprises.
-                                J'ai effectué mon stage au sein de l'équipe de développement web de l'entreprise, qui est responsable de la création et de la maintenance du site web de l'entreprise, ainsi que de la création de contenus numériques pour promouvoir les produits et services de l'entreprise.
-                            </p>
-                        </div>
+                    <div class="timeline-dot-col">
+                        <div class="timeline-dot d1"></div>
+                    </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-briefcase"></i> Missions confiées</h3>
-                            <ul class="missions-list">
-                                <li>
-                                    <strong>Mission 1 :</strong> Création d'un site vitrine pour l'entreprise, comprenant la conception de l'interface, le développement front-end et back-end, et la mise en ligne du site.
-                                </li>
-                                <li>
-                                    <strong>Mission 2 :</strong> Création d'une vidéo tutorielle pour le site magik 33, expliquant les fonctionnalités du site et comment les utiliser.
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="timeline-stage-wrapper">
+                        <div class="stage-card-new s1">
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-tools"></i>️ Technologies utilisées</h3>
-                            <div class="tech-tags">
+                            <!-- Card header -->
+                            <div class="stage-card-header">
+                                <div>
+                                    <h2 class="stage-company-name">Fast Computer Company</h2>
+                                    <div class="stage-period">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        12 Mai 2025 — 21 Juin 2025
+                                    </div>
+                                </div>
+                                <div class="stage-meta-right">
+                                    <span class="stage-year-badge s1">1ère année</span>
+                                    <span class="stage-duration-text">6 semaines · PME</span>
+                                </div>
+                            </div>
+
+                            <!-- Card body -->
+                            <div class="stage-card-body">
+
+                                <!-- Contexte -->
+                                <div>
+                                    <p class="stage-context">
+                                        Fast Computer Company est une PME spécialisée dans la vente et la réparation d'ordinateurs et périphériques informatiques.
+                                        J'ai intégré l'équipe de développement web, chargée de la création et de la maintenance du site vitrine ainsi que de la production de contenus numériques.
+                                    </p>
+                                </div>
+
+                                <!-- Missions + Compétences (2 colonnes) -->
+                                <div class="stage-two-col">
+
+                                    <!-- Missions -->
+                                    <div>
+                                        <p class="stage-block-title"><i class="fas fa-briefcase"></i>&nbsp;Missions confiées</p>
+                                        <ul class="stage-missions-list">
+                                            <li>
+                                                <strong>Mission 1 — Site vitrine</strong>
+                                                Conception, développement front-end et back-end, et mise en ligne du site de l'entreprise.
+                                            </li>
+                                            <li>
+                                                <strong>Mission 2 — Tutoriel vidéo</strong>
+                                                Création d'une vidéo tutorielle pour le site Magik 33 expliquant ses fonctionnalités.
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Compétences -->
+                                    <div>
+                                        <p class="stage-block-title"><i class="fas fa-book"></i>&nbsp;Compétences développées</p>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B1 — Support &amp; mise à disposition</h4>
+                                            <ul>
+                                                <li>Recueil et analyse des besoins client</li>
+                                                <li>Rédaction de la documentation technique</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B3 — Développement d'applications</h4>
+                                            <ul>
+                                                <li>Site web complet (HTML, CSS, JS, PHP)</li>
+                                                <li>Conception et gestion d'une BDD MySQL</li>
+                                                <li>Déploiement sur hébergeur</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B5 — Infrastructure</h4>
+                                            <ul>
+                                                <li>Sécurisation contre les injections SQL</li>
+                                                <li>Gestion des accès BDD avec comptes restreints</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /stage-two-col -->
+
+                            </div><!-- /stage-card-body -->
+
+                            <!-- Tech bar -->
+                            <div class="stage-tech-bar">
+                                <span class="stage-tech-label">Stack</span>
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">PHP</span>
                                 <span class="tech-tag">MySQL</span>
                             </div>
-                        </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-book"></i> Compétences développées</h3>
-                            <div class="competences-grid">
-                                <div class="competence-item">
-                                    <h4>Support &amp; mise à disposition</h4>
-                                    <ul>
-                                        <li>Recueil et analyse des besoins client pour la conception du site vitrine</li>
-                                        <li>Rédaction d'une documentation technique du projet web</li>
-                                    </ul>
+                            <!-- Apports + Défis -->
+                            <div class="stage-bottom-grid">
+
+                                <div class="stage-apport">
+                                    <p class="stage-block-title"><i class="fas fa-lightbulb"></i>&nbsp;Apports</p>
+                                    <p>
+                                        Travailler en autonomie sur un projet concret en respectant les délais.
+                                        Renforcement des compétences techniques full-stack et résolution de problèmes en conditions réelles.
+                                    </p>
                                 </div>
-                                <div class="competence-item">
-                                    <h4>Développement d'applications</h4>
-                                    <ul>
-                                        <li>Développement d'un site web complet (front-end et back-end) en HTML, CSS, JavaScript et PHP</li>
-                                        <li>Conception et gestion d'une base de données MySQL pour le site vitrine</li>
-                                        <li>Déploiement et mise en ligne du site web sur un hébergeur</li>
-                                    </ul>
+
+                                <div class="stage-defis">
+                                    <p class="stage-block-title"><i class="fas fa-search"></i>&nbsp;Défis rencontrés</p>
+                                    <div class="defi-box">
+                                        <strong>Défi 1 — Base de données</strong>
+                                        <p>Difficultés avec les relations MySQL entre tables — surmontées grâce à des tutoriels et l'aide de l'IA.</p>
+                                    </div>
+                                    <div class="defi-box">
+                                        <strong>Défi 2 — Mise en ligne</strong>
+                                        <p>Configuration de l'hébergeur — résolu en suivant la documentation pas à pas.</p>
+                                    </div>
                                 </div>
-                                <div class="competence-item">
-                                    <h4>Gestion de l'infrastructure</h4>
-                                    <ul>
-                                        <li>Sécurisation des formulaires web contre les injections SQL</li>
-                                        <li>Gestion des accès à la base de données avec des comptes utilisateurs restreints</li>
-                                    </ul>
+
+                            </div><!-- /stage-bottom-grid -->
+
+                            <!-- Documents -->
+                            <div class="stage-docs">
+                                <p class="stage-docs-label"><i class="fas fa-file-alt"></i>&nbsp;Documents</p>
+                                <div class="docs-row">
+                                    <a href="docs/Attestation_Stage1.pdf" class="doc-link" target="_blank" rel="noopener noreferrer">
+                                        <i class="fas fa-file-pdf"></i> Attestation de stage
+                                    </a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-lightbulb"></i> Apports du stage</h3>
-                            <p>
-                                Durant ce stage j'ai appris à travailler en autonomie sur des projets concrets, en respectant les délais et les exigences de l'entreprise.
-                                J'ai améliorer mes compétences techniques en développant un site web complet, en utilisant des technologies variées et en résolvant des problèmes techniques rencontrés lors du développement.
-                            </p>
-                        </div>
+                        </div><!-- /stage-card-new.s1 -->
+                    </div><!-- /timeline-stage-wrapper -->
+                </div><!-- /timeline-entry -->
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-search"></i> Difficultés rencontrées</h3>
-                            <div class="difficulty-box">
-                                <p>
-                                    <strong>Défi 1 :</strong> Diificultés avec la base de données MySQL, notamment pour la gestion des relations entre les tables. J'ai surmonté ce défi en suivant des tutoriels en ligne et en m'aidant de l'IA.
-                                </p>
-                            </div>
-                            <div class="difficulty-box">
-                                <p>
-                                    <strong>Défi 2 :</strong> Difficultés pour la mise en ligne du site sur un hébergeur. J'ai résolu ce problème en suivant les instructions de l'hebergeur pas à pas et en faisant des recherches en ligne.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Documents téléchargeables -->
-                    <div class="stage-documents">
-                        <h3><i class="fas fa-file-alt"></i> Documents</h3>
-                        <div class="documents-grid">
-                            <a href="docs/Attestation_Stage1.pdf" class="document-card" target="_blank" rel="noopener noreferrer">
-                                <div class="document-icon"><i class="fas fa-file-alt"></i></div>
-                                <div class="document-info">
-                                    <h4>Attestation de stage</h4>
-                                    <p>Format PDF</p>
-                                </div>
-                                <div class="download-icon"><i class="fas fa-eye"></i>️</div>
-                            </a>
-                        </div>
-                    </div>
+                <!-- ─── Connector between stages ─── -->
+                <div class="timeline-connector">
+                    <i class="fas fa-arrow-down"></i>
+                    Montée en compétences — PME locale → Grande entreprise régionale · Technologies web → IoT &amp; temps réel
                 </div>
-            </div>
 
-            <!-- Stage 2ème année -->
-            <div class="stage-card">
-                <div class="stage-badge stage-badge-2">2ème année</div>
-                
-                <div class="stage-content">
-                    <div class="stage-header">
-                        <div class="stage-title-group">
-                            <h2 class="stage-title">Stage de 2ème année</h2>
-                            <p class="stage-company">Orange Caraïbes</p>
-                        </div>
-                        <div class="stage-duration">
-                            <span class="duration-badge"><i class="fas fa-calendar-alt"></i> Dates du stage</span>
-                            <span class="duration-text"> 8 Décembre 2025 - 16 Janvier 2026 (6 semaines)</span>
-                        </div>
+
+                <!-- ═══ STAGE 2 — Orange Caraïbes ═══ -->
+                <div class="timeline-entry">
+
+                    <div class="timeline-year-col">
+                        <span class="timeline-year-label">Stage</span>
+                        <span class="timeline-year-num y2">S2</span>
                     </div>
 
-                    <div class="stage-details">
-                        <div class="detail-section">
-                            <h3> Contexte de l'entreprise</h3>
-                            <p>
-                                Orange Caraïbes est une entreprise spécialisée dans les télécommunications, offrant des services de téléphonie mobile, d'internet et de télévision. Elle est présente dans plusieurs îles des Caraïbes et vise à fournir des solutions de communication innovantes à ses clients.
-                            </p>
-                        </div>
+                    <div class="timeline-dot-col">
+                        <div class="timeline-dot d2"></div>
+                    </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-briefcase"></i> Missions confiées</h3>
-                            <ul class="missions-list">
-                                <li>
-                                    <strong> Création d'une interface pour analyser les données de l'objet connecté</strong> Mise en place d'une interface web pour visualiser et analyser les données collectées par un objet connecté, permettant aux utilisateurs de suivre les performances telles que : l'humidité, pression, température et gyroscope.
-                                </li>
-                                <li>
-                                    <strong>Évolution de l'interface </strong> Amélioration de l'interface existante pour une meilleure expérience utilisateur et ajout de nouvelles fonctionnalités (représentation 3D de l'objet, ajouts de graphiques). 
-                                </li>
-                                <li>
-                                    <strong>Évolution de l'interface</strong>Amélioration de l'interface existante avec ajout d'une base de données (Supabase) pour stocker les données collectées par l'objet connecté, permettant une analyse plus approfondie et une meilleure visualisation des données.
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="timeline-stage-wrapper">
+                        <div class="stage-card-new s2">
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-tools"></i>️ Technologies utilisées</h3>
-                            <div class="tech-tags">
+                            <!-- Card header -->
+                            <div class="stage-card-header">
+                                <div>
+                                    <h2 class="stage-company-name">Orange Caraïbes</h2>
+                                    <div class="stage-period">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        8 Décembre 2025 — 16 Janvier 2026
+                                    </div>
+                                </div>
+                                <div class="stage-meta-right">
+                                    <span class="stage-year-badge s2">2ème année</span>
+                                    <span class="stage-duration-text">6 semaines · Grand groupe</span>
+                                </div>
+                            </div>
+
+                            <!-- Card body -->
+                            <div class="stage-card-body">
+
+                                <!-- Contexte -->
+                                <div>
+                                    <p class="stage-context">
+                                        Orange Caraïbes est un opérateur de télécommunications présent dans plusieurs îles des Caraïbes, offrant téléphonie mobile, internet et télévision.
+                                        J'ai intégré l'équipe technique pour développer une interface de supervision d'objets connectés (IoT) en temps réel.
+                                    </p>
+                                </div>
+
+                                <!-- Missions + Compétences (2 colonnes) -->
+                                <div class="stage-two-col">
+
+                                    <!-- Missions -->
+                                    <div>
+                                        <p class="stage-block-title"><i class="fas fa-briefcase"></i>&nbsp;Missions confiées</p>
+                                        <ul class="stage-missions-list">
+                                            <li>
+                                                <strong>Mission 1 — Interface IoT</strong>
+                                                Développement d'une interface web pour visualiser les données d'un objet connecté (humidité, pression, température, gyroscope) via MQTT.
+                                            </li>
+                                            <li>
+                                                <strong>Mission 2 — Visualisation 3D</strong>
+                                                Amélioration de l'interface avec une représentation 3D de l'objet (Three.js) et ajout de graphiques dynamiques.
+                                            </li>
+                                            <li>
+                                                <strong>Mission 3 — Base de données</strong>
+                                                Intégration de Supabase pour le stockage persistant des données collectées et une analyse approfondie.
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Compétences -->
+                                    <div>
+                                        <p class="stage-block-title"><i class="fas fa-book"></i>&nbsp;Compétences développées</p>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B4 — Travail en équipe</h4>
+                                            <ul>
+                                                <li>Planification via diagramme de Gantt</li>
+                                                <li>Intégration dans une équipe structurée</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B3 — Développement d'applications</h4>
+                                            <ul>
+                                                <li>Communication IoT temps réel via MQTT</li>
+                                                <li>Visualisation 3D interactive avec Three.js</li>
+                                                <li>Intégration Supabase (BDD cloud)</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="stage-comp-item">
+                                            <h4>B5 — Infrastructure</h4>
+                                            <ul>
+                                                <li>Sécurisation du broker MQTT (auth + ACL)</li>
+                                                <li>Règles de sécurité Supabase (RLS)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /stage-two-col -->
+
+                            </div><!-- /stage-card-body -->
+
+                            <!-- Tech bar -->
+                            <div class="stage-tech-bar">
+                                <span class="stage-tech-label">Stack</span>
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">MQTT</span>
-                                <span class="tech-tag">Arduino</span>
-                                <span class="tech-tag">Supabase</span>
                                 <span class="tech-tag">Three.js</span>
+                                <span class="tech-tag">Supabase</span>
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Node-RED</span>
                             </div>
-                        </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-book"></i> Compétences développées</h3>
-                            <div class="competences-grid">
-                                <div class="competence-item">
-                                    <h4>Travail en équipe</h4>
-                                    <ul>
-                                        <li>Planification et suivi de l'avancement du projet à l'aide d'un diagramme de Gantt</li>
-                                    </ul>
+                            <!-- Apports + Défis -->
+                            <div class="stage-bottom-grid">
+
+                                <div class="stage-apport">
+                                    <p class="stage-block-title"><i class="fas fa-lightbulb"></i>&nbsp;Apports</p>
+                                    <p>
+                                        Découverte de technologies avancées (IoT, MQTT, Three.js, Node-RED).
+                                        Développement de compétences humaines dans un grand groupe structuré.
+                                        Confirmation de mon orientation vers le développement web et l'IoT.
+                                    </p>
                                 </div>
-                                <div class="competence-item">
-                                    <h4>Développement d'applications</h4>
-                                    <ul>
-                                        <li>Mise en œuvre du protocole MQTT pour la communication IoT en temps réel</li>
-                                        <li>Développement d'une visualisation 3D interactive de l'objet connecté avec Three.js</li>
-                                        <li>Intégration de Supabase pour le stockage et l'exploitation des données collectées</li>
-                                    </ul>
+
+                                <div class="stage-defis">
+                                    <p class="stage-block-title"><i class="fas fa-search"></i>&nbsp;Défis rencontrés</p>
+                                    <div class="defi-box">
+                                        <strong>Défi 1 — Communication MQTT</strong>
+                                        <p>Mise en place du protocole entre l'objet et l'interface — résolu avec docs, tutoriels et aide des collègues.</p>
+                                    </div>
+                                    <div class="defi-box">
+                                        <strong>Défi 2 — Broker instable</strong>
+                                        <p>Instabilité du broker public — résolu en migrant vers un broker interne correctement configuré.</p>
+                                    </div>
                                 </div>
-                                <div class="competence-item">
-                                    <h4>Gestion de l'infrastructure</h4>
-                                    <ul>
-                                        <li>Sécurisation du broker MQTT par authentification et contrôle d'accès</li>
-                                        <li>Mise en place de règles de sécurité sur la base de données Supabase pour protéger les données collectées</li>
-                                    </ul>
+
+                            </div><!-- /stage-bottom-grid -->
+
+                            <!-- Documents -->
+                            <div class="stage-docs">
+                                <p class="stage-docs-label"><i class="fas fa-file-alt"></i>&nbsp;Documents</p>
+                                <div class="docs-row">
+                                    <a href="docs/Attestation_Stage2.pdf" class="doc-link" target="_blank" rel="noopener noreferrer">
+                                        <i class="fas fa-file-pdf"></i> Attestation de stage
+                                    </a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-chart-line"></i> Évolution par rapport au stage de 1ère année</h3>
-                            <p>
-                                Une entreprise plus grande et plus structurée, avec des processus de travail plus formalisés.
-                                Des missions plus complexes et plus variées, impliquant des technologies plus avancées.
-                                Une plus grande autonomie et une plus grande responsabilité dans la réalisation des missions.
-                                Une bonne ambiance de travail et une bonne intégration dans l'équipe, avec des collègues disponibles pour aider et conseiller.
-                            </p>
-                        </div>
+                        </div><!-- /stage-card-new.s2 -->
+                    </div><!-- /timeline-stage-wrapper -->
+                </div><!-- /timeline-entry -->
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-lightbulb"></i> Apports du stage</h3>
-                            <p>
-                                Ce stage m'a permis de développer mes compétences techniques en travaillant sur des technologies plus avancées et en réalisant des missions plus complexes. 
-                                J'ai également développé mes compétences humaines en travaillant dans une équipe plus grande et plus structurée, avec des processus de travail plus formalisés.
-                                J'ai découvert de nouvelles technologies (MQTT, Three.js, NodeRed, Arduino) et j'ai appris à les utiliser pour réaliser des missions concrètes.
-                                J'ai découvert le monde professionnel dans une grande entreprise, avec ses avantages et ses inconvénients, et j'ai confirmé mon orientation professionnelle vers le développement web. 
-                            </p>
-                        </div>
+            </div><!-- /stages-timeline -->
+        </div><!-- /container -->
+    </section>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-search"></i> Difficultés rencontrées</h3>
-                            <div class="difficulty-box">
-                                <p>
-                                    <strong>Défi 1 :</strong> Difficultés pour la mise en place de la communication MQTT entre l'objet connecté et l'interface web. J'ai surmonté ce défi en suivant des tutoriels en ligne, en consultant la documentation de MQTT et en demandant de l'aide à mes collègues.
-                                </p>
-                            </div>
-                            <div class="difficulty-box">
-                                <p>
-                                    <strong>Défi 2 :</strong> Broker instable, ce qui a rendu difficile la communication entre l'objet connecté et l'interface web. J'ai résolu ce problème en changeant de broker et en configurant correctement le nouveau broker (broker interne).
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- ─── Evolution bar ─── -->
+    <section class="evolution-section">
+        <div class="container">
 
-                    <!-- Documents téléchargeables -->
-                    <div class="stage-documents">
-                        <h3><i class="fas fa-file-alt"></i> Documents</h3>
-                        <div class="documents-grid">
-                            <a href="docs/Attestation_Stage2.pdf" class="document-card" target="_blank" rel="noopener noreferrer">
-                                <div class="document-icon"><i class="fas fa-file-alt"></i></div>
-                                <div class="document-info">
-                                    <h4>Attestation de stage</h4>
-                                    <p>Format PDF</p>
-                                </div>
-                                <div class="download-icon"><i class="fas fa-eye"></i>️</div>
-                            </a>
-
-
-                        </div>
-                    </div>
+            <div class="evolution-bar">
+                <div class="evolution-bar-header">
+                    Évolution entre les deux stages
                 </div>
-            </div>
+                <div class="evolution-grid">
 
-            <!-- Bilan des stages -->
+                    <div class="evo-item">
+                        <span class="evo-label">Structure</span>
+                        <div class="evo-row">
+                            <div class="evo-from">PME locale</div>
+                            <span class="evo-arrow">→</span>
+                            <div class="evo-to">Grand groupe</div>
+                        </div>
+                    </div>
+
+                    <div class="evo-item">
+                        <span class="evo-label">Technologie</span>
+                        <div class="evo-row">
+                            <div class="evo-from">Web classique</div>
+                            <span class="evo-arrow">→</span>
+                            <div class="evo-to">IoT + 3D temps réel</div>
+                        </div>
+                    </div>
+
+                    <div class="evo-item">
+                        <span class="evo-label">Complexité</span>
+                        <div class="evo-row">
+                            <div class="evo-from">Site vitrine</div>
+                            <span class="evo-arrow">→</span>
+                            <div class="evo-to">Dashboard temps réel</div>
+                        </div>
+                    </div>
+
+                    <div class="evo-item">
+                        <span class="evo-label">Autonomie</span>
+                        <div class="evo-row">
+                            <div class="evo-from">Encadrée</div>
+                            <span class="evo-arrow">→</span>
+                            <div class="evo-to">Confirmée</div>
+                        </div>
+                    </div>
+
+                </div><!-- /evolution-grid -->
+            </div><!-- /evolution-bar -->
+
+        </div>
+    </section>
+
+    <!-- ─── Bilan section ─── -->
+    <section class="stages-section" style="padding-top: 0;">
+        <div class="container">
+
             <div class="bilan-section">
                 <h2 class="section-title">Bilan de mes expériences</h2>
                 <div class="bilan-content">
+
                     <div class="bilan-card">
-                        <h3> Objectifs atteints</h3>
+                        <h3>Objectifs atteints</h3>
                         <ul>
-                            <li>Objectif 1 : Travailler en autonomie sur des projets concrets</li>
-                            <li>Objectif 2 : Développer des compétences techniques en développement web</li>
-                            <li>Objectif 3 : Apprendre de nouvelles technologies utilisées en entreprises</li>
-                            <li>Objectif 4 : Comprendre le fonctionnement d'une entreprise de télécommunications</li>
+                            <li>Travailler en autonomie sur des projets concrets</li>
+                            <li>Développer des compétences techniques en développement web</li>
+                            <li>Apprendre des technologies utilisées en entreprise</li>
+                            <li>Comprendre le fonctionnement d'un grand groupe télécom</li>
                         </ul>
                     </div>
 
                     <div class="bilan-card">
                         <h3><i class="fas fa-rocket"></i> Projet professionnel</h3>
                         <p>
-                            Ces stages m'ont permis de confirmer mon orientation professionnelle vers le développement web, en me donnant l'opportunité de travailler sur des projets concrets et de découvrir les technologies utilisées en entreprise. 
-                            J'ai également développé des compétences humaines essentielles pour travailler en équipe et m'adapter à un environnement professionnel.
+                            Ces deux stages m'ont permis de confirmer mon orientation vers le développement web et l'IoT.
+                            Travailler sur des projets concrets dans des contextes très différents m'a donné une vision
+                            complète du métier et des compétences humaines essentielles pour évoluer en entreprise.
                         </p>
                     </div>
 
@@ -323,6 +439,7 @@
                             <span class="skill-badge">Organisation</span>
                         </div>
                     </div>
+
                 </div>
             </div>
 
