@@ -118,6 +118,31 @@
     margin-top: auto;
 }
 
+/* Issuer as link */
+a.certif-issuer {
+    color: var(--text-light);
+    text-decoration: none;
+}
+a.certif-issuer:hover {
+    color: var(--secondary-color);
+    opacity: 1;
+}
+
+/* Lien vers la certification */
+.certif-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    padding: 0.25em 0;
+    transition: var(--transition);
+    margin-bottom: 0.25rem;
+}
+.certif-link:hover {
+    opacity: 0.75;
+}
+
 /* Section heading */
 .certif-section-label {
     font-family: var(--font-mono);

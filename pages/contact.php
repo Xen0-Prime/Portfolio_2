@@ -106,7 +106,7 @@
                             <div class="ci-icon"><i class="fab fa-github"></i></div>
                             <div>
                                 <span class="ci-label">GitHub</span>
-                                <a href="https://github.com/Xen0-Prime" target="_blank" rel="noopener">
+                                <a href="https://github.com/Xen0-Prime" target="_blank" rel="noopener noreferrer">
                                     github.com/Xen0-Prime
                                 </a>
                             </div>
