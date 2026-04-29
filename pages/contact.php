@@ -19,6 +19,7 @@
                 <li><a href="projets.php">Projets</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
                 <li><a href="veille.php">Veille</a></li>
+                <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php" class="active">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -57,12 +58,12 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Nom complet <span class="required">*</span></label>
-                                <input type="text" id="name" name="name" placeholder="Killian Narasson" autocomplete="name" required>
+                                <input type="text" id="name" name="name" placeholder="Votre nom" autocomplete="name" required>
                                 <span class="field-error" id="err-name">Veuillez entrer votre nom.</span>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" placeholder="vous@email.com" autocomplete="email" required>
+                                <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email" required>
                                 <span class="field-error" id="err-email">Adresse email invalide.</span>
                             </div>
                         </div>

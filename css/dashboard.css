@@ -248,3 +248,124 @@
 .ctag-b4 { border-color: #f59e0b; color: #f59e0b; }
 .ctag-b5 { border-color: #ef4444; color: #ef4444; }
 .ctag-b6 { border-color: #ec4899; color: #ec4899; }
+
+/* ===== Frise chronologique — Formation ===== */
+.section-timeline {
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.timeline-wrapper {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-top: 1rem;
+}
+
+.timeline-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0.55rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--secondary-color), var(--border-color));
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-marker {
+    position: absolute;
+    left: -2.05rem;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--bg-surface);
+    z-index: 1;
+}
+.timeline-marker.timeline-current {
+    border-color: var(--secondary-color);
+    background: var(--secondary-color);
+    box-shadow: 0 0 10px rgba(14,165,233,0.45);
+}
+
+.timeline-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: var(--transition);
+}
+.timeline-content:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 20px rgba(14,165,233,0.1);
+}
+
+.timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--secondary-color);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.35rem;
+}
+
+.timeline-school {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15em 0.6em;
+    border-radius: 20px;
+    background: rgba(14,165,233,0.15);
+    color: var(--secondary-color);
+    border: 1px solid rgba(14,165,233,0.35);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-subjects {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.timeline-subjects li {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding-left: 1rem;
+    position: relative;
+}
+.timeline-subjects li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    top: 0.05em;
+}
+
+@media (max-width: 560px) {
+    .timeline-wrapper { padding-left: 2rem; }
+}

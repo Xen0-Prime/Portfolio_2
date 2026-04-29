@@ -15,11 +15,10 @@
             <div class="nav-brand">Portfolio</div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="../pages/index.php">Accueil</a></li>
-                <li><a href="../pages/index.php#about">À propos</a></li>
-                <li><a href="../pages/index.php#competences">Compétences</a></li>
                 <li><a href="../pages/projets.php">Projets</a></li>
                 <li><a href="stages.php" class="active">Stages</a></li>
                 <li><a href="../pages/veille.php">Veille</a></li>
+                <li><a href="../pages/certifications.php">Certifications</a></li>
                 <li><a href="../pages/contact.php">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
