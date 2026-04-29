@@ -36,9 +36,11 @@ function is_visible(string $id, ?array $actifs): bool {
 }
 
 function competence_tags(string $id, array $map): string {
+    global $competences_labels;
     $out = '<div class="competence-tags">';
     foreach ($map[$id] ?? [] as $code) {
-        $out .= '<span class="ctag ctag-' . strtolower($code) . '">' . $code . '</span>';
+        $label = $competences_labels[$code] ?? $code;
+        $out .= '<span class="ctag ctag-' . strtolower($code) . '">' . htmlspecialchars($label) . '</span>';
     }
     return $out . '</div>';
 }
@@ -48,7 +50,7 @@ function competence_tags(string $id, array $map): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets<?= $filtre ? " — $filtre" : '' ?> · Portfolio BTS SIO</title>
+    <title>Projets<?= ($filtre && isset($competences_labels[$filtre])) ? ' — ' . $competences_labels[$filtre] : '' ?> · Portfolio BTS SIO</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projets.css">
     <link rel="stylesheet" href="../css/dashboard.css">
@@ -77,7 +79,7 @@ function competence_tags(string $id, array $map): string {
         <div class="container">
             <h1 class="page-title">
                 <?php if ($filtre && isset($competences_labels[$filtre])): ?>
-                    <span class="title-tag"><?= htmlspecialchars($filtre) ?></span>
+
                     <?= htmlspecialchars($competences_labels[$filtre]) ?>
                 <?php else: ?>
                     Mes Projets
@@ -93,7 +95,7 @@ function competence_tags(string $id, array $map): string {
             <?php if ($filtre && isset($competences_labels[$filtre])): ?>
                 <div class="competence-filter-bar">
                     <span class="competence-filter-label">Filtre actif :</span>
-                    <span class="competence-active-tag"><?= htmlspecialchars($filtre) ?> — <?= htmlspecialchars($competences_labels[$filtre]) ?></span>
+                    <span class="competence-active-tag"><?= htmlspecialchars($competences_labels[$filtre]) ?></span>
                     <a href="projets.php" class="filter-reset">✕ Tous les projets</a>
                 </div>
             <?php elseif ($filtre): ?>

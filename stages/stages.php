@@ -94,14 +94,14 @@
                             <h3><i class="fas fa-book"></i> Compétences développées</h3>
                             <div class="competences-grid">
                                 <div class="competence-item">
-                                    <h4>Bloc B1</h4>
+                                    <h4>Support &amp; mise à disposition</h4>
                                     <ul>
                                         <li>Recueil et analyse des besoins client pour la conception du site vitrine</li>
                                         <li>Rédaction d'une documentation technique du projet web</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
-                                    <h4>Bloc B2</h4>
+                                    <h4>Développement d'applications</h4>
                                     <ul>
                                         <li>Développement d'un site web complet (front-end et back-end) en HTML, CSS, JavaScript et PHP</li>
                                         <li>Conception et gestion d'une base de données MySQL pour le site vitrine</li>
@@ -109,7 +109,7 @@
                                     </ul>
                                 </div>
                                 <div class="competence-item">
-                                    <h4>Bloc B3</h4>
+                                    <h4>Gestion de l'infrastructure</h4>
                                     <ul>
                                         <li>Sécurisation des formulaires web contre les injections SQL</li>
                                         <li>Gestion des accès à la base de données avec des comptes utilisateurs restreints</li>
@@ -145,13 +145,13 @@
                     <div class="stage-documents">
                         <h3><i class="fas fa-file-alt"></i> Documents</h3>
                         <div class="documents-grid">
-                            <a href="docs/Attestation_Stage1.pdf" class="document-card" download>
+                            <a href="docs/Attestation_Stage1.pdf" class="document-card" target="_blank" rel="noopener noreferrer">
                                 <div class="document-icon"><i class="fas fa-file-alt"></i></div>
                                 <div class="document-info">
                                     <h4>Attestation de stage</h4>
                                     <p>Format PDF</p>
                                 </div>
-                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
+                                <div class="download-icon"><i class="fas fa-eye"></i>️</div>
                             </a>
                         </div>
                     </div>
@@ -214,13 +214,13 @@
                             <h3><i class="fas fa-book"></i> Compétences développées</h3>
                             <div class="competences-grid">
                                 <div class="competence-item">
-                                    <h4>Bloc B1</h4>
+                                    <h4>Travail en équipe</h4>
                                     <ul>
                                         <li>Planification et suivi de l'avancement du projet à l'aide d'un diagramme de Gantt</li>
                                     </ul>
                                 </div>
                                 <div class="competence-item">
-                                    <h4>Bloc B2</h4>
+                                    <h4>Développement d'applications</h4>
                                     <ul>
                                         <li>Mise en œuvre du protocole MQTT pour la communication IoT en temps réel</li>
                                         <li>Développement d'une visualisation 3D interactive de l'objet connecté avec Three.js</li>
@@ -228,7 +228,7 @@
                                     </ul>
                                 </div>
                                 <div class="competence-item">
-                                    <h4>Bloc B3</h4>
+                                    <h4>Gestion de l'infrastructure</h4>
                                     <ul>
                                         <li>Sécurisation du broker MQTT par authentification et contrôle d'accès</li>
                                         <li>Mise en place de règles de sécurité sur la base de données Supabase pour protéger les données collectées</li>
@@ -276,13 +276,13 @@
                     <div class="stage-documents">
                         <h3><i class="fas fa-file-alt"></i> Documents</h3>
                         <div class="documents-grid">
-                            <a href="docs/Attestation_Stage2.pdf" class="document-card" download>
+                            <a href="docs/Attestation_Stage2.pdf" class="document-card" target="_blank" rel="noopener noreferrer">
                                 <div class="document-icon"><i class="fas fa-file-alt"></i></div>
                                 <div class="document-info">
                                     <h4>Attestation de stage</h4>
                                     <p>Format PDF</p>
                                 </div>
-                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
+                                <div class="download-icon"><i class="fas fa-eye"></i>️</div>
                             </a>
 
 
@@ -323,16 +323,6 @@
                             <span class="skill-badge">Organisation</span>
                         </div>
                     </div>
-                        <div class="documents-grid">
-                            <a href="docs/Tableau_synthèse.pdf" class="document-card" download>
-                                <div class="document-icon"><i class="fas fa-chart-bar"></i></div>
-                                    <div class="document-info">
-                                        <h4>Tableau de synthèse</h4>
-                                        <p>Format PDF</p>
-                                    </div>
-                                <div class="download-icon"><i class="fas fa-download"></i>️</div>
-                            </a>
-                        </div>
                 </div>
             </div>
 
