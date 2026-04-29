@@ -105,10 +105,11 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Jojol</span>
-                            <span class="source-tag">Monsieur GRrr</span>
-                            <span class="source-tag">Brandon le Proktor</span>
-                            <span class="source-tag">Leo TechMaker</span>
+                            <a class="source-tag" href="https://www.youtube.com/@Jojol" target="_blank" rel="noopener noreferrer">Jojol</a>
+                            <a class="source-tag" href="https://www.youtube.com/@MonsieurGRrr" target="_blank" rel="noopener noreferrer">Monsieur GRrr</a>
+                            <a class="source-tag" href="https://www.youtube.com/@BrandonLeProktor" target="_blank" rel="noopener noreferrer">Brandon le Proktor</a>
+                            <a class="source-tag" href="https://www.youtube.com/@LeoTechMaker" target="_blank" rel="noopener noreferrer">Leo TechMaker</a>
+                            <a class="source-tag" href="https://www.gsmarena.com" target="_blank" rel="noopener noreferrer">GSMArena</a>
                         </div>
                     </div>
                 </div>
@@ -172,9 +173,10 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Leo TechMaker</span>
-                            <span class="source-tag">French Hardware</span>
-                            <span class="source-tag">KAPPA Studio</span>
+                            <a class="source-tag" href="https://www.youtube.com/@LeoTechMaker" target="_blank" rel="noopener noreferrer">Leo TechMaker</a>
+                            <a class="source-tag" href="https://www.youtube.com/@FrenchHardware" target="_blank" rel="noopener noreferrer">French Hardware</a>
+                            <a class="source-tag" href="https://www.youtube.com/@KappaStudio" target="_blank" rel="noopener noreferrer">KAPPA Studio</a>
+                            <a class="source-tag" href="https://www.tomshardware.com" target="_blank" rel="noopener noreferrer">Tom's Hardware</a>
                         </div>
                     </div>
                 </div>
@@ -238,8 +240,9 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Google AI</span>
-                            <span class="source-tag">Anthropic</span>
+                            <a class="source-tag" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">Google AI</a>
+                            <a class="source-tag" href="https://www.anthropic.com/news" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                            <a class="source-tag" href="https://openai.com/blog" target="_blank" rel="noopener noreferrer">OpenAI Blog</a>
                         </div>
                     </div>
                 </div>
@@ -303,8 +306,10 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">V2F</span>
-                            <span class="source-tag">Micode</span>
+                            <a class="source-tag" href="https://www.youtube.com/@V2F" target="_blank" rel="noopener noreferrer">V2F</a>
+                            <a class="source-tag" href="https://www.youtube.com/@Micode" target="_blank" rel="noopener noreferrer">Micode</a>
+                            <a class="source-tag" href="https://www.cert.ssi.gouv.fr" target="_blank" rel="noopener noreferrer">CERT-FR (ANSSI)</a>
+                            <a class="source-tag" href="https://owasp.org" target="_blank" rel="noopener noreferrer">OWASP</a>
                         </div>
                     </div>
                 </div>
@@ -368,10 +373,10 @@
                     <div class="veille-sources">
                         <h3><i class="fas fa-book"></i> Sources suivies</h3>
                         <div class="sources-grid">
-                            <span class="source-tag">Leo TechMaker</span>
-                            <span class="source-tag">Playstation France</span>
-                            <span class="source-tag">Nintendo France</span>
-                            <span class="source-tag">Edouard_EMB</span>
+                            <a class="source-tag" href="https://www.youtube.com/@LeoTechMaker" target="_blank" rel="noopener noreferrer">Leo TechMaker</a>
+                            <a class="source-tag" href="https://www.youtube.com/@PlayStationFrance" target="_blank" rel="noopener noreferrer">Playstation France</a>
+                            <a class="source-tag" href="https://www.youtube.com/@NintendoFrance" target="_blank" rel="noopener noreferrer">Nintendo France</a>
+                            <a class="source-tag" href="https://www.youtube.com/@EdouardEMB" target="_blank" rel="noopener noreferrer">Edouard_EMB</a>
                         </div>
                     </div>
                 </div>
