@@ -6,6 +6,7 @@
     <title>Portfolio BTS SIO SLAM — Killian Narasson</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -35,6 +36,12 @@
                 <div class="hero-buttons">
                     <a href="../stages/docs/CV-NARASSON-MOHAMEDALY Killian.pdf" class="btn btn-secondary" download>Télécharger mon CV</a>
                     <a href="contact.php" class="btn btn-secondary">Me contacter</a>
+                    <a href="https://www.linkedin.com/in/killian-narasson-mohamedaly-6b3b9134b"
+                       class="btn btn-secondary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
                 </div>
             </div>
         </div>
@@ -53,7 +60,6 @@
                 <!-- B1 -->
                 <a href="projets.php?competence=B1" class="bloc-competence bloc-b1">
                     <div class="bloc-header">
-                        <span class="bloc-code">B1</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Support &amp; mise à disposition</h3>
@@ -66,7 +72,6 @@
                 <!-- B2 -->
                 <a href="projets.php?competence=B2" class="bloc-competence bloc-b2">
                     <div class="bloc-header">
-                        <span class="bloc-code">B2</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Réponse aux incidents</h3>
@@ -79,7 +84,6 @@
                 <!-- B3 -->
                 <a href="projets.php?competence=B3" class="bloc-competence bloc-b3">
                     <div class="bloc-header">
-                        <span class="bloc-code">B3</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Développement d'applications</h3>
@@ -92,7 +96,6 @@
                 <!-- B4 -->
                 <a href="projets.php?competence=B4" class="bloc-competence bloc-b4">
                     <div class="bloc-header">
-                        <span class="bloc-code">B4</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Travail en équipe</h3>
@@ -105,7 +108,6 @@
                 <!-- B5 -->
                 <a href="projets.php?competence=B5" class="bloc-competence bloc-b5">
                     <div class="bloc-header">
-                        <span class="bloc-code">B5</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Gestion de l'infrastructure</h3>
@@ -118,7 +120,6 @@
                 <!-- B6 -->
                 <a href="projets.php?competence=B6" class="bloc-competence bloc-b6">
                     <div class="bloc-header">
-                        <span class="bloc-code">B6</span>
                         <span class="bloc-arrow">→</span>
                     </div>
                     <h3 class="bloc-title">Organisation du SI</h3>
@@ -147,6 +148,10 @@
                 <a href="contact.php" class="quick-link">
                     <span class="ql-icon">✉</span>
                     <span>Contact</span>
+                </a>
+                <a href="../stages/docs/Tableau_synth%C3%A8se.pdf" class="quick-link" target="_blank" rel="noopener noreferrer">
+                    <span class="ql-icon"><i class="fas fa-chart-bar"></i></span>
+                    <span>Tableau de synthèse</span>
                 </a>
             </div>
         </div>
