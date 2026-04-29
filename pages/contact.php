@@ -120,14 +120,6 @@
                             </div>
                         </div>
 
-                        <div class="contact-info-item">
-                            <div class="ci-icon"><i class="fab fa-linkedin"></i></div>
-                            <div>
-                                <span class="ci-label">LinkedIn</span>
-                                <a href="https://www.linkedin.com/in/killian-narasson-mohamedaly-6b3b9134b" target="_blank" rel="noopener">
-                                    Linkedin
-                                </a>
-                            </div>
 
                     </div>
 
