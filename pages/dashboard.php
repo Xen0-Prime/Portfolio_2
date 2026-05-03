@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../config/auth.php';
+auth_require();   // redirige vers login.php si non connecté
+
 require_once __DIR__ . '/../config/supabase.php';
 
 $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
@@ -32,6 +35,37 @@ $track_labels = [
             padding-bottom: 1.25rem;
             border-bottom: 3px solid var(--secondary-color);
         }
+        .dash-actions {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+        .admin-badge {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-light);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: .25rem .75rem;
+        }
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .35rem .8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(239,68,68,.4);
+            background: rgba(239,68,68,.08);
+            color: #ef4444;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .btn-logout:hover { background: rgba(239,68,68,.18); opacity: 1; }
         .dash-title {
             font-size: 2rem;
             font-weight: 700;
@@ -253,7 +287,14 @@ $track_labels = [
                 <h1 class="dash-title">
                     <i class="fas fa-sliders"></i>Dashboard certifications
                 </h1>
-                <span class="dash-meta"><?= count($rows) ?> formation<?= count($rows) > 1 ? 's' : '' ?> · mise à jour en temps réel</span>
+                <div class="dash-actions">
+                    <span class="admin-badge">
+                        <i class="fas fa-user-shield" style="margin-right:.3rem;"></i><?= htmlspecialchars($_SESSION['admin_user']) ?>
+                    </span>
+                    <a href="logout.php" class="btn-logout">
+                        <i class="fas fa-arrow-right-from-bracket"></i> Déconnexion
+                    </a>
+                </div>
             </div>
         </div>
     </header>
