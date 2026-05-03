@@ -35,7 +35,7 @@
                 <h1 class="certif-title">Certifications</h1>
                 <div class="certif-meta">
                     <span class="meta-tag">BTS SIO SLAM</span>
-                    8 formations · 3 tracks · 2025–2026
+                    10 formations · 3 tracks · 2025–2026
                 </div>
             </div>
         </div>
@@ -48,11 +48,11 @@
             <!-- ─── Stats row ─── -->
             <div class="certif-stats">
                 <div class="certif-stat-card">
-                    <div class="stat-num">8</div>
+                    <div class="stat-num">10</div>
                     <div class="stat-lbl">Formations</div>
                 </div>
                 <div class="certif-stat-card">
-                    <div class="stat-num">~70h</div>
+                    <div class="stat-num">~78h</div>
                     <div class="stat-lbl">Estimées</div>
                 </div>
                 <div class="certif-stat-card">
@@ -70,7 +70,7 @@
                         <div class="track-head-top">
                             <div>
                                 <h2 class="track-name"><i class="fas fa-code"></i>Dev track</h2>
-                                <span class="track-count">4 formations · ~38h</span>
+                                <span class="track-count">5 formations · ~46h</span>
                             </div>
                             <span class="track-badge">En cours</span>
                         </div>
@@ -147,6 +147,19 @@
                         <span class="ci-status sp-planned">Prévu</span>
                     </div>
 
+                    <!-- API REST — prévu -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-planned"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Débutez avec les API REST</div>
+                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-planned">Prévu</span>
+                    </div>
+
                 </div><!-- /tc-dev -->
 
 
@@ -158,7 +171,7 @@
                                 <h2 class="track-name"><i class="fas fa-shield-halved"></i>Sécu &amp; Infra track</h2>
                                 <span class="track-count">1 formation · ~8h</span>
                             </div>
-                            <span class="track-badge">En cours</span>
+                            <span class="track-badge">Prévu</span>
                         </div>
                         <div class="track-progress-wrap">
                             <div class="track-progress-bar">
@@ -168,23 +181,17 @@
                         </div>
                     </div>
 
-                    <!-- Linux — en cours -->
+                    <!-- Linux — prévu -->
                     <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
+                        <div class="ci-dot dot-planned"></div>
                         <div class="ci-content">
                             <div class="ci-name">Initiez-vous à Linux</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h · Démarré le 29 avr. 2026</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 0%;"></div>
-                                </div>
-                                <span class="ci-pct">0%</span>
-                            </div>
-                            <div class="ci-tags">
+                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
                                 <span class="ci-tag ci-tag-b5">B5 Infra</span>
                             </div>
                         </div>
-                        <span class="ci-status sp-progress">En cours</span>
+                        <span class="ci-status sp-planned">Prévu</span>
                     </div>
 
                 </div><!-- /tc-secu -->
