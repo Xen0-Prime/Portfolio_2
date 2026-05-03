@@ -1,3 +1,94 @@
+<?php
+require_once __DIR__ . '/../config/supabase.php';
+
+// ── Fetch all certifications ordered by 'ordre' ─────────────────────────────
+$rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
+
+// ── Track definitions (order matters for rendering) ──────────────────────────
+$tracks_def = [
+    'dev'     => ['label' => 'Dev track',              'icon' => 'fa-code',           'css' => 'tc-dev'],
+    'secu'    => ['label' => 'Sécu &amp; Infra track', 'icon' => 'fa-shield-halved',  'css' => 'tc-secu'],
+    'culture' => ['label' => 'Culture &amp; Méthodes', 'icon' => 'fa-brain',          'css' => 'tc-culture'],
+];
+
+$tracks = [];
+foreach ($tracks_def as $key => $def) {
+    $tracks[$key] = $def + ['items' => [], 'count' => 0, 'heures' => 0, 'progress' => 0, 'badge' => 'Prévu'];
+}
+
+foreach ($rows as $row) {
+    $t = $row['track'] ?? 'dev';
+    if (isset($tracks[$t])) {
+        $tracks[$t]['items'][] = $row;
+    }
+}
+
+// ── Per-track computed stats ─────────────────────────────────────────────────
+foreach ($tracks as $key => &$track) {
+    $items  = $track['items'];
+    $n      = count($items);
+    $track['count']  = $n;
+    $track['heures'] = (int)array_sum(array_column($items, 'heures'));
+
+    if ($n === 0) {
+        $track['progress'] = 0;
+        $track['badge']    = 'Prévu';
+        continue;
+    }
+
+    // progress = average across all items (obtained counts as 100 %)
+    $sum = 0;
+    foreach ($items as $item) {
+        $sum += ($item['statut'] === 'obtenue') ? 100 : (int)$item['progression'];
+    }
+    $track['progress'] = (int)round($sum / $n);
+
+    // badge
+    $statuts = array_column($items, 'statut');
+    if (!in_array('en_cours', $statuts, true) && !in_array('prevu', $statuts, true)) {
+        $track['badge'] = 'Terminé';
+    } elseif (in_array('en_cours', $statuts, true)) {
+        $track['badge'] = 'En cours';
+    } else {
+        $track['badge'] = 'Prévu';
+    }
+}
+unset($track);
+
+// ── Global stats ─────────────────────────────────────────────────────────────
+$total_count  = count($rows);
+$total_heures = (int)array_sum(array_column($rows, 'heures'));
+
+// hours remaining = heures of non-obtained certifications
+$heures_restantes = 0;
+foreach ($rows as $r) {
+    if ($r['statut'] !== 'obtenue') {
+        $heures_restantes += (int)$r['heures'];
+    }
+}
+
+// ── Tag helper ───────────────────────────────────────────────────────────────
+function get_tags(array $c): array
+{
+    $tags = [];
+    $nom  = mb_strtolower($c['nom'] ?? '');
+
+    if (str_contains($nom, 'intelligence artificielle')
+        || str_contains($nom, 'vibe coding')
+        || str_contains($nom, 'agents ia')
+        || (str_contains($nom, ' ia ') || str_ends_with($nom, ' ia'))) {
+        $tags[] = ['cls' => 'ci-tag-ai', 'lbl' => 'IA'];
+    }
+
+    switch ($c['track'] ?? '') {
+        case 'dev':     $tags[] = ['cls' => 'ci-tag-b3',      'lbl' => 'B3 Dev'];   break;
+        case 'secu':    $tags[] = ['cls' => 'ci-tag-b5',      'lbl' => 'B5 Infra']; break;
+        case 'culture': $tags[] = ['cls' => 'ci-tag-culture', 'lbl' => 'Méthodes']; break;
+    }
+
+    return $tags;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,7 +126,7 @@
                 <h1 class="certif-title">Certifications</h1>
                 <div class="certif-meta">
                     <span class="meta-tag">BTS SIO SLAM</span>
-                    10 formations · 3 tracks · 2025–2026
+                    <?= $total_count ?> formations · <?= count($tracks_def) ?> tracks · 2025–2026
                 </div>
             </div>
         </div>
@@ -48,12 +139,12 @@
             <!-- ─── Stats row ─── -->
             <div class="certif-stats">
                 <div class="certif-stat-card">
-                    <div class="stat-num">10</div>
+                    <div class="stat-num"><?= $total_count ?></div>
                     <div class="stat-lbl">Formations</div>
                 </div>
                 <div class="certif-stat-card">
-                    <div class="stat-num">~78h</div>
-                    <div class="stat-lbl">Estimées</div>
+                    <div class="stat-num">~<?= $heures_restantes ?>h</div>
+                    <div class="stat-lbl">Restantes</div>
                 </div>
                 <div class="certif-stat-card">
                     <div class="stat-num">Juin 2026</div>
@@ -64,199 +155,68 @@
             <!-- ─── Tracks grid ─── -->
             <div class="tracks-grid">
 
-                <!-- ═══ Dev Track ═══ -->
-                <div class="track-card tc-dev">
+<?php foreach ($tracks as $track_key => $track): ?>
+                <!-- ═══ <?= htmlspecialchars($track['label']) ?> ═══ -->
+                <div class="track-card <?= $track['css'] ?>">
                     <div class="track-head">
                         <div class="track-head-top">
                             <div>
-                                <h2 class="track-name"><i class="fas fa-code"></i>Dev track</h2>
-                                <span class="track-count">5 formations · ~46h</span>
+                                <h2 class="track-name">
+                                    <i class="fas <?= $track['icon'] ?>"></i><?= $track['label'] ?>
+                                </h2>
+                                <span class="track-count">
+                                    <?= $track['count'] ?> formation<?= $track['count'] > 1 ? 's' : '' ?> · ~<?= $track['heures'] ?>h
+                                </span>
                             </div>
-                            <span class="track-badge">En cours</span>
+                            <span class="track-badge"><?= htmlspecialchars($track['badge']) ?></span>
                         </div>
                         <div class="track-progress-wrap">
                             <div class="track-progress-bar">
-                                <div class="track-progress-fill" style="width: 20%;"></div>
+                                <div class="track-progress-fill" style="width: <?= $track['progress'] ?>%;"></div>
                             </div>
-                            <span class="track-progress-pct">~20%</span>
+                            <span class="track-progress-pct">~<?= $track['progress'] ?>%</span>
                         </div>
                     </div>
 
-                    <!-- IA vibe coding — obtenue -->
+<?php foreach ($track['items'] as $c):
+    $statut  = $c['statut'] ?? 'prevu';
+    $dot_cls = ['obtenue' => 'dot-obtained', 'en_cours' => 'dot-progress', 'prevu' => 'dot-planned'][$statut] ?? 'dot-planned';
+    $sp_cls  = ['obtenue' => 'sp-obtained',  'en_cours' => 'sp-progress',  'prevu' => 'sp-planned'][$statut]  ?? 'sp-planned';
+    $sp_lbl  = ['obtenue' => 'Obtenue',      'en_cours' => 'En cours',     'prevu' => 'Prévu'][$statut]       ?? 'Prévu';
+    $prog    = (int)($c['progression'] ?? 0);
+    $heures  = (int)($c['heures'] ?? 0);
+    $tags    = get_tags($c);
+?>
                     <div class="certif-item">
-                        <div class="ci-dot dot-obtained"></div>
+                        <div class="ci-dot <?= $dot_cls ?>"></div>
                         <div class="ci-content">
-                            <div class="ci-name">Développez avec les agents IA à l'ère du vibe coding</div>
-                            <div class="ci-issuer">OpenClassrooms · Démarré le 29 avr. 2026</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-ai">IA</span>
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            <div class="ci-name"><?= htmlspecialchars($c['nom'] ?? '') ?></div>
+                            <div class="ci-issuer">
+                                <?= htmlspecialchars($c['emetteur'] ?? '') ?><?= $heures > 0 ? ' · ~' . $heures . 'h' : '' ?>
                             </div>
-                        </div>
-                        <span class="ci-status sp-obtained">Obtenue</span>
-                    </div>
-
-                    <!-- Git & GitHub — en cours -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Gérez du code avec Git et GitHub</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h · Démarré le 3 nov. 2025</div>
+<?php if ($statut === 'en_cours'): ?>
                             <div class="ci-progress-wrap">
                                 <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 27%;"></div>
+                                    <div class="ci-progress-fill" style="width: <?= $prog ?>%;"></div>
                                 </div>
-                                <span class="ci-pct">27%</span>
+                                <span class="ci-pct"><?= $prog ?>%</span>
                             </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- Angular — en cours -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Débutez avec Angular</div>
-                            <div class="ci-issuer">OpenClassrooms · ~12h · Démarré le 29 avr. 2026</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 0%;"></div>
-                                </div>
-                                <span class="ci-pct">0%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- Figma — prévu -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Créez une maquette web avec Figma</div>
-                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
+<?php endif; ?>
+<?php if (!empty($tags)): ?>
                             <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+<?php foreach ($tags as $tag): ?>
+                                <span class="ci-tag <?= $tag['cls'] ?>"><?= $tag['lbl'] ?></span>
+<?php endforeach; ?>
                             </div>
+<?php endif; ?>
                         </div>
-                        <span class="ci-status sp-planned">Prévu</span>
+                        <span class="ci-status <?= $sp_cls ?>"><?= $sp_lbl ?></span>
                     </div>
 
-                    <!-- API REST — prévu -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Débutez avec les API REST</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
+<?php endforeach; ?>
+                </div><!-- /<?= $track['css'] ?> -->
 
-                </div><!-- /tc-dev -->
-
-
-                <!-- ═══ Sécu & Infra Track ═══ -->
-                <div class="track-card tc-secu">
-                    <div class="track-head">
-                        <div class="track-head-top">
-                            <div>
-                                <h2 class="track-name"><i class="fas fa-shield-halved"></i>Sécu &amp; Infra track</h2>
-                                <span class="track-count">1 formation · ~8h</span>
-                            </div>
-                            <span class="track-badge">Prévu</span>
-                        </div>
-                        <div class="track-progress-wrap">
-                            <div class="track-progress-bar">
-                                <div class="track-progress-fill" style="width: 0%;"></div>
-                            </div>
-                            <span class="track-progress-pct">0%</span>
-                        </div>
-                    </div>
-
-                    <!-- Linux — prévu -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Initiez-vous à Linux</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-b5">B5 Infra</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
-                </div><!-- /tc-secu -->
-
-
-                <!-- ═══ Culture & Méthodes Track ═══ -->
-                <div class="track-card tc-culture">
-                    <div class="track-head">
-                        <div class="track-head-top">
-                            <div>
-                                <h2 class="track-name"><i class="fas fa-brain"></i>Culture &amp; Méthodes</h2>
-                                <span class="track-count">3 formations · ~20h</span>
-                            </div>
-                            <span class="track-badge">Prévu</span>
-                        </div>
-                        <div class="track-progress-wrap">
-                            <div class="track-progress-bar">
-                                <div class="track-progress-fill" style="width: 0%;"></div>
-                            </div>
-                            <span class="track-progress-pct">0%</span>
-                        </div>
-                    </div>
-
-                    <!-- Apprendre à apprendre -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Apprenez à apprendre</div>
-                            <div class="ci-issuer">OpenClassrooms · ~6h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-culture">Méthodes</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
-                    <!-- Optimiser apprentissage IA -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Optimisez votre apprentissage avec l'Intelligence Artificielle</div>
-                            <div class="ci-issuer">OpenClassrooms · ~6h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-ai">IA</span>
-                                <span class="ci-tag ci-tag-culture">Méthodes</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
-                    <!-- Veille informationnelle -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Mettez en place un système de veille informationnelle</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-culture">Méthodes</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
-                </div><!-- /tc-culture -->
-
+<?php endforeach; ?>
             </div><!-- /tracks-grid -->
 
         </div><!-- /container -->
