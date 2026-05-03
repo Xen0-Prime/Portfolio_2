@@ -38,41 +38,6 @@
     <main class="section">
         <div class="container">
 
-            <!-- Obtenues -->
-            <p class="certif-section-label">Certifications obtenues</p>
-            <div class="certif-grid">
-
-                <div class="certif-card certif-obtained">
-                    <div class="certif-header">
-                        <span class="certif-icon">🏅</span>
-                        <span class="certif-status status-obtained">Obtenue</span>
-                    </div>
-                    <h3 class="certif-name">Certification PIX</h3>
-                    <span class="certif-issuer">PIX — GIP Pix</span>
-                    <p class="certif-desc">
-                        Certification officielle des compétences numériques (référentiel DIGCOMP) :
-                        information &amp; données, communication &amp; collaboration, création de contenu,
-                        protection &amp; sécurité, environnement numérique.
-                    </p>
-                    <span class="certif-date">2024</span>
-                </div>
-
-                <div class="certif-card certif-obtained">
-                    <div class="certif-header">
-                        <span class="certif-icon">🎓</span>
-                        <span class="certif-status status-obtained">Obtenu</span>
-                    </div>
-                    <h3 class="certif-name">Baccalauréat STL</h3>
-                    <span class="certif-issuer">Éducation Nationale — LGT Providence</span>
-                    <p class="certif-desc">
-                        Baccalauréat Sciences et Technologies de Laboratoire, spécialités
-                        Biochimie-Biologie et Sciences physiques et chimiques en laboratoire.
-                    </p>
-                    <span class="certif-date">Juin 2024</span>
-                </div>
-
-            </div>
-
             <!-- En cours -->
             <p class="certif-section-label">En cours d'obtention</p>
             <div class="certif-grid">
@@ -90,6 +55,76 @@
                         E5 (compétences professionnelles) et E6 (cybersécurité).
                     </p>
                     <span class="certif-date">Promotion 2024 – 2026</span>
+                </div>
+
+                <div class="certif-card certif-progress">
+                    <div class="certif-header">
+                        <span class="certif-icon">🔀</span>
+                        <span class="certif-status status-progress">En cours</span>
+                    </div>
+                    <h3 class="certif-name">Gérez du code avec Git et GitHub</h3>
+                    <span class="certif-issuer">OpenClassrooms</span>
+                    <p class="certif-desc">
+                        Gestion de versions avec Git : commits, branches, fusions, résolution de conflits
+                        et collaboration via GitHub (pull requests, issues, workflows).
+                    </p>
+                    <span class="certif-date">En cours</span>
+                </div>
+
+                <div class="certif-card certif-progress">
+                    <div class="certif-header">
+                        <span class="certif-icon">⚡</span>
+                        <span class="certif-status status-progress">En cours</span>
+                    </div>
+                    <h3 class="certif-name">Débutez avec Angular</h3>
+                    <span class="certif-issuer">OpenClassrooms</span>
+                    <p class="certif-desc">
+                        Développement d'applications web avec Angular : composants, directives, services,
+                        routing et communication avec une API REST via HttpClient.
+                    </p>
+                    <span class="certif-date">En cours</span>
+                </div>
+
+                <div class="certif-card certif-progress">
+                    <div class="certif-header">
+                        <span class="certif-icon">🐧</span>
+                        <span class="certif-status status-progress">En cours</span>
+                    </div>
+                    <h3 class="certif-name">Initiez-vous à Linux</h3>
+                    <span class="certif-issuer">OpenClassrooms</span>
+                    <p class="certif-desc">
+                        Fondamentaux du système Linux : navigation en ligne de commande, gestion des
+                        fichiers et permissions, scripts shell et administration de base.
+                    </p>
+                    <span class="certif-date">En cours</span>
+                </div>
+
+                <div class="certif-card certif-progress">
+                    <div class="certif-header">
+                        <span class="certif-icon">🐍</span>
+                        <span class="certif-status status-progress">En cours</span>
+                    </div>
+                    <h3 class="certif-name">Apprenez les bases du langage Python</h3>
+                    <span class="certif-issuer">OpenClassrooms</span>
+                    <p class="certif-desc">
+                        Introduction à Python : variables, structures de contrôle, fonctions, manipulation
+                        de fichiers et initiation à la programmation orientée objet.
+                    </p>
+                    <span class="certif-date">En cours</span>
+                </div>
+
+                <div class="certif-card certif-progress">
+                    <div class="certif-header">
+                        <span class="certif-icon">⚙️</span>
+                        <span class="certif-status status-progress">En cours</span>
+                    </div>
+                    <h3 class="certif-name">Adoptez une architecture MVC en PHP</h3>
+                    <span class="certif-issuer">OpenClassrooms</span>
+                    <p class="certif-desc">
+                        Structuration d'applications PHP selon le patron MVC : séparation des couches,
+                        routage, gestion des vues et interaction avec une base de données.
+                    </p>
+                    <span class="certif-date">En cours</span>
                 </div>
 
             </div>
