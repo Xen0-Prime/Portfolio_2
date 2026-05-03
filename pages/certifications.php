@@ -50,6 +50,7 @@
                 <div class="certif-stat-card">
                     <div class="stat-num">8</div>
                     <div class="stat-lbl">Formations</div>
+
                 </div>
                 <div class="certif-stat-card">
                     <div class="stat-num">~80h</div>
@@ -70,7 +71,7 @@
                         <div class="track-head-top">
                             <div>
                                 <h2 class="track-name"><i class="fas fa-code"></i>Dev track</h2>
-                                <span class="track-count">5 formations · ~50h</span>
+                                <span class="track-count">6 formations · ~58h</span>
                             </div>
                             <span class="track-badge">En cours</span>
                         </div>
@@ -80,25 +81,6 @@
                             </div>
                             <span class="track-progress-pct">~55%</span>
                         </div>
-                    </div>
-
-                    <!-- BTS SIO SLAM -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">BTS SIO — option SLAM</div>
-                            <div class="ci-issuer">Éducation Nationale · LGT Baimbridge</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 60%;"></div>
-                                </div>
-                                <span class="ci-pct">~60%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-diplome">Diplôme d'État</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
                     </div>
 
                     <!-- Git & GitHub -->
@@ -177,6 +159,33 @@
                         <span class="ci-status sp-progress">En cours</span>
                     </div>
 
+                    <!-- API REST -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-planned"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Débutez avec les API REST</div>
+                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-planned">Prévu</span>
+                    </div>
+
+                    <!-- IA vibe coding -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-obtained"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Développez avec les agents IA à l'ère du vibe coding</div>
+                            <div class="ci-issuer">OpenClassrooms</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-ai">IA</span>
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-obtained">Obtenue</span>
+                    </div>
+
                 </div><!-- /tc-dev -->
 
 
@@ -186,7 +195,7 @@
                         <div class="track-head-top">
                             <div>
                                 <h2 class="track-name"><i class="fas fa-shield-halved"></i>Sécu &amp; Infra track</h2>
-                                <span class="track-count">2 formations · ~22h</span>
+                                <span class="track-count">1 formation · ~8h</span>
                             </div>
                             <span class="track-badge">En cours</span>
                         </div>
@@ -217,19 +226,6 @@
                         <span class="ci-status sp-progress">En cours</span>
                     </div>
 
-                    <!-- SecNumAcadémie -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">SecNumAcadémie</div>
-                            <div class="ci-issuer">ANSSI · ~14h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-b5">B5 Sécu</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
                 </div><!-- /tc-secu -->
 
 
@@ -251,12 +247,12 @@
                         </div>
                     </div>
 
-                    <!-- AWS -->
+                    <!-- AWS Discover -->
                     <div class="certif-item">
                         <div class="ci-dot dot-planned"></div>
                         <div class="ci-content">
-                            <div class="ci-name">AWS Cloud Practitioner</div>
-                            <div class="ci-issuer">Amazon Web Services · ~12h</div>
+                            <div class="ci-name">Découvrez le cloud avec Amazon Web Services</div>
+                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
                             <div class="ci-tags" style="margin-top:.3rem;">
                                 <span class="ci-tag ci-tag-cloud">Cloud</span>
                             </div>
