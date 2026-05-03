@@ -1,161 +1,358 @@
-/* ===== Page Certifications ===== */
+/* ===== certifications.css — Design Tracks Dashboard (Dark Theme) ===== */
 
-.page-header {
-    padding: 3rem 0 2rem;
-    border-bottom: 1px solid var(--border-color);
+/* ─── Header masthead ───────────────────────────────── */
+.certif-header {
+    background: var(--white);
+    padding: 2.5rem 0 0;
 }
-.page-title {
-    font-size: 2rem;
+
+.certif-masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.certif-title {
+    font-size: 2.2rem;
+    font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1;
 }
-.page-subtitle {
+
+.certif-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
     color: var(--text-light);
-    font-size: 0.95rem;
+    text-align: right;
+    line-height: 1.7;
 }
 
-/* Grille des certifications */
-.certif-grid {
+.certif-meta .meta-tag {
+    display: block;
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 2px;
+}
+
+/* ─── Section ───────────────────────────────────────── */
+.certif-section { padding: 2.5rem 0 4rem; }
+
+/* ─── Stat row ──────────────────────────────────────── */
+.certif-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
 }
 
-.certif-card {
-    background: var(--bg-surface);
+.certif-stat-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    transition: var(--transition);
+}
+
+.certif-stat-card:hover { border-color: var(--secondary-color); }
+
+.stat-num {
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-lbl {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+}
+
+/* ─── Tracks grid ───────────────────────────────────── */
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+/* ─── Track card ────────────────────────────────────── */
+.track-card {
+    background: var(--bg-light);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 1.5rem;
+    overflow: hidden;
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
 }
-.certif-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-}
-.certif-card.certif-obtained::before { background: var(--accent2); }
-.certif-card.certif-progress::before { background: var(--accent3); }
-.certif-card.certif-planned::before  { background: var(--border-color); }
 
-.certif-card:hover {
+.track-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
-.certif-card.certif-obtained:hover { border-color: var(--accent2); box-shadow: 0 8px 30px rgba(6,214,160,0.12); }
-.certif-card.certif-progress:hover { border-color: var(--accent3); box-shadow: 0 8px 30px rgba(245,158,11,0.12); }
 
-.certif-header {
+.track-card.tc-dev:hover   { border-color: var(--secondary-color); }
+.track-card.tc-secu:hover  { border-color: #ef4444; }
+.track-card.tc-cloud:hover { border-color: #06b6d4; }
+
+/* Track header */
+.track-head {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-surface);
+}
+
+.track-head-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
+    margin-bottom: 0.75rem;
 }
 
-.certif-icon {
-    font-size: 2rem;
-    line-height: 1;
+.track-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.track-name i { font-size: 0.85em; }
+
+.tc-dev   .track-name { color: var(--secondary-color); }
+.tc-secu  .track-name { color: #ef4444; }
+.tc-cloud .track-name { color: #06b6d4; }
+
+.track-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-light);
+}
+
+.track-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
     flex-shrink: 0;
 }
 
-.certif-status {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.2em 0.7em;
-    border-radius: 20px;
-    white-space: nowrap;
-}
-.certif-status.status-obtained {
-    background: rgba(6,214,160,0.15);
-    color: var(--accent2);
-    border: 1px solid rgba(6,214,160,0.35);
-}
-.certif-status.status-progress {
-    background: rgba(245,158,11,0.15);
-    color: var(--accent3);
-    border: 1px solid rgba(245,158,11,0.35);
-}
-.certif-status.status-planned {
-    background: var(--bg-light);
-    color: var(--text-light);
-    border: 1px solid var(--border-color);
+.tc-dev   .track-badge { background: rgba(14,165,233,0.12);  border: 1px solid rgba(14,165,233,0.3);  color: var(--secondary-color); }
+.tc-secu  .track-badge { background: rgba(239,68,68,0.1);    border: 1px solid rgba(239,68,68,0.25);  color: #ef4444; }
+.tc-cloud .track-badge { background: rgba(6,182,212,0.1);    border: 1px solid rgba(6,182,212,0.25);  color: #06b6d4; }
+
+/* Progress bar */
+.track-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-.certif-name {
-    font-size: 1.05rem;
+.track-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.track-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+}
+
+.tc-dev   .track-progress-fill { background: var(--secondary-color); }
+.tc-secu  .track-progress-fill { background: #ef4444; }
+.tc-cloud .track-progress-fill { background: #06b6d4; }
+
+.track-progress-pct {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-light);
+    flex-shrink: 0;
+    min-width: 28px;
+    text-align: right;
+}
+
+/* ─── Certification item ────────────────────────────── */
+.certif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.certif-item:last-child { border-bottom: none; }
+
+.certif-item:hover { background: var(--bg-surface); }
+
+.tc-dev   .certif-item:hover { border-left: 2px solid var(--secondary-color); padding-left: calc(1.5rem - 2px); }
+.tc-secu  .certif-item:hover { border-left: 2px solid #ef4444; padding-left: calc(1.5rem - 2px); }
+.tc-cloud .certif-item:hover { border-left: 2px solid #06b6d4; padding-left: calc(1.5rem - 2px); }
+
+/* Dot indicator */
+.ci-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.ci-dot.dot-progress {
+    background: var(--accent3);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+}
+
+.ci-dot.dot-planned {
+    background: transparent;
+    border: 2px dashed var(--border-color);
+}
+
+.ci-dot.dot-obtained {
+    background: var(--accent2);
+    box-shadow: 0 0 0 3px rgba(6,214,160,0.15);
+}
+
+/* Item content */
+.ci-content { flex: 1; min-width: 0; }
+
+.ci-name {
+    font-size: 13px;
     font-weight: 600;
     color: var(--primary-color);
-    margin: 0;
+    margin-bottom: 2px;
+    line-height: 1.35;
 }
 
-.certif-issuer {
-    font-size: 0.85rem;
-    color: var(--text-light);
+.ci-issuer {
     font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
 }
 
-.certif-desc {
-    font-size: 0.875rem;
-    color: var(--text-light);
-    line-height: 1.6;
+/* Mini progress bar inside item */
+.ci-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.ci-progress-bar {
     flex: 1;
-    margin: 0;
+    height: 3px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
 }
 
-.certif-date {
-    font-size: 0.78rem;
+.ci-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+}
+
+.tc-dev   .ci-progress-fill { background: var(--secondary-color); }
+.tc-secu  .ci-progress-fill { background: #ef4444; }
+.tc-cloud .ci-progress-fill { background: #06b6d4; }
+
+.ci-pct {
     font-family: var(--font-mono);
+    font-size: 9px;
     color: var(--text-light);
-    border-top: 1px solid var(--border-color);
-    padding-top: 0.75rem;
-    margin-top: auto;
+    flex-shrink: 0;
+    min-width: 28px;
+    text-align: right;
 }
 
-/* Issuer as link */
-a.certif-issuer {
-    color: var(--text-light);
-    text-decoration: none;
-}
-a.certif-issuer:hover {
-    color: var(--secondary-color);
-    opacity: 1;
-}
+/* Tags */
+.ci-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0.4rem; }
 
-/* Lien vers la certification */
-.certif-link {
-    display: inline-block;
+.ci-tag {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--secondary-color);
-    text-decoration: none;
-    padding: 0.25em 0;
-    transition: var(--transition);
-    margin-bottom: 0.25rem;
-}
-.certif-link:hover {
-    opacity: 0.75;
-}
-
-/* Section heading */
-.certif-section-label {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
     color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 2.5rem 0 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
 }
-.certif-section-label:first-of-type { margin-top: 0; }
 
-@media (max-width: 600px) {
-    .certif-grid { grid-template-columns: 1fr; }
+.ci-tag-b3      { border-color: rgba(6,214,160,0.35);  color: var(--accent2); }
+.ci-tag-b5      { border-color: rgba(239,68,68,0.3);   color: #ef4444; }
+.ci-tag-cloud   { border-color: rgba(6,182,212,0.35);  color: #06b6d4; }
+.ci-tag-diplome { border-color: rgba(14,165,233,0.35); color: var(--secondary-color); }
+
+/* Status badge at right */
+.ci-status {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.ci-status.sp-progress {
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--accent3);
+}
+
+.ci-status.sp-planned {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+}
+
+.ci-status.sp-obtained {
+    background: rgba(6,214,160,0.12);
+    border: 1px solid rgba(6,214,160,0.3);
+    color: var(--accent2);
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .tracks-grid { grid-template-columns: repeat(2, 1fr); }
+    .track-card.tc-cloud { grid-column: 1 / -1; max-width: 480px; margin: 0 auto; width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .certif-masthead  { flex-direction: column; }
+    .certif-meta      { text-align: left; }
+    .certif-title     { font-size: 1.75rem; }
+    .certif-stats     { grid-template-columns: repeat(3, 1fr); }
+    .tracks-grid      { grid-template-columns: 1fr; }
+    .track-card.tc-cloud { max-width: none; }
+    .certif-item      { padding: 0.85rem 1.25rem; }
+    .tc-dev   .certif-item:hover,
+    .tc-secu  .certif-item:hover,
+    .tc-cloud .certif-item:hover { padding-left: calc(1.25rem - 2px); }
+}
+
+@media (max-width: 480px) {
+    .certif-stats { grid-template-columns: 1fr; }
+    .stat-num     { font-size: 1.5rem; }
 }
