@@ -50,10 +50,9 @@
                 <div class="certif-stat-card">
                     <div class="stat-num">8</div>
                     <div class="stat-lbl">Formations</div>
-
                 </div>
                 <div class="certif-stat-card">
-                    <div class="stat-num">~80h</div>
+                    <div class="stat-num">~70h</div>
                     <div class="stat-lbl">Estimées</div>
                 </div>
                 <div class="certif-stat-card">
@@ -71,119 +70,81 @@
                         <div class="track-head-top">
                             <div>
                                 <h2 class="track-name"><i class="fas fa-code"></i>Dev track</h2>
-                                <span class="track-count">6 formations · ~58h</span>
+                                <span class="track-count">4 formations · ~38h</span>
                             </div>
                             <span class="track-badge">En cours</span>
                         </div>
                         <div class="track-progress-wrap">
                             <div class="track-progress-bar">
-                                <div class="track-progress-fill" style="width: 55%;"></div>
+                                <div class="track-progress-fill" style="width: 20%;"></div>
                             </div>
-                            <span class="track-progress-pct">~55%</span>
+                            <span class="track-progress-pct">~20%</span>
                         </div>
                     </div>
 
-                    <!-- Git & GitHub -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Gérez du code avec Git et GitHub</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 65%;"></div>
-                                </div>
-                                <span class="ci-pct">~65%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- Angular -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Débutez avec Angular</div>
-                            <div class="ci-issuer">OpenClassrooms · ~12h</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 40%;"></div>
-                                </div>
-                                <span class="ci-pct">~40%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- Python -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Apprenez les bases du langage Python</div>
-                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 50%;"></div>
-                                </div>
-                                <span class="ci-pct">~50%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- PHP MVC -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-progress"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Adoptez une architecture MVC en PHP</div>
-                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
-                            <div class="ci-progress-wrap">
-                                <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 65%;"></div>
-                                </div>
-                                <span class="ci-pct">~65%</span>
-                            </div>
-                            <div class="ci-tags">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-progress">En cours</span>
-                    </div>
-
-                    <!-- API REST -->
-                    <div class="certif-item">
-                        <div class="ci-dot dot-planned"></div>
-                        <div class="ci-content">
-                            <div class="ci-name">Débutez avec les API REST</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
-                            <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
-                            </div>
-                        </div>
-                        <span class="ci-status sp-planned">Prévu</span>
-                    </div>
-
-                    <!-- IA vibe coding -->
+                    <!-- IA vibe coding — obtenue -->
                     <div class="certif-item">
                         <div class="ci-dot dot-obtained"></div>
                         <div class="ci-content">
                             <div class="ci-name">Développez avec les agents IA à l'ère du vibe coding</div>
-                            <div class="ci-issuer">OpenClassrooms</div>
+                            <div class="ci-issuer">OpenClassrooms · Démarré le 29 avr. 2026</div>
                             <div class="ci-tags" style="margin-top:.3rem;">
                                 <span class="ci-tag ci-tag-ai">IA</span>
                                 <span class="ci-tag ci-tag-b3">B3 Dev</span>
                             </div>
                         </div>
                         <span class="ci-status sp-obtained">Obtenue</span>
+                    </div>
+
+                    <!-- Git & GitHub — en cours -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-progress"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Gérez du code avec Git et GitHub</div>
+                            <div class="ci-issuer">OpenClassrooms · ~8h · Démarré le 3 nov. 2025</div>
+                            <div class="ci-progress-wrap">
+                                <div class="ci-progress-bar">
+                                    <div class="ci-progress-fill" style="width: 27%;"></div>
+                                </div>
+                                <span class="ci-pct">27%</span>
+                            </div>
+                            <div class="ci-tags">
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-progress">En cours</span>
+                    </div>
+
+                    <!-- Angular — en cours -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-progress"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Débutez avec Angular</div>
+                            <div class="ci-issuer">OpenClassrooms · ~12h · Démarré le 29 avr. 2026</div>
+                            <div class="ci-progress-wrap">
+                                <div class="ci-progress-bar">
+                                    <div class="ci-progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <span class="ci-pct">0%</span>
+                            </div>
+                            <div class="ci-tags">
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-progress">En cours</span>
+                    </div>
+
+                    <!-- Figma — prévu -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-planned"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Créez une maquette web avec Figma</div>
+                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-b3">B3 Dev</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-planned">Prévu</span>
                     </div>
 
                 </div><!-- /tc-dev -->
@@ -201,23 +162,23 @@
                         </div>
                         <div class="track-progress-wrap">
                             <div class="track-progress-bar">
-                                <div class="track-progress-fill" style="width: 20%;"></div>
+                                <div class="track-progress-fill" style="width: 0%;"></div>
                             </div>
-                            <span class="track-progress-pct">~20%</span>
+                            <span class="track-progress-pct">0%</span>
                         </div>
                     </div>
 
-                    <!-- Linux -->
+                    <!-- Linux — en cours -->
                     <div class="certif-item">
                         <div class="ci-dot dot-progress"></div>
                         <div class="ci-content">
                             <div class="ci-name">Initiez-vous à Linux</div>
-                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
+                            <div class="ci-issuer">OpenClassrooms · ~8h · Démarré le 29 avr. 2026</div>
                             <div class="ci-progress-wrap">
                                 <div class="ci-progress-bar">
-                                    <div class="ci-progress-fill" style="width: 35%;"></div>
+                                    <div class="ci-progress-fill" style="width: 0%;"></div>
                                 </div>
-                                <span class="ci-pct">~35%</span>
+                                <span class="ci-pct">0%</span>
                             </div>
                             <div class="ci-tags">
                                 <span class="ci-tag ci-tag-b5">B5 Infra</span>
@@ -229,13 +190,13 @@
                 </div><!-- /tc-secu -->
 
 
-                <!-- ═══ Cloud Track ═══ -->
-                <div class="track-card tc-cloud">
+                <!-- ═══ Culture & Méthodes Track ═══ -->
+                <div class="track-card tc-culture">
                     <div class="track-head">
                         <div class="track-head-top">
                             <div>
-                                <h2 class="track-name"><i class="fas fa-cloud"></i>Cloud track</h2>
-                                <span class="track-count">1 formation · ~12h</span>
+                                <h2 class="track-name"><i class="fas fa-brain"></i>Culture &amp; Méthodes</h2>
+                                <span class="track-count">3 formations · ~20h</span>
                             </div>
                             <span class="track-badge">Prévu</span>
                         </div>
@@ -247,20 +208,47 @@
                         </div>
                     </div>
 
-                    <!-- AWS Discover -->
+                    <!-- Apprendre à apprendre -->
                     <div class="certif-item">
                         <div class="ci-dot dot-planned"></div>
                         <div class="ci-content">
-                            <div class="ci-name">Découvrez le cloud avec Amazon Web Services</div>
-                            <div class="ci-issuer">OpenClassrooms · ~10h</div>
+                            <div class="ci-name">Apprenez à apprendre</div>
+                            <div class="ci-issuer">OpenClassrooms · ~6h</div>
                             <div class="ci-tags" style="margin-top:.3rem;">
-                                <span class="ci-tag ci-tag-cloud">Cloud</span>
+                                <span class="ci-tag ci-tag-culture">Méthodes</span>
                             </div>
                         </div>
                         <span class="ci-status sp-planned">Prévu</span>
                     </div>
 
-                </div><!-- /tc-cloud -->
+                    <!-- Optimiser apprentissage IA -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-planned"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Optimisez votre apprentissage avec l'Intelligence Artificielle</div>
+                            <div class="ci-issuer">OpenClassrooms · ~6h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-ai">IA</span>
+                                <span class="ci-tag ci-tag-culture">Méthodes</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-planned">Prévu</span>
+                    </div>
+
+                    <!-- Veille informationnelle -->
+                    <div class="certif-item">
+                        <div class="ci-dot dot-planned"></div>
+                        <div class="ci-content">
+                            <div class="ci-name">Mettez en place un système de veille informationnelle</div>
+                            <div class="ci-issuer">OpenClassrooms · ~8h</div>
+                            <div class="ci-tags" style="margin-top:.3rem;">
+                                <span class="ci-tag ci-tag-culture">Méthodes</span>
+                            </div>
+                        </div>
+                        <span class="ci-status sp-planned">Prévu</span>
+                    </div>
+
+                </div><!-- /tc-culture -->
 
             </div><!-- /tracks-grid -->
 
