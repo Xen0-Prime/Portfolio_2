@@ -99,7 +99,7 @@ function data_comps(string $id, array $map): string {
                 <h1 class="projects-title">Mes Projets</h1>
                 <div class="projects-meta">
                     <span class="meta-tag">BTS SIO SLAM</span>
-                    6 projets · Portfolio de développements
+                    7 projets · Portfolio de développements
                 </div>
             </div>
 
@@ -147,10 +147,6 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">Gestion de Stock</h3>
-                            <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Gestion%20de%20stock"
-                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-java">Java</span>
@@ -195,16 +191,10 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">BetterNote</h3>
-                            <div class="card-links">
-                                <a href="https://github.com/Laeticia18/Appli-mobile-react"
-                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="http://killiannarasson.alwaysdata.net/realisations/better-note/"
-                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
-                                    <i class="fas fa-arrow-up-right-from-square"></i>
-                                </a>
-                            </div>
+                            <a href="https://github.com/Laeticia18/Appli-mobile-react"
+                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-mobile">Mobile</span>
@@ -294,7 +284,7 @@ function data_comps(string $id, array $map): string {
                         <div class="card-header-top">
                             <h3 class="card-title">Vwati Nef</h3>
                             <div class="card-links">
-                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Vwati%20nef"
+                                <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/main_2/realisations/Vwati%20nef"
                                    target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
@@ -346,7 +336,7 @@ function data_comps(string $id, array $map): string {
                         <div class="card-header-top">
                             <h3 class="card-title">Projet IoT</h3>
                             <div class="card-links">
-                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/IoT"
+                                <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/main_2/realisations/IoT"
                                    target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
@@ -400,7 +390,7 @@ function data_comps(string $id, array $map): string {
                         <div class="card-header-top">
                             <h3 class="card-title">Projet Voyage</h3>
                             <div class="card-links">
-                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Projet_Voyage"
+                                <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/main_2/realisations/Projet_Voyage"
                                    target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
