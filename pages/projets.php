@@ -147,6 +147,10 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">Gestion de Stock</h3>
+                            <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/main_2/realisations/Gestion%20de%20stock"
+                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-java">Java</span>
