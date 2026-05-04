@@ -1,0 +1,333 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #3498db;
+    --background-color: #f4f6f7;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+    --transition-speed: 0.3s;
+    --sidebar-width: 250px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.portfolio-container {
+    display: flex;
+    height: 100vh;
+    overflow: auto;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.competences {
+    margin-top: 2rem;
+}
+
+.competences ul {
+    list-style: none;
+    padding: 0;
+}
+
+.competences ul li {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    z-index: 1000;
+    transform: translateX(-100%);
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: auto;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-icon {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color var(--transition-speed);
+}
+
+.social-icon:hover {
+    color: var(--primary-color);
+}
+
+.competences h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.competencies-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.languages-section {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.certifications-section {
+    flex: 1;
+    border-left: 2px solid #ddd;
+    padding-left: 1rem;
+}
+
+.horizontal-divider {
+    border-top: 2px solid #ddd;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+
+.certifications-section h2,
+.languages-section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    margin-bottom: 1.5rem;
+}
+
+.progress {
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: var(--primary-color);
+    text-align: center;
+    color: white;
+    padding: 5px 0;
+}
+
+.progress-bar-fill {
+    transition: width var(--transition-speed);
+}
+
+.language-cards {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.language-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.language-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.language-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.language-card h3 {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+
+@media (max-width: 768px) {
+    .portfolio-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0 2px 4px var(--shadow-color);
+    }
+
+    .sidebar ul {
+        flex-direction: row;
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar ul li {
+        list-style: none;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    .sidebar ul li a.active,
+    .sidebar ul li a:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .social-icon {
+        font-size: 1.2rem;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .project-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .projects-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .project-card h3 {
+        font-size: 1rem;
+    }
+
+    .project-card p {
+        font-size: 0.8rem;
+    }
+
+    .social-icon {
+        font-size: 1.2rem;
+    }
+
+    .competences-container {
+        flex-direction: column;
+    }
+
+    .languages-section,
+    .certifications-section {
+        flex: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .certifications-section {
+        margin-left: 0;
+        border-left: none;
+        padding-left: 0;
+    }
+}
