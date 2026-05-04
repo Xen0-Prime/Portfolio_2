@@ -245,7 +245,7 @@ function data_comps(string $id, array $map): string {
                                    target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="http://killiannarasson.alwaysdata.net/realisations/vwati-nef/Accueil%20(1).html"
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/vwati-nef/Accueil.html"
                                    target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
                                     <i class="fas fa-arrow-up-right-from-square"></i>
                                 </a>
