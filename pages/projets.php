@@ -1,9 +1,9 @@
 <?php
 // ─── Mapping compétences → projets ───────────────────
 $competences_map = [
-    'B1' => ['vwati-nef', 'projet-voyage'],
+    'B1' => ['vwati-nef', 'projet-voyage', 'portfolio-annee1'],
     'B2' => ['projet-iot', 'gestion-stock'],
-    'B3' => ['gestion-stock', 'gestion-absences', 'vwati-nef', 'projet-iot', 'projet-voyage', 'projet-symfony', 'better-note'],
+    'B3' => ['gestion-stock', 'gestion-absences', 'vwati-nef', 'projet-iot', 'projet-voyage', 'projet-symfony', 'better-note', 'portfolio-annee1'],
     'B4' => ['gestion-absences', 'vwati-nef', 'projet-symfony', 'better-note'],
     'B5' => ['projet-iot', 'gestion-stock', 'gestion-absences'],
     'B6' => ['projet-symfony', 'projet-voyage'],
@@ -36,6 +36,7 @@ $projet_competences = [
     'projet-voyage'    => ['B1', 'B3', 'B6'],
     'projet-symfony'   => ['B3', 'B4', 'B6'],
     'better-note'      => ['B3', 'B4'],
+    'portfolio-annee1' => ['B1', 'B3'],
 ];
 
 $filtre = isset($_GET['competence']) ? strtoupper(trim($_GET['competence'])) : null;
@@ -236,6 +237,51 @@ function data_comps(string $id, array $map): string {
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">REST API</span>
                             <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Portfolio 1ère année ── -->
+                <div class="project-card card-web <?= !is_visible('portfolio-annee1', $projets_actifs) ? 'hidden' : '' ?>"
+                     data-comps="<?= data_comps('portfolio-annee1', $projet_competences) ?>">
+
+                    <div class="card-header">
+                        <div class="card-header-top">
+                            <h3 class="card-title">Portfolio 1ère année</h3>
+                            <a href="http://killiannarasson.alwaysdata.net/realisations/portfolio-annee1/"
+                               target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <div class="card-badges">
+                            <span class="badge badge-web">Web</span>
+                            <span class="badge badge-php">PHP</span>
+                        </div>
+                    </div>
+
+                    <?= comp_tags('portfolio-annee1', $projet_competences) ?>
+
+                    <div class="card-body">
+                        <p class="card-desc">
+                            Premier portfolio réalisé en 1ère année de BTS SIO. Site complet avec
+                            présentation de compétences, projets, veille technologique et formulaire de contact.
+                        </p>
+
+                        <div>
+                            <div class="card-section-label">Fonctionnalités</div>
+                            <ul class="card-features">
+                                <li>Mise en page sidebar avec navigation complète</li>
+                                <li>Page compétences &amp; projets illustrés</li>
+                                <li>Veille technologique (hardware, IA, crypto…)</li>
+                                <li>Formulaire de contact avec envoi d'email</li>
+                                <li>CV en HTML/CSS intégré</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">PHP</span>
                         </div>
                     </div>
                 </div>

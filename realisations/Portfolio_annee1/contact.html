@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NARASSON-MOHAMEDALY</title>
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="portfolio-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="R.png" alt="Logo personnel">
+            </div>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="competences.html">Compétences</a></li>
+                <li><a href="projets.html">Projets</a></li>
+                <li><a href="veille.html">Veille Technologique</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-x"></i></a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <section class="section contact">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h1>Contactez-moi</h1>
+                        <p class="description">
+                            Intéressé par une collaboration, un projet ou simplement
+                            pour échanger ? N'hésitez pas à me contacter via ce formulaire
+                            ou mes réseaux sociaux.
+                        </p>
+
+                        <div class="contact-details">
+                            <div class="contact-detail">
+                                <i class="fas fa-envelope"></i>
+                                <p><a href="mailto:killian.narasson-m@outlook.fr">
+                                        <span class="no-select">killian.narasson-m@outlook.fr</span></a>
+                            </div>
+                            <div class="contact-detail">
+                                <i class="fas fa-phone"></i>
+                                <span class="no-select">0690XXXXXX</span>
+                            </div>
+                            <div class="contact-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Les Abymes, Guadeloupe, France</span>
+                            </div>
+                        </div>
+
+                        <div class="additional-links">
+                            <a href="https://discord.gg/z886Hqby" class="btn btn-secondary">
+                                <i class="fab fa-discord"></i> Discord
+                            </a>
+                            <a href="https://whatsapp.com/dl/" class="btn btn-secondary">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <form action="send_email.php" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Votre message" rows="5"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector(".contact-form").addEventListener("submit", function () {
+    setTimeout(function () {
+        alert("Merci pour votre message ! Je vous répondrai bientôt.");
+    }, 500);
+    });
+    </script>
+</body>
+
+</html>
