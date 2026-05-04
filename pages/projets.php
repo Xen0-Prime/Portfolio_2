@@ -3,8 +3,8 @@
 $competences_map = [
     'B1' => ['vwati-nef', 'projet-voyage'],
     'B2' => ['projet-iot', 'gestion-stock'],
-    'B3' => ['gestion-stock', 'gestion-absences', 'vwati-nef', 'projet-iot', 'projet-voyage', 'projet-symfony'],
-    'B4' => ['gestion-absences', 'vwati-nef', 'projet-symfony'],
+    'B3' => ['gestion-stock', 'gestion-absences', 'vwati-nef', 'projet-iot', 'projet-voyage', 'projet-symfony', 'better-note'],
+    'B4' => ['gestion-absences', 'vwati-nef', 'projet-symfony', 'better-note'],
     'B5' => ['projet-iot', 'gestion-stock', 'gestion-absences'],
     'B6' => ['projet-symfony', 'projet-voyage'],
 ];
@@ -35,6 +35,7 @@ $projet_competences = [
     'projet-iot'       => ['B2', 'B3', 'B5'],
     'projet-voyage'    => ['B1', 'B3', 'B6'],
     'projet-symfony'   => ['B3', 'B4', 'B6'],
+    'better-note'      => ['B3', 'B4'],
 ];
 
 $filtre = isset($_GET['competence']) ? strtoupper(trim($_GET['competence'])) : null;
@@ -193,10 +194,16 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">BetterNote</h3>
-                            <a href="https://github.com/Laeticia18/Appli-mobile-react.git"
-                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
+                            <div class="card-links">
+                                <a href="https://github.com/Laeticia18/Appli-mobile-react"
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/better-note/"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-mobile">Mobile</span>
