@@ -1,0 +1,19 @@
+# ── Credentials & config secrets ──────────────────────────
+config/config.php
+config/supabase.php
+config/auth.php
+realisations/Projet_Voyage/db_config.php
+
+# ── Dependencies ───────────────────────────────────────────
+realisations/BetterNote/node_modules/
+realisations/BetterNote/dist/
+realisations/st-gentlemen/vendor/
+
+# ── Claude memory ──────────────────────────────────────────
+.claude/
+
+# ── OS / editors ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
