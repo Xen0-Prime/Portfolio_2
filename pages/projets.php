@@ -186,13 +186,13 @@ function data_comps(string $id, array $map): string {
                     </div>
                 </div>
 
-                <!-- ── Gestion d'Absences ── -->
-                <div class="project-card card-mobile <?= !is_visible('gestion-absences', $projets_actifs) ? 'hidden' : '' ?>"
-                     data-comps="<?= data_comps('gestion-absences', $projet_competences) ?>">
+                <!-- ── BetterNote ── -->
+                <div class="project-card card-mobile <?= !is_visible('better-note', $projets_actifs) ? 'hidden' : '' ?>"
+                     data-comps="<?= data_comps('better-note', $projet_competences) ?>">
 
                     <div class="card-header">
                         <div class="card-header-top">
-                            <h3 class="card-title">Gestion d'Absences</h3>
+                            <h3 class="card-title">BetterNote</h3>
                             <a href="https://github.com/Laeticia18/Appli-mobile-react.git"
                                target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
                                 <i class="fab fa-github"></i>
@@ -204,7 +204,7 @@ function data_comps(string $id, array $map): string {
                         </div>
                     </div>
 
-                    <?= comp_tags('gestion-absences', $projet_competences) ?>
+                    <?= comp_tags('better-note', $projet_competences) ?>
 
                     <div class="card-body">
                         <p class="card-desc">
@@ -240,10 +240,16 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">Vwati Nef</h3>
-                            <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Vwati%20nef"
-                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
+                            <div class="card-links">
+                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Vwati%20nef"
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/vwati-nef/Accueil%20(1).html"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-web">Web</span>
@@ -286,10 +292,16 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">Projet IoT</h3>
-                            <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/IoT"
-                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
+                            <div class="card-links">
+                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/IoT"
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/iot/iot-dashboard-v2-supabase.html"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-stage">Stage</span>
@@ -334,10 +346,16 @@ function data_comps(string $id, array $map): string {
                     <div class="card-header">
                         <div class="card-header-top">
                             <h3 class="card-title">Projet Voyage</h3>
-                            <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Projet_Voyage"
-                               target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
+                            <div class="card-links">
+                                <a href="https://github.com/Xen0-Prime/Portfolio_projets/tree/main/Projet_Voyage"
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/voyage/accueil.php"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-web">Web</span>
