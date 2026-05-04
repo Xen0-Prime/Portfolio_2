@@ -305,7 +305,7 @@ function data_comps(string $id, array $map): string {
                         </div>
                         <div class="card-badges">
                             <span class="badge badge-stage">Stage</span>
-                            <span class="badge badge-python">Python</span>
+                            <span class="badge badge-python">HTML/CSS/JS</span>
                         </div>
                     </div>
 
@@ -329,7 +329,7 @@ function data_comps(string $id, array $map): string {
                         </div>
 
                         <div class="card-tech">
-                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">HTML/CSS/JS</span>
                             <span class="tech-tag">MQTT</span>
                             <span class="tech-tag">Three.js</span>
                             <span class="tech-tag">Node.js</span>
