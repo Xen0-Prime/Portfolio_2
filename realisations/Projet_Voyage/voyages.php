@@ -1,8 +1,6 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "voyage");
-if ($conn->connect_error) {
-    die("Erreur de connexion : " . $conn->connect_error);
-}
+require_once __DIR__ . '/db_config.php';
+$conn = get_db();
 
 $destination = $_GET['destination'] ?? '';
 $prix_max = $_GET['prix_max'] ?? '';
