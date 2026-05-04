@@ -176,7 +176,7 @@
                         <span class="timeline-badge">En cours</span>
                         <ul class="timeline-subjects">
                             <li>CEJM — Culture économique, juridique et managériale</li>
-                            <li>AP — Accompagnement personnalisé</li>
+                            <li>AP — Ateliers Professionnels</li>
                             <li>Cybersécurité</li>
                             <li>Algorithmie &amp; programmation</li>
                             <li>Base de données</li>
