@@ -4,7 +4,7 @@ config/config.php
 config/supabase.php
 config/auth.php
 realisations/Projet_Voyage/db_config.php
-
+.admin_hash
 # ── Dependencies ───────────────────────────────────────────
 realisations/BetterNote/node_modules/
 realisations/BetterNote/dist/
