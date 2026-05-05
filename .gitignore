@@ -12,6 +12,9 @@ realisations/st-gentlemen/vendor/
 # ── Claude memory ──────────────────────────────────────────
 .claude/
 
+# ── Java compiled files ───────────────────────────────────
+*.class
+
 # ── OS / editors ──────────────────────────────────────────
 .DS_Store
 Thumbs.db
