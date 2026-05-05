@@ -34,7 +34,7 @@
                 <h1 class="hero-title">Killian Narasson Mohamedaly</h1>
                 <p class="hero-subtitle">BTS SIO — option SLAM · LGT Baimbridge · 2024–2026</p>
                 <div class="hero-buttons">
-                    <a href="../stages/docs/CV-NARASSON-MOHAMEDALY Killian.pdf" class="btn btn-secondary" download>Télécharger mon CV</a>
+                    <a href="../stages/docs/CV-NARASSON-MOHAMEDALY Killian.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Voir mon CV</a>
                     <a href="contact.php" class="btn btn-secondary">Me contacter</a>
                     <a href="https://www.linkedin.com/in/killian-narasson-mohamedaly-6b3b9134b"
                        class="btn btn-secondary"
