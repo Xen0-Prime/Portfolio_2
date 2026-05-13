@@ -152,9 +152,10 @@ $track_labels = [
             border-radius: 20px;
             white-space: nowrap;
         }
-        .pill-dev     { background: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3); color: var(--secondary-color); }
-        .pill-secu    { background: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
+        .pill-dev     { background: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3);  color: var(--secondary-color); }
+        .pill-systeme { background: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
         .pill-culture { background: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.25); color: #10b981; }
+        .pill-data    { background: rgba(168,85,247,.1);  border: 1px solid rgba(168,85,247,.25); color: #a855f7; }
 
         /* ── Cell: select ────────────────────────────────────── */
         .statut-select {
@@ -440,8 +441,9 @@ $track_labels = [
                         <label class="add-label">Track</label>
                         <select class="add-select" id="add-track">
                             <option value="dev">Dev</option>
-                            <option value="secu">Sécu &amp; Infra</option>
+                            <option value="systeme">Systèmes &amp; Réseaux</option>
                             <option value="culture">Culture &amp; Méthodes</option>
+                            <option value="data">Data</option>
                         </select>
                     </div>
                     <div>
@@ -493,7 +495,7 @@ $track_labels = [
     $statut  = $c['statut'] ?? 'prevu';
     $prog    = (int)($c['progression'] ?? 0);
     $track   = $c['track'] ?? 'dev';
-    $pill_cls= ['dev' => 'pill-dev', 'secu' => 'pill-secu', 'culture' => 'pill-culture'][$track] ?? 'pill-dev';
+    $pill_cls= ['dev' => 'pill-dev', 'systeme' => 'pill-systeme', 'culture' => 'pill-culture', 'data' => 'pill-data'][$track] ?? 'pill-dev';
     $track_lbl = $track_labels[$track] ?? $track;
     $disabled  = ($statut !== 'en_cours') ? 'disabled' : '';
 ?>
