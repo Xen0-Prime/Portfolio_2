@@ -26,7 +26,7 @@ if ($nom === '') {
     exit;
 }
 
-$allowed_tracks  = ['dev', 'secu', 'culture'];
+$allowed_tracks  = ['dev', 'systeme', 'culture', 'data'];
 $allowed_statuts = ['obtenue', 'en_cours', 'prevu'];
 
 $track  = in_array($data['track']  ?? '', $allowed_tracks,  true) ? $data['track']  : 'dev';
