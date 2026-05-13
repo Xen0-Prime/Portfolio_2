@@ -8,8 +8,10 @@ $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
 
 $track_labels = [
     'dev'     => 'Dev',
-    'secu'    => 'Sécu & Infra',
+    'systeme'    => 'Systèmes et Réseaux',
     'culture' => 'Culture & Méthodes',
+    'data' => 'Data'
+
 ];
 ?>
 <!DOCTYPE html>
