@@ -247,6 +247,121 @@ $track_labels = [
         .btn-save:active { transform: scale(.96); }
         .btn-save:disabled { opacity: .5; cursor: not-allowed; }
 
+        /* ── Bouton ajouter ─────────────────────────────────── */
+        .btn-add {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .4rem .9rem;
+            border-radius: 6px;
+            border: 1px solid rgba(6,214,160,.4);
+            background: rgba(6,214,160,.08);
+            color: var(--accent2);
+            cursor: pointer;
+            transition: background .2s;
+            margin-bottom: 1.25rem;
+        }
+        .btn-add:hover { background: rgba(6,214,160,.18); }
+
+        /* ── Panneau d'ajout ─────────────────────────────────── */
+        .add-panel {
+            display: none;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            animation: fadeIn .2s ease;
+        }
+        .add-panel.open { display: block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+
+        .add-panel h3 {
+            font-size: .9rem;
+            font-family: var(--font-mono);
+            color: var(--accent2);
+            margin: 0 0 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-size: 11px;
+        }
+        .add-panel h3::before { content: '// '; color: var(--secondary-color); }
+
+        .add-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: .85rem;
+        }
+        .add-form-grid .full { grid-column: 1 / -1; }
+
+        .add-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-light);
+            margin-bottom: .35rem;
+        }
+        .add-input, .add-select {
+            width: 100%;
+            box-sizing: border-box;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: .45rem .7rem;
+            transition: border-color .2s;
+        }
+        .add-input:focus, .add-select:focus { outline: none; border-color: var(--secondary-color); }
+
+        .add-form-actions {
+            display: flex;
+            gap: .6rem;
+            margin-top: 1.1rem;
+        }
+        .btn-create {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .5rem 1.1rem;
+            border-radius: 6px;
+            border: none;
+            background: var(--secondary-color);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+        }
+        .btn-create:hover  { background: #0284c7; }
+        .btn-create:active { transform: scale(.96); }
+        .btn-create:disabled { opacity: .5; cursor: not-allowed; }
+        .btn-cancel-add {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: .5rem .9rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .btn-cancel-add:hover { background: var(--bg-surface); color: var(--primary-color); }
+
+        .add-error {
+            display: none;
+            font-size: 12px;
+            color: #ef4444;
+            margin-top: .5rem;
+            font-family: var(--font-mono);
+        }
+
         /* ── Responsive ──────────────────────────────────────── */
         @media (max-width: 768px) {
             .dash-table th:nth-child(2),
@@ -302,6 +417,56 @@ $track_labels = [
     <!-- ─── Content ─── -->
     <main class="dash-section">
         <div class="container">
+
+            <!-- Bouton + panneau d'ajout -->
+            <button class="btn-add" onclick="toggleAddPanel()">
+                <i class="fas fa-plus"></i> Ajouter une certification
+            </button>
+
+            <div class="add-panel" id="addPanel">
+                <h3>Nouvelle certification</h3>
+                <div class="add-form-grid">
+                    <div class="full">
+                        <label class="add-label">Nom <span style="color:#ef4444">*</span></label>
+                        <input class="add-input" id="add-nom" type="text" placeholder="ex: Débutez avec Docker">
+                    </div>
+                    <div>
+                        <label class="add-label">Émetteur</label>
+                        <input class="add-input" id="add-emetteur" type="text" placeholder="ex: OpenClassrooms">
+                    </div>
+                    <div>
+                        <label class="add-label">Track</label>
+                        <select class="add-select" id="add-track">
+                            <option value="dev">Dev</option>
+                            <option value="secu">Sécu &amp; Infra</option>
+                            <option value="culture">Culture &amp; Méthodes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="add-label">Heures</label>
+                        <input class="add-input" id="add-heures" type="number" min="0" placeholder="ex: 6">
+                    </div>
+                    <div>
+                        <label class="add-label">Statut</label>
+                        <select class="add-select" id="add-statut" onchange="onAddStatutChange()">
+                            <option value="prevu">Prévu</option>
+                            <option value="en_cours">En cours</option>
+                            <option value="obtenue">Obtenue</option>
+                        </select>
+                    </div>
+                    <div id="add-prog-wrap">
+                        <label class="add-label">Progression (%)</label>
+                        <input class="add-input" id="add-prog" type="number" min="0" max="100" value="0" placeholder="0–100" disabled>
+                    </div>
+                </div>
+                <p class="add-error" id="add-error"></p>
+                <div class="add-form-actions">
+                    <button class="btn-create" id="btn-create" onclick="createCertif()">
+                        <i class="fas fa-plus"></i> Créer
+                    </button>
+                    <button class="btn-cancel-add" onclick="toggleAddPanel()">Annuler</button>
+                </div>
+            </div>
 
 <?php if (empty($rows)): ?>
             <p style="color:var(--text-light);font-family:var(--font-mono);font-size:13px;">
@@ -382,6 +547,74 @@ $track_labels = [
 
     <script src="../js/script.js"></script>
     <script>
+    // ── Panneau d'ajout ───────────────────────────────────────────────────────
+    function toggleAddPanel() {
+        const panel = document.getElementById('addPanel');
+        panel.classList.toggle('open');
+        if (!panel.classList.contains('open')) resetAddForm();
+    }
+
+    function onAddStatutChange() {
+        const statut = document.getElementById('add-statut').value;
+        const prog   = document.getElementById('add-prog');
+        prog.disabled = statut !== 'en_cours';
+        if (statut === 'obtenue') prog.value = 100;
+        if (statut === 'prevu')   prog.value = 0;
+    }
+
+    function resetAddForm() {
+        ['add-nom','add-emetteur','add-heures'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('add-track').value  = 'dev';
+        document.getElementById('add-statut').value = 'prevu';
+        document.getElementById('add-prog').value   = 0;
+        document.getElementById('add-prog').disabled = true;
+        document.getElementById('add-error').style.display = 'none';
+    }
+
+    async function createCertif() {
+        const btn = document.getElementById('btn-create');
+        const err = document.getElementById('add-error');
+        const nom = document.getElementById('add-nom').value.trim();
+
+        if (!nom) {
+            err.textContent = '⚠ Le nom est obligatoire.';
+            err.style.display = 'block';
+            return;
+        }
+        err.style.display = 'none';
+
+        const statut = document.getElementById('add-statut').value;
+        const payload = {
+            nom,
+            emetteur:    document.getElementById('add-emetteur').value.trim(),
+            track:       document.getElementById('add-track').value,
+            statut,
+            progression: statut === 'obtenue' ? 100 : statut === 'prevu' ? 0 : parseInt(document.getElementById('add-prog').value, 10),
+            heures:      document.getElementById('add-heures').value !== '' ? parseInt(document.getElementById('add-heures').value, 10) : null,
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création…';
+
+        try {
+            const res  = await fetch('../api/add_certif.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const json = await res.json();
+            if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
+
+            // Recharge la page pour afficher la nouvelle ligne
+            window.location.reload();
+        } catch (e) {
+            err.textContent = '❌ ' + e.message;
+            err.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-plus"></i> Créer';
+        }
+    }
+
     // ── Live % display ────────────────────────────────────────────────────────
     function onProgInput(range) {
         document.getElementById('pct-' + range.dataset.id).textContent = range.value + '%';
