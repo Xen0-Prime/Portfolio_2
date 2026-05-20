@@ -142,20 +142,40 @@ $track_labels = [
             max-width: 280px;
         }
 
-        /* ── Cell: track badge ───────────────────────────────── */
-        .track-pill {
-            display: inline-block;
+        /* ── Cell: track select ──────────────────────────────── */
+        .track-select {
+            appearance: none;
+            border-radius: 20px;
             font-family: var(--font-mono);
             font-size: 9px;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 20px;
-            white-space: nowrap;
+            padding: 2px 22px 2px 8px;
+            cursor: pointer;
+            transition: opacity .2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%238b949e'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 6px center;
         }
-        .pill-dev     { background: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3);  color: var(--secondary-color); }
-        .pill-systeme { background: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
-        .pill-culture { background: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.25); color: #10b981; }
-        .pill-data    { background: rgba(168,85,247,.1);  border: 1px solid rgba(168,85,247,.25); color: #a855f7; }
+        .track-select:focus { outline: none; }
+        .track-select.pill-dev     { background-color: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3);  color: var(--secondary-color); }
+        .track-select.pill-systeme { background-color: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
+        .track-select.pill-culture { background-color: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.25); color: #10b981; }
+        .track-select.pill-data    { background-color: rgba(168,85,247,.1);  border: 1px solid rgba(168,85,247,.25); color: #a855f7; }
+
+        /* ── Cell: heures input ───────────────────────────────── */
+        .heures-input {
+            width: 58px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: .3rem .5rem;
+            text-align: center;
+            transition: border-color .2s;
+        }
+        .heures-input:focus { outline: none; border-color: var(--secondary-color); }
 
         /* ── Cell: select ────────────────────────────────────── */
         .statut-select {
@@ -368,7 +388,9 @@ $track_labels = [
         /* ── Responsive ──────────────────────────────────────── */
         @media (max-width: 768px) {
             .dash-table th:nth-child(2),
-            .dash-table td:nth-child(2) { display: none; }
+            .dash-table td:nth-child(2),
+            .dash-table th:nth-child(4),
+            .dash-table td:nth-child(4) { display: none; }
         }
         @media (max-width: 560px) {
             .dash-table { font-size: 12px; }
@@ -484,6 +506,7 @@ $track_labels = [
                             <th>#</th>
                             <th>Track</th>
                             <th>Formation</th>
+                            <th>Heures</th>
                             <th>Statut</th>
                             <th>Progression</th>
                             <th></th>
@@ -491,18 +514,39 @@ $track_labels = [
                     </thead>
                     <tbody>
 <?php foreach ($rows as $c):
-    $id      = (int)$c['id'];
-    $statut  = $c['statut'] ?? 'prevu';
-    $prog    = (int)($c['progression'] ?? 0);
-    $track   = $c['track'] ?? 'dev';
-    $pill_cls= ['dev' => 'pill-dev', 'systeme' => 'pill-systeme', 'culture' => 'pill-culture', 'data' => 'pill-data'][$track] ?? 'pill-dev';
-    $track_lbl = $track_labels[$track] ?? $track;
-    $disabled  = ($statut !== 'en_cours') ? 'disabled' : '';
+    $id       = (int)$c['id'];
+    $statut   = $c['statut'] ?? 'prevu';
+    $prog     = (int)($c['progression'] ?? 0);
+    $track    = $c['track'] ?? 'dev';
+    $heures   = $c['heures'] !== null ? (int)$c['heures'] : '';
+    $pill_map = ['dev' => 'pill-dev', 'systeme' => 'pill-systeme', 'culture' => 'pill-culture', 'data' => 'pill-data'];
+    $pill_cls = $pill_map[$track] ?? 'pill-dev';
+    $disabled = ($statut !== 'en_cours') ? 'disabled' : '';
 ?>
                         <tr id="row-<?= $id ?>">
                             <td style="font-family:var(--font-mono);font-size:11px;color:var(--text-light);"><?= $id ?></td>
-                            <td><span class="track-pill <?= $pill_cls ?>"><?= htmlspecialchars($track_lbl) ?></span></td>
+                            <td>
+                                <select
+                                    class="track-select <?= $pill_cls ?>"
+                                    data-id="<?= $id ?>"
+                                    onchange="onTrackChange(this)"
+                                >
+                                    <option value="dev"     <?= $track === 'dev'     ? 'selected' : '' ?>>Dev</option>
+                                    <option value="systeme" <?= $track === 'systeme' ? 'selected' : '' ?>>Systèmes &amp; Réseaux</option>
+                                    <option value="culture" <?= $track === 'culture' ? 'selected' : '' ?>>Culture &amp; Méthodes</option>
+                                    <option value="data"    <?= $track === 'data'    ? 'selected' : '' ?>>Data</option>
+                                </select>
+                            </td>
                             <td class="cell-nom"><?= htmlspecialchars($c['nom'] ?? '') ?></td>
+                            <td>
+                                <input
+                                    type="number" min="0"
+                                    value="<?= $heures ?>"
+                                    class="heures-input"
+                                    data-id="<?= $id ?>"
+                                    placeholder="—"
+                                >
+                            </td>
                             <td>
                                 <select
                                     class="statut-select val-<?= $statut ?>"
@@ -619,6 +663,12 @@ $track_labels = [
         }
     }
 
+    // ── Track change → update pill color ─────────────────────────────────────
+    const PILL_MAP = { dev:'pill-dev', systeme:'pill-systeme', culture:'pill-culture', data:'pill-data' };
+    function onTrackChange(select) {
+        select.className = 'track-select ' + (PILL_MAP[select.value] ?? 'pill-dev');
+    }
+
     // ── Live % display ────────────────────────────────────────────────────────
     function onProgInput(range) {
         document.getElementById('pct-' + range.dataset.id).textContent = range.value + '%';
@@ -644,28 +694,37 @@ $track_labels = [
 
     // ── Save ──────────────────────────────────────────────────────────────────
     async function save(id) {
-        const row    = document.getElementById('row-' + id);
-        const select = row.querySelector('.statut-select');
-        const range  = row.querySelector('.prog-range');
-        const btn    = row.querySelector('.btn-save');
+        const row         = document.getElementById('row-' + id);
+        const statutSel   = row.querySelector('.statut-select');
+        const trackSel    = row.querySelector('.track-select');
+        const range       = row.querySelector('.prog-range');
+        const heuresInput = row.querySelector('.heures-input');
+        const btn         = row.querySelector('.btn-save');
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi…';
 
         // auto-set progression to 100 if obtained, 0 if planned
         let progression = parseInt(range.value, 10);
-        if (select.value === 'obtenue')  progression = 100;
-        if (select.value === 'prevu')    progression = 0;
+        if (statutSel.value === 'obtenue') progression = 100;
+        if (statutSel.value === 'prevu')   progression = 0;
+
+        const heuresVal = heuresInput.value.trim();
 
         try {
             const res = await fetch('../api/save_certif.php', {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify({ id, statut: select.value, progression }),
+                body:    JSON.stringify({
+                    id,
+                    statut:      statutSel.value,
+                    progression,
+                    track:       trackSel.value,
+                    heures:      heuresVal !== '' ? parseInt(heuresVal, 10) : null,
+                }),
             });
 
             const json = await res.json();
-
             if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
 
             // sync display

@@ -32,6 +32,7 @@ if ($id <= 0) {
 }
 
 $allowed_statuts = ['obtenue', 'en_cours', 'prevu'];
+$allowed_tracks  = ['dev', 'systeme', 'culture', 'data'];
 $body = [];
 
 if (isset($data['statut']) && in_array($data['statut'], $allowed_statuts, true)) {
@@ -39,13 +40,20 @@ if (isset($data['statut']) && in_array($data['statut'], $allowed_statuts, true))
 }
 
 if (isset($data['progression'])) {
-    $prog = (int)$data['progression'];
-    $body['progression'] = max(0, min(100, $prog));
+    $body['progression'] = max(0, min(100, (int)$data['progression']));
+}
+
+if (isset($data['track']) && in_array($data['track'], $allowed_tracks, true)) {
+    $body['track'] = $data['track'];
+}
+
+if (array_key_exists('heures', $data)) {
+    $body['heures'] = ($data['heures'] !== null && $data['heures'] !== '') ? (int)$data['heures'] : null;
 }
 
 if (empty($body)) {
     http_response_code(400);
-    echo json_encode(['error' => 'Aucun champ valide fourni (statut ou progression)']);
+    echo json_encode(['error' => 'Aucun champ valide fourni']);
     exit;
 }
 
