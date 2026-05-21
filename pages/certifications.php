@@ -7,8 +7,9 @@ $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
 // ── Track definitions (order matters for rendering) ──────────────────────────
 $tracks_def = [
     'dev'     => ['label' => 'Dev track',              'icon' => 'fa-code',           'css' => 'tc-dev'],
-    'secu'    => ['label' => 'Sécu &amp; Infra track', 'icon' => 'fa-shield-halved',  'css' => 'tc-secu'],
+    'systeme' => ['label' => 'Systèmes &amp; Réseaux', 'icon' => 'fa-server',         'css' => 'tc-systeme'],
     'culture' => ['label' => 'Culture &amp; Méthodes', 'icon' => 'fa-brain',          'css' => 'tc-culture'],
+    'data'    => ['label' => 'Data',                   'icon' => 'fa-database',       'css' => 'tc-data'],
 ];
 
 $tracks = [];
@@ -82,8 +83,9 @@ function get_tags(array $c): array
 
     switch ($c['track'] ?? '') {
         case 'dev':     $tags[] = ['cls' => 'ci-tag-b3',      'lbl' => 'B3 Dev'];   break;
-        case 'secu':    $tags[] = ['cls' => 'ci-tag-b5',      'lbl' => 'B5 Infra']; break;
+        case 'systeme': $tags[] = ['cls' => 'ci-tag-b5',      'lbl' => 'B5 Infra']; break;
         case 'culture': $tags[] = ['cls' => 'ci-tag-culture', 'lbl' => 'Méthodes']; break;
+        case 'data':    $tags[] = ['cls' => 'ci-tag-data',    'lbl' => 'Data'];      break;
     }
 
     return $tags;

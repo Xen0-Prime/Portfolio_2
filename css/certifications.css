@@ -107,8 +107,9 @@
 }
 
 .track-card.tc-dev:hover     { border-color: var(--secondary-color); }
-.track-card.tc-secu:hover    { border-color: #ef4444; }
+.track-card.tc-systeme:hover { border-color: #ef4444; }
 .track-card.tc-culture:hover { border-color: #10b981; }
+.track-card.tc-data:hover    { border-color: #a855f7; }
 
 /* Track header */
 .track-head {
@@ -137,8 +138,9 @@
 .track-name i { font-size: 0.85em; }
 
 .tc-dev     .track-name { color: var(--secondary-color); }
-.tc-secu    .track-name { color: #ef4444; }
+.tc-systeme .track-name { color: #ef4444; }
 .tc-culture .track-name { color: #10b981; }
+.tc-data    .track-name { color: #a855f7; }
 
 .track-count {
     font-family: var(--font-mono);
@@ -155,9 +157,10 @@
     flex-shrink: 0;
 }
 
-.tc-dev     .track-badge { background: rgba(14,165,233,0.12); border: 1px solid rgba(14,165,233,0.3);  color: var(--secondary-color); }
-.tc-secu    .track-badge { background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.25);  color: #ef4444; }
-.tc-culture .track-badge { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #10b981; }
+.tc-dev     .track-badge { background: rgba(14,165,233,0.12);  border: 1px solid rgba(14,165,233,0.3);   color: var(--secondary-color); }
+.tc-systeme .track-badge { background: rgba(239,68,68,0.1);   border: 1px solid rgba(239,68,68,0.25);   color: #ef4444; }
+.tc-culture .track-badge { background: rgba(16,185,129,0.1);  border: 1px solid rgba(16,185,129,0.25);  color: #10b981; }
+.tc-data    .track-badge { background: rgba(168,85,247,0.1);  border: 1px solid rgba(168,85,247,0.25);  color: #a855f7; }
 
 /* Progress bar */
 .track-progress-wrap {
@@ -181,8 +184,9 @@
 }
 
 .tc-dev     .track-progress-fill { background: var(--secondary-color); }
-.tc-secu    .track-progress-fill { background: #ef4444; }
+.tc-systeme .track-progress-fill { background: #ef4444; }
 .tc-culture .track-progress-fill { background: #10b981; }
+.tc-data    .track-progress-fill { background: #a855f7; }
 
 .track-progress-pct {
     font-family: var(--font-mono);
@@ -208,8 +212,9 @@
 .certif-item:hover { background: var(--bg-surface); }
 
 .tc-dev     .certif-item:hover { border-left: 2px solid var(--secondary-color); padding-left: calc(1.5rem - 2px); }
-.tc-secu    .certif-item:hover { border-left: 2px solid #ef4444;  padding-left: calc(1.5rem - 2px); }
+.tc-systeme .certif-item:hover { border-left: 2px solid #ef4444;  padding-left: calc(1.5rem - 2px); }
 .tc-culture .certif-item:hover { border-left: 2px solid #10b981;  padding-left: calc(1.5rem - 2px); }
+.tc-data    .certif-item:hover { border-left: 2px solid #a855f7;  padding-left: calc(1.5rem - 2px); }
 
 /* Dot indicator */
 .ci-dot {
@@ -275,8 +280,9 @@
 }
 
 .tc-dev     .ci-progress-fill { background: var(--secondary-color); }
-.tc-secu    .ci-progress-fill { background: #ef4444; }
+.tc-systeme .ci-progress-fill { background: #ef4444; }
 .tc-culture .ci-progress-fill { background: #10b981; }
+.tc-data    .ci-progress-fill { background: #a855f7; }
 
 .ci-pct {
     font-family: var(--font-mono);
@@ -304,6 +310,7 @@
 .ci-tag-diplome { border-color: rgba(14,165,233,0.35);  color: var(--secondary-color); }
 .ci-tag-ai      { border-color: rgba(168,85,247,0.35);  color: #a855f7; }
 .ci-tag-culture { border-color: rgba(16,185,129,0.35);  color: #10b981; }
+.ci-tag-data    { border-color: rgba(168,85,247,0.35);  color: #a855f7; }
 
 /* Status badge at right */
 .ci-status {
@@ -337,7 +344,6 @@
 /* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 1024px) {
     .tracks-grid { grid-template-columns: repeat(2, 1fr); }
-    .track-card.tc-culture { grid-column: 1 / -1; max-width: 480px; margin: 0 auto; width: 100%; }
 }
 
 @media (max-width: 768px) {
@@ -346,11 +352,11 @@
     .certif-title     { font-size: 1.75rem; }
     .certif-stats     { grid-template-columns: repeat(3, 1fr); }
     .tracks-grid      { grid-template-columns: 1fr; }
-    .track-card.tc-culture { max-width: none; }
     .certif-item      { padding: 0.85rem 1.25rem; }
     .tc-dev     .certif-item:hover,
-    .tc-secu    .certif-item:hover,
-    .tc-culture .certif-item:hover { padding-left: calc(1.25rem - 2px); }
+    .tc-systeme .certif-item:hover,
+    .tc-culture .certif-item:hover,
+    .tc-data    .certif-item:hover { padding-left: calc(1.25rem - 2px); }
 }
 
 @media (max-width: 480px) {

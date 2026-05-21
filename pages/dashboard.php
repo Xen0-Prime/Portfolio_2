@@ -8,8 +8,10 @@ $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
 
 $track_labels = [
     'dev'     => 'Dev',
-    'secu'    => 'Sécu & Infra',
+    'systeme'    => 'Systèmes et Réseaux',
     'culture' => 'Culture & Méthodes',
+    'data' => 'Data'
+
 ];
 ?>
 <!DOCTYPE html>
@@ -140,19 +142,40 @@ $track_labels = [
             max-width: 280px;
         }
 
-        /* ── Cell: track badge ───────────────────────────────── */
-        .track-pill {
-            display: inline-block;
+        /* ── Cell: track select ──────────────────────────────── */
+        .track-select {
+            appearance: none;
+            border-radius: 20px;
             font-family: var(--font-mono);
             font-size: 9px;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 20px;
-            white-space: nowrap;
+            padding: 2px 22px 2px 8px;
+            cursor: pointer;
+            transition: opacity .2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%238b949e'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 6px center;
         }
-        .pill-dev     { background: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3); color: var(--secondary-color); }
-        .pill-secu    { background: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
-        .pill-culture { background: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.25); color: #10b981; }
+        .track-select:focus { outline: none; }
+        .track-select.pill-dev     { background-color: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.3);  color: var(--secondary-color); }
+        .track-select.pill-systeme { background-color: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.25); color: #ef4444; }
+        .track-select.pill-culture { background-color: rgba(16,185,129,.1);  border: 1px solid rgba(16,185,129,.25); color: #10b981; }
+        .track-select.pill-data    { background-color: rgba(168,85,247,.1);  border: 1px solid rgba(168,85,247,.25); color: #a855f7; }
+
+        /* ── Cell: heures input ───────────────────────────────── */
+        .heures-input {
+            width: 58px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: .3rem .5rem;
+            text-align: center;
+            transition: border-color .2s;
+        }
+        .heures-input:focus { outline: none; border-color: var(--secondary-color); }
 
         /* ── Cell: select ────────────────────────────────────── */
         .statut-select {
@@ -247,10 +270,127 @@ $track_labels = [
         .btn-save:active { transform: scale(.96); }
         .btn-save:disabled { opacity: .5; cursor: not-allowed; }
 
+        /* ── Bouton ajouter ─────────────────────────────────── */
+        .btn-add {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .4rem .9rem;
+            border-radius: 6px;
+            border: 1px solid rgba(6,214,160,.4);
+            background: rgba(6,214,160,.08);
+            color: var(--accent2);
+            cursor: pointer;
+            transition: background .2s;
+            margin-bottom: 1.25rem;
+        }
+        .btn-add:hover { background: rgba(6,214,160,.18); }
+
+        /* ── Panneau d'ajout ─────────────────────────────────── */
+        .add-panel {
+            display: none;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            animation: fadeIn .2s ease;
+        }
+        .add-panel.open { display: block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+
+        .add-panel h3 {
+            font-size: .9rem;
+            font-family: var(--font-mono);
+            color: var(--accent2);
+            margin: 0 0 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-size: 11px;
+        }
+        .add-panel h3::before { content: '// '; color: var(--secondary-color); }
+
+        .add-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: .85rem;
+        }
+        .add-form-grid .full { grid-column: 1 / -1; }
+
+        .add-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-light);
+            margin-bottom: .35rem;
+        }
+        .add-input, .add-select {
+            width: 100%;
+            box-sizing: border-box;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: .45rem .7rem;
+            transition: border-color .2s;
+        }
+        .add-input:focus, .add-select:focus { outline: none; border-color: var(--secondary-color); }
+
+        .add-form-actions {
+            display: flex;
+            gap: .6rem;
+            margin-top: 1.1rem;
+        }
+        .btn-create {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .5rem 1.1rem;
+            border-radius: 6px;
+            border: none;
+            background: var(--secondary-color);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+        }
+        .btn-create:hover  { background: #0284c7; }
+        .btn-create:active { transform: scale(.96); }
+        .btn-create:disabled { opacity: .5; cursor: not-allowed; }
+        .btn-cancel-add {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: .5rem .9rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .btn-cancel-add:hover { background: var(--bg-surface); color: var(--primary-color); }
+
+        .add-error {
+            display: none;
+            font-size: 12px;
+            color: #ef4444;
+            margin-top: .5rem;
+            font-family: var(--font-mono);
+        }
+
         /* ── Responsive ──────────────────────────────────────── */
         @media (max-width: 768px) {
             .dash-table th:nth-child(2),
-            .dash-table td:nth-child(2) { display: none; }
+            .dash-table td:nth-child(2),
+            .dash-table th:nth-child(4),
+            .dash-table td:nth-child(4) { display: none; }
         }
         @media (max-width: 560px) {
             .dash-table { font-size: 12px; }
@@ -303,6 +443,57 @@ $track_labels = [
     <main class="dash-section">
         <div class="container">
 
+            <!-- Bouton + panneau d'ajout -->
+            <button class="btn-add" onclick="toggleAddPanel()">
+                <i class="fas fa-plus"></i> Ajouter une certification
+            </button>
+
+            <div class="add-panel" id="addPanel">
+                <h3>Nouvelle certification</h3>
+                <div class="add-form-grid">
+                    <div class="full">
+                        <label class="add-label">Nom <span style="color:#ef4444">*</span></label>
+                        <input class="add-input" id="add-nom" type="text" placeholder="ex: Débutez avec Docker">
+                    </div>
+                    <div>
+                        <label class="add-label">Émetteur</label>
+                        <input class="add-input" id="add-emetteur" type="text" placeholder="ex: OpenClassrooms">
+                    </div>
+                    <div>
+                        <label class="add-label">Track</label>
+                        <select class="add-select" id="add-track">
+                            <option value="dev">Dev</option>
+                            <option value="systeme">Systèmes &amp; Réseaux</option>
+                            <option value="culture">Culture &amp; Méthodes</option>
+                            <option value="data">Data</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="add-label">Heures</label>
+                        <input class="add-input" id="add-heures" type="number" min="0" placeholder="ex: 6">
+                    </div>
+                    <div>
+                        <label class="add-label">Statut</label>
+                        <select class="add-select" id="add-statut" onchange="onAddStatutChange()">
+                            <option value="prevu">Prévu</option>
+                            <option value="en_cours">En cours</option>
+                            <option value="obtenue">Obtenue</option>
+                        </select>
+                    </div>
+                    <div id="add-prog-wrap">
+                        <label class="add-label">Progression (%)</label>
+                        <input class="add-input" id="add-prog" type="number" min="0" max="100" value="0" placeholder="0–100" disabled>
+                    </div>
+                </div>
+                <p class="add-error" id="add-error"></p>
+                <div class="add-form-actions">
+                    <button class="btn-create" id="btn-create" onclick="createCertif()">
+                        <i class="fas fa-plus"></i> Créer
+                    </button>
+                    <button class="btn-cancel-add" onclick="toggleAddPanel()">Annuler</button>
+                </div>
+            </div>
+
 <?php if (empty($rows)): ?>
             <p style="color:var(--text-light);font-family:var(--font-mono);font-size:13px;">
                 Aucune certification trouvée. Vérifie la connexion Supabase ou exécute le SQL de seed.
@@ -315,6 +506,7 @@ $track_labels = [
                             <th>#</th>
                             <th>Track</th>
                             <th>Formation</th>
+                            <th>Heures</th>
                             <th>Statut</th>
                             <th>Progression</th>
                             <th></th>
@@ -322,18 +514,39 @@ $track_labels = [
                     </thead>
                     <tbody>
 <?php foreach ($rows as $c):
-    $id      = (int)$c['id'];
-    $statut  = $c['statut'] ?? 'prevu';
-    $prog    = (int)($c['progression'] ?? 0);
-    $track   = $c['track'] ?? 'dev';
-    $pill_cls= ['dev' => 'pill-dev', 'secu' => 'pill-secu', 'culture' => 'pill-culture'][$track] ?? 'pill-dev';
-    $track_lbl = $track_labels[$track] ?? $track;
-    $disabled  = ($statut !== 'en_cours') ? 'disabled' : '';
+    $id       = (int)$c['id'];
+    $statut   = $c['statut'] ?? 'prevu';
+    $prog     = (int)($c['progression'] ?? 0);
+    $track    = $c['track'] ?? 'dev';
+    $heures   = $c['heures'] !== null ? (int)$c['heures'] : '';
+    $pill_map = ['dev' => 'pill-dev', 'systeme' => 'pill-systeme', 'culture' => 'pill-culture', 'data' => 'pill-data'];
+    $pill_cls = $pill_map[$track] ?? 'pill-dev';
+    $disabled = ($statut !== 'en_cours') ? 'disabled' : '';
 ?>
                         <tr id="row-<?= $id ?>">
                             <td style="font-family:var(--font-mono);font-size:11px;color:var(--text-light);"><?= $id ?></td>
-                            <td><span class="track-pill <?= $pill_cls ?>"><?= htmlspecialchars($track_lbl) ?></span></td>
+                            <td>
+                                <select
+                                    class="track-select <?= $pill_cls ?>"
+                                    data-id="<?= $id ?>"
+                                    onchange="onTrackChange(this)"
+                                >
+                                    <option value="dev"     <?= $track === 'dev'     ? 'selected' : '' ?>>Dev</option>
+                                    <option value="systeme" <?= $track === 'systeme' ? 'selected' : '' ?>>Systèmes &amp; Réseaux</option>
+                                    <option value="culture" <?= $track === 'culture' ? 'selected' : '' ?>>Culture &amp; Méthodes</option>
+                                    <option value="data"    <?= $track === 'data'    ? 'selected' : '' ?>>Data</option>
+                                </select>
+                            </td>
                             <td class="cell-nom"><?= htmlspecialchars($c['nom'] ?? '') ?></td>
+                            <td>
+                                <input
+                                    type="number" min="0"
+                                    value="<?= $heures ?>"
+                                    class="heures-input"
+                                    data-id="<?= $id ?>"
+                                    placeholder="—"
+                                >
+                            </td>
                             <td>
                                 <select
                                     class="statut-select val-<?= $statut ?>"
@@ -382,6 +595,80 @@ $track_labels = [
 
     <script src="../js/script.js"></script>
     <script>
+    // ── Panneau d'ajout ───────────────────────────────────────────────────────
+    function toggleAddPanel() {
+        const panel = document.getElementById('addPanel');
+        panel.classList.toggle('open');
+        if (!panel.classList.contains('open')) resetAddForm();
+    }
+
+    function onAddStatutChange() {
+        const statut = document.getElementById('add-statut').value;
+        const prog   = document.getElementById('add-prog');
+        prog.disabled = statut !== 'en_cours';
+        if (statut === 'obtenue') prog.value = 100;
+        if (statut === 'prevu')   prog.value = 0;
+    }
+
+    function resetAddForm() {
+        ['add-nom','add-emetteur','add-heures'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('add-track').value  = 'dev';
+        document.getElementById('add-statut').value = 'prevu';
+        document.getElementById('add-prog').value   = 0;
+        document.getElementById('add-prog').disabled = true;
+        document.getElementById('add-error').style.display = 'none';
+    }
+
+    async function createCertif() {
+        const btn = document.getElementById('btn-create');
+        const err = document.getElementById('add-error');
+        const nom = document.getElementById('add-nom').value.trim();
+
+        if (!nom) {
+            err.textContent = '⚠ Le nom est obligatoire.';
+            err.style.display = 'block';
+            return;
+        }
+        err.style.display = 'none';
+
+        const statut = document.getElementById('add-statut').value;
+        const payload = {
+            nom,
+            emetteur:    document.getElementById('add-emetteur').value.trim(),
+            track:       document.getElementById('add-track').value,
+            statut,
+            progression: statut === 'obtenue' ? 100 : statut === 'prevu' ? 0 : parseInt(document.getElementById('add-prog').value, 10),
+            heures:      document.getElementById('add-heures').value !== '' ? parseInt(document.getElementById('add-heures').value, 10) : null,
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création…';
+
+        try {
+            const res  = await fetch('../api/add_certif.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const json = await res.json();
+            if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
+
+            // Recharge la page pour afficher la nouvelle ligne
+            window.location.reload();
+        } catch (e) {
+            err.textContent = '❌ ' + e.message;
+            err.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-plus"></i> Créer';
+        }
+    }
+
+    // ── Track change → update pill color ─────────────────────────────────────
+    const PILL_MAP = { dev:'pill-dev', systeme:'pill-systeme', culture:'pill-culture', data:'pill-data' };
+    function onTrackChange(select) {
+        select.className = 'track-select ' + (PILL_MAP[select.value] ?? 'pill-dev');
+    }
+
     // ── Live % display ────────────────────────────────────────────────────────
     function onProgInput(range) {
         document.getElementById('pct-' + range.dataset.id).textContent = range.value + '%';
@@ -407,28 +694,37 @@ $track_labels = [
 
     // ── Save ──────────────────────────────────────────────────────────────────
     async function save(id) {
-        const row    = document.getElementById('row-' + id);
-        const select = row.querySelector('.statut-select');
-        const range  = row.querySelector('.prog-range');
-        const btn    = row.querySelector('.btn-save');
+        const row         = document.getElementById('row-' + id);
+        const statutSel   = row.querySelector('.statut-select');
+        const trackSel    = row.querySelector('.track-select');
+        const range       = row.querySelector('.prog-range');
+        const heuresInput = row.querySelector('.heures-input');
+        const btn         = row.querySelector('.btn-save');
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi…';
 
         // auto-set progression to 100 if obtained, 0 if planned
         let progression = parseInt(range.value, 10);
-        if (select.value === 'obtenue')  progression = 100;
-        if (select.value === 'prevu')    progression = 0;
+        if (statutSel.value === 'obtenue') progression = 100;
+        if (statutSel.value === 'prevu')   progression = 0;
+
+        const heuresVal = heuresInput.value.trim();
 
         try {
             const res = await fetch('../api/save_certif.php', {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify({ id, statut: select.value, progression }),
+                body:    JSON.stringify({
+                    id,
+                    statut:      statutSel.value,
+                    progression,
+                    track:       trackSel.value,
+                    heures:      heuresVal !== '' ? parseInt(heuresVal, 10) : null,
+                }),
             });
 
             const json = await res.json();
-
             if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
 
             // sync display
