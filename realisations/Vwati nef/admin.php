@@ -172,7 +172,7 @@ $vehicules = $pdo->query("
     FROM VOITURE v
     JOIN MARQUE m    ON v.id_marque    = m.id_marque
     JOIN CARBURANT c ON v.id_carburant = c.id_carburant
-    ORDER BY m.nom_marque, v.modele
+    ORDER BY v.id_voiture
 ")->fetchAll();
 
 /* ── Réservations ── */
@@ -241,136 +241,12 @@ function sel(array $items, string $valKey, string $lblKey, mixed $current, strin
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voiti Nèf — Administration</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #f4f4f4; color: #1e293b; }
-
-        /* HEADER */
-        header {
-            background-color: #800020; height: 100px; display: flex; align-items: center;
-            padding: 0 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        header img.logo { border-radius: 50%; width: 80px; height: 80px; object-fit: cover; }
-        header h1 { color: white; font-size: 22px; margin-left: 16px; flex: 1; }
-        nav a { color: white; text-decoration: none; padding: 8px 14px; font-size: 15px; transition: opacity .2s; }
-        nav a:hover { opacity: .75; }
-        nav a.active { border-bottom: 3px solid white; font-weight: 700; }
-
-        /* LAYOUT */
-        .wrapper { margin-top: 130px; padding: 24px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-
-        /* FLASH */
-        .flash { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; border-radius:8px; padding:12px 16px; margin-bottom:20px; font-weight:600; }
-
-        /* ONGLETS */
-        .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-        .tab-btn {
-            background: white; border: 2px solid #800020; color: #800020;
-            padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;
-            cursor: pointer; transition: all .2s;
-        }
-        .tab-btn:hover, .tab-btn.active { background: #800020; color: white; }
-
-        /* SECTIONS */
-        .section { display: none; }
-        .section.active { display: block; }
-
-        /* KPI */
-        .kpi-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
-        .kpi-card {
-            background: white; border-radius: 10px; padding: 20px 24px;
-            flex: 1; min-width: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 5px solid #800020;
-        }
-        .kpi-card .label { font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: .5px; }
-        .kpi-card .value { font-size: 28px; font-weight: 700; color: #800020; margin-top: 6px; }
-        .kpi-card .sub   { font-size: 12px; color: #94a3b8; margin-top: 4px; }
-
-        /* TABLEAUX */
-        .card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 24px; }
-        .card-header {
-            background: #800020; color: white; padding: 14px 20px;
-            font-size: 15px; font-weight: 700; display: flex; justify-content: space-between; align-items: center;
-        }
-        .card-body { padding: 0; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        thead th {
-            background: #f8fafc; color: #475569; font-weight: 700; font-size: 11px;
-            text-transform: uppercase; letter-spacing: .5px; padding: 10px 14px;
-            text-align: left; border-bottom: 2px solid #e2e8f0;
-        }
-        tbody tr { border-bottom: 1px solid #f1f5f9; transition: background .15s; }
-        tbody tr:hover { background: #fef2f2; }
-        tbody td { padding: 10px 14px; vertical-align: middle; }
-
-        /* BADGES */
-        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-        .badge.confirmée { background: #dcfce7; color: #166534; }
-        .badge.annulée   { background: #fee2e2; color: #991b1b; }
-        .badge.attente   { background: #fef3c7; color: #92400e; }
-        .badge.terminée  { background: #e0e7ff; color: #3730a3; }
-
-        /* BOUTONS */
-        .btn { background: white; border: 2px solid white; color: #800020; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .2s; }
-        .btn:hover { background: #800020; color: white; border-color: #800020; }
-        .btn-edit { background: #800020; border: none; color: white; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: opacity .2s; }
-        .btn-edit:hover { opacity: .8; }
-
-        /* MODAL */
-        .modal-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center;
-        }
-        .modal-overlay.open { display: flex; }
-        .modal {
-            background: white; border-radius: 12px; padding: 28px;
-            width: 500px; max-width: 95vw; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            max-height: 90vh; overflow-y: auto;
-        }
-        .modal h2 { font-size: 17px; color: #800020; margin-bottom: 18px; }
-        .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 5px; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 9px 12px; border: 1.5px solid #e2e8f0;
-            border-radius: 6px; font-size: 13px; outline: none; transition: border-color .2s;
-        }
-        .form-group input:focus, .form-group select:focus { border-color: #800020; }
-        .form-row { display: flex; gap: 12px; }
-        .form-row .form-group { flex: 1; }
-        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-        .btn-cancel { background: #f1f5f9; border: none; color: #475569; padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
-        .btn-save   { background: #800020; border: none; color: white;   padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
-
-        /* Montant calculé */
-        .montant-preview {
-            background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px;
-            padding: 10px 14px; font-size: 14px; font-weight: 700; color: #166534;
-            margin-bottom: 14px; text-align: center; min-height: 38px;
-        }
-
-        /* LOG */
-        .log-action { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; background: #e0e7ff; color: #3730a3; }
-
-        /* DISPO */
-        .dispo   { color: #166534; font-weight: 700; }
-        .indispo { color: #991b1b; font-weight: 700; }
-
-        footer { background: #800020; color: white; text-align: center; padding: 16px; font-size: 13px; margin-top: 40px; }
-    </style>
+    <link rel="stylesheet" href="voiti-shared.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-<header>
-    <img src="ressources%20voiti%20nef/logo.png" alt="Logo Voiti Nèf" class="logo">
-    <h1>Administration — Voiti Nèf</h1>
-    <nav>
-        <a href="Accueil.php">Accueil</a>
-        <a href="nosVoitures.php">Nos voitures</a>
-        <a href="aPropos.php">À propos</a>
-        <a href="admin.php" class="active">Admin</a>
-        <a href="avis.html">Avis</a>
-    </nav>
-</header>
+<?php $current_page = 'admin'; $nav_title = 'Administration — Voiti Nèf'; include 'navbar.php'; ?>
 
 <div class="wrapper">
 

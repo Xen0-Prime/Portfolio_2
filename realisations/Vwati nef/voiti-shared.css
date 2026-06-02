@@ -1,0 +1,98 @@
+/* ════════════════════════════════════════
+   VOITI NÈF — Styles partagés
+   Inclure en premier sur toutes les pages
+════════════════════════════════════════ */
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ── */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1e293b;
+}
+
+/* ── Header ── */
+header {
+    background-color: #800020;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+header .logo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+header .site-title {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 16px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Navigation ── */
+nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+nav.main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    font-size: 15px;
+    border-radius: 4px;
+    transition: background .2s, opacity .2s;
+    white-space: nowrap;
+}
+
+nav.main-nav a:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+nav.main-nav a.active {
+    font-weight: 700;
+    border-bottom: 3px solid white;
+}
+
+/* ── Footer ── */
+footer {
+    background-color: #800020;
+    color: white;
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 13px;
+}
+
+footer p + p {
+    margin-top: 4px;
+    font-size: 12px;
+    opacity: .8;
+}
+
+.adresse {
+    font-size: 12px;
+    opacity: .8;
+    margin-top: 2px;
+}
+
+/* ── Responsive nav ── */
+@media (max-width: 640px) {
+    header .site-title { font-size: 16px; }
+    nav.main-nav a { padding: 6px 8px; font-size: 13px; }
+}
