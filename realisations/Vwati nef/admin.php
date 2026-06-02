@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             /* ── Ajouter une réservation (montant calculé) ── */
             case 'add_reservation':
-                $prix  = (float)$pdo->query(
-                    "SELECT prix_journalier FROM VOITURE WHERE id_voiture=" . (int)$_POST['id_voiture']
-                )->fetchColumn();
+                $stPrix = $pdo->prepare("SELECT prix_journalier FROM VOITURE WHERE id_voiture = ?");
+                $stPrix->execute([(int)$_POST['id_voiture']]);
+                $prix  = (float)$stPrix->fetchColumn();
                 $jours   = max(1, (int)((strtotime($_POST['date_fin']) - strtotime($_POST['date_debut'])) / 86400));
                 $montant = round($prix * $jours, 2);
                 $st = $pdo->prepare("
@@ -77,14 +77,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             /* ── Modifier une réservation (montant recalculé + log statut) ── */
             case 'edit_reservation':
                 $id_res = (int)$_POST['id_reservation'];
-                $prix   = (float)$pdo->query(
-                    "SELECT prix_journalier FROM VOITURE WHERE id_voiture=" . (int)$_POST['id_voiture']
-                )->fetchColumn();
+                $stPrix = $pdo->prepare("SELECT prix_journalier FROM VOITURE WHERE id_voiture = ?");
+                $stPrix->execute([(int)$_POST['id_voiture']]);
+                $prix   = (float)$stPrix->fetchColumn();
                 $jours   = max(1, (int)((strtotime($_POST['date_fin']) - strtotime($_POST['date_debut'])) / 86400));
                 $montant = round($prix * $jours, 2);
 
                 /* Log si statut change */
-                $old = $pdo->query("SELECT id_statut FROM RESERVATION WHERE id_reservation=$id_res")->fetch();
+                $stOld = $pdo->prepare("SELECT id_statut FROM RESERVATION WHERE id_reservation = ?");
+                $stOld->execute([$id_res]);
+                $old = $stOld->fetch();
                 if ($old && $old['id_statut'] != (int)$_POST['id_statut']) {
                     $lg = $pdo->prepare("
                         INSERT INTO LOGS_RESERVATION

@@ -296,9 +296,13 @@ function data_comps(string $id, array $map): string {
                                    target="_blank" rel="noopener noreferrer" class="card-github" title="Livrables E6 — GitHub (branche E6)">
                                     <i class="fab fa-github"></i><span style="font-size:9px;font-family:monospace;margin-left:2px;">E6</span>
                                 </a>
-                                <a href="http://killiannarasson.alwaysdata.net/realisations/vwati-nef/Accueil.html"
-                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/Vwati%20nef/Accueil.html"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le site (version originale)">
                                     <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="http://killiannarasson.alwaysdata.net/realisations/Vwati%20nef/Accueil.php"
+                                   target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le site E6 (version BDD dynamique)">
+                                    <i class="fas fa-arrow-up-right-from-square"></i><span style="font-size:9px;font-family:monospace;margin-left:2px;">E6</span>
                                 </a>
                             </div>
                         </div>
