@@ -2,6 +2,129 @@
 require_once 'db_config.php';
 
 /* ══════════════════════════════════════════════
+   HANDLER POST — add/edit véhicule & réservation
+══════════════════════════════════════════════ */
+$flash = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? '';
+    $tab    = $_POST['tab']    ?? 'vehicules';
+
+    try {
+        switch ($action) {
+
+            /* ── Ajouter un véhicule ── */
+            case 'add_vehicule':
+                $st = $pdo->prepare("
+                    INSERT INTO VOITURE
+                        (id_marque, id_carburant, modele, annee, cylindree, puissance_ch, prix_journalier, disponible)
+                    VALUES (?,?,?,?,?,?,?,?)
+                ");
+                $st->execute([
+                    (int)$_POST['id_marque'],
+                    (int)$_POST['id_carburant'],
+                    trim($_POST['modele']),
+                    (int)$_POST['annee'],
+                    trim($_POST['cylindree']),
+                    (int)$_POST['puissance_ch'],
+                    (float)$_POST['prix_journalier'],
+                    (int)$_POST['disponible'],
+                ]);
+                break;
+
+            /* ── Modifier un véhicule ── */
+            case 'edit_vehicule':
+                $st = $pdo->prepare("
+                    UPDATE VOITURE
+                    SET id_marque=?, id_carburant=?, modele=?, annee=?, cylindree=?,
+                        puissance_ch=?, prix_journalier=?, disponible=?
+                    WHERE id_voiture=?
+                ");
+                $st->execute([
+                    (int)$_POST['id_marque'],
+                    (int)$_POST['id_carburant'],
+                    trim($_POST['modele']),
+                    (int)$_POST['annee'],
+                    trim($_POST['cylindree']),
+                    (int)$_POST['puissance_ch'],
+                    (float)$_POST['prix_journalier'],
+                    (int)$_POST['disponible'],
+                    (int)$_POST['id_voiture'],
+                ]);
+                break;
+
+            /* ── Ajouter une réservation (montant calculé) ── */
+            case 'add_reservation':
+                $prix  = (float)$pdo->query(
+                    "SELECT prix_journalier FROM VOITURE WHERE id_voiture=" . (int)$_POST['id_voiture']
+                )->fetchColumn();
+                $jours   = max(1, (int)((strtotime($_POST['date_fin']) - strtotime($_POST['date_debut'])) / 86400));
+                $montant = round($prix * $jours, 2);
+                $st = $pdo->prepare("
+                    INSERT INTO RESERVATION
+                        (id_client, id_voiture, id_statut, date_debut, date_fin, montant_total)
+                    VALUES (?,?,?,?,?,?)
+                ");
+                $st->execute([
+                    (int)$_POST['id_client'],
+                    (int)$_POST['id_voiture'],
+                    (int)$_POST['id_statut'],
+                    $_POST['date_debut'],
+                    $_POST['date_fin'],
+                    $montant,
+                ]);
+                break;
+
+            /* ── Modifier une réservation (montant recalculé + log statut) ── */
+            case 'edit_reservation':
+                $id_res = (int)$_POST['id_reservation'];
+                $prix   = (float)$pdo->query(
+                    "SELECT prix_journalier FROM VOITURE WHERE id_voiture=" . (int)$_POST['id_voiture']
+                )->fetchColumn();
+                $jours   = max(1, (int)((strtotime($_POST['date_fin']) - strtotime($_POST['date_debut'])) / 86400));
+                $montant = round($prix * $jours, 2);
+
+                /* Log si statut change */
+                $old = $pdo->query("SELECT id_statut FROM RESERVATION WHERE id_reservation=$id_res")->fetch();
+                if ($old && $old['id_statut'] != (int)$_POST['id_statut']) {
+                    $lg = $pdo->prepare("
+                        INSERT INTO LOGS_RESERVATION
+                            (id_reservation, action, champ_modifie, ancienne_valeur, nouvelle_valeur, utilisateur)
+                        VALUES (?,?,?,?,?,?)
+                    ");
+                    $lg->execute([$id_res, 'MODIFICATION', 'id_statut',
+                                  (string)$old['id_statut'], $_POST['id_statut'], 'admin@voitinef.fr']);
+                }
+
+                $st = $pdo->prepare("
+                    UPDATE RESERVATION
+                    SET id_client=?, id_voiture=?, id_statut=?, date_debut=?, date_fin=?, montant_total=?
+                    WHERE id_reservation=?
+                ");
+                $st->execute([
+                    (int)$_POST['id_client'],
+                    (int)$_POST['id_voiture'],
+                    (int)$_POST['id_statut'],
+                    $_POST['date_debut'],
+                    $_POST['date_fin'],
+                    $montant,
+                    $id_res,
+                ]);
+                break;
+        }
+    } catch (PDOException $e) {
+        $flash = 'Erreur : ' . htmlspecialchars($e->getMessage());
+        $tab   = $_POST['tab'] ?? 'vehicules';
+    }
+
+    if (!$flash) {
+        header("Location: admin.php?tab=$tab");
+        exit;
+    }
+}
+
+$active_tab = $_GET['tab'] ?? 'ca';
+
+/* ══════════════════════════════════════════════
    KPIs — Chiffre d'affaires
 ══════════════════════════════════════════════ */
 $stmt = $pdo->query("
@@ -25,122 +148,91 @@ $stmt = $pdo->query("
 ");
 $kpi_ann = $stmt->fetch();
 
-$stmt = $pdo->query("SELECT COUNT(*) AS total FROM RESERVATION");
-$total_res = $stmt->fetch()['total'];
+$total_res = $pdo->query("SELECT COUNT(*) FROM RESERVATION")->fetchColumn();
 
-/* ══════════════════════════════════════════════
-   Détail de toutes les réservations (pour tab CA)
-══════════════════════════════════════════════ */
-$stmt = $pdo->query("
-    SELECT
-        r.id_reservation,
-        CONCAT(cl.prenom, ' ', cl.nom)           AS client,
-        CONCAT(m.nom_marque, ' ', v.modele)      AS vehicule,
-        r.date_debut,
-        r.date_fin,
-        DATEDIFF(r.date_fin, r.date_debut)       AS nb_jours,
-        r.montant_total,
-        s.libelle                                 AS statut
+/* ── Détail réservations (onglet CA) ── */
+$reservations_ca = $pdo->query("
+    SELECT r.id_reservation,
+           CONCAT(cl.prenom,' ',cl.nom)          AS client,
+           CONCAT(m.nom_marque,' ',v.modele)     AS vehicule,
+           r.date_debut, r.date_fin,
+           DATEDIFF(r.date_fin, r.date_debut)    AS nb_jours,
+           r.montant_total, s.libelle AS statut
     FROM RESERVATION r
-    JOIN CLIENT cl              ON r.id_client  = cl.id_client
-    JOIN VOITURE v              ON r.id_voiture = v.id_voiture
-    JOIN MARQUE m               ON v.id_marque  = m.id_marque
-    JOIN STATUT_RESERVATION s   ON r.id_statut  = s.id_statut
+    JOIN CLIENT cl            ON r.id_client  = cl.id_client
+    JOIN VOITURE v            ON r.id_voiture = v.id_voiture
+    JOIN MARQUE m             ON v.id_marque  = m.id_marque
+    JOIN STATUT_RESERVATION s ON r.id_statut  = s.id_statut
     ORDER BY r.id_reservation
-");
-$reservations_ca = $stmt->fetchAll();
+")->fetchAll();
 
-/* ══════════════════════════════════════════════
-   Véhicules
-══════════════════════════════════════════════ */
-$stmt = $pdo->query("
-    SELECT
-        v.id_voiture,
-        m.nom_marque,
-        v.modele,
-        v.annee,
-        v.cylindree,
-        v.puissance_ch,
-        c.type_carburant,
-        v.prix_journalier,
-        v.disponible
+/* ── Véhicules ── */
+$vehicules = $pdo->query("
+    SELECT v.*, m.nom_marque, c.type_carburant
     FROM VOITURE v
-    JOIN MARQUE   m ON v.id_marque    = m.id_marque
+    JOIN MARQUE m    ON v.id_marque    = m.id_marque
     JOIN CARBURANT c ON v.id_carburant = c.id_carburant
     ORDER BY m.nom_marque, v.modele
-");
-$vehicules = $stmt->fetchAll();
+")->fetchAll();
 
-/* ══════════════════════════════════════════════
-   Réservations (onglet complet)
-══════════════════════════════════════════════ */
-$stmt = $pdo->query("
-    SELECT
-        r.id_reservation,
-        CONCAT(cl.prenom, ' ', cl.nom)           AS client,
-        CONCAT(m.nom_marque, ' ', v.modele)      AS vehicule,
-        r.date_debut,
-        r.date_fin,
-        r.montant_total,
-        s.libelle                                 AS statut
+/* ── Réservations ── */
+$reservations = $pdo->query("
+    SELECT r.id_reservation,
+           cl.id_client,
+           CONCAT(cl.prenom,' ',cl.nom)          AS client,
+           v.id_voiture,
+           CONCAT(m.nom_marque,' ',v.modele)     AS vehicule,
+           r.date_debut, r.date_fin,
+           r.montant_total, s.libelle AS statut,
+           r.id_statut
     FROM RESERVATION r
-    JOIN CLIENT cl              ON r.id_client  = cl.id_client
-    JOIN VOITURE v              ON r.id_voiture = v.id_voiture
-    JOIN MARQUE m               ON v.id_marque  = m.id_marque
-    JOIN STATUT_RESERVATION s   ON r.id_statut  = s.id_statut
+    JOIN CLIENT cl            ON r.id_client  = cl.id_client
+    JOIN VOITURE v            ON r.id_voiture = v.id_voiture
+    JOIN MARQUE m             ON v.id_marque  = m.id_marque
+    JOIN STATUT_RESERVATION s ON r.id_statut  = s.id_statut
     ORDER BY r.id_reservation
-");
-$reservations = $stmt->fetchAll();
+")->fetchAll();
 
-/* ══════════════════════════════════════════════
-   Marques & clients pour les selects des modals
-══════════════════════════════════════════════ */
+/* ── Listes pour les selects ── */
 $marques  = $pdo->query("SELECT id_marque, nom_marque FROM MARQUE ORDER BY nom_marque")->fetchAll();
-$clients  = $pdo->query("SELECT id_client, CONCAT(prenom,' ',nom) AS nom_complet FROM CLIENT ORDER BY nom")->fetchAll();
 $carbs    = $pdo->query("SELECT id_carburant, type_carburant FROM CARBURANT")->fetchAll();
+$clients  = $pdo->query("SELECT id_client, CONCAT(prenom,' ',nom) AS nom_complet FROM CLIENT ORDER BY nom")->fetchAll();
 $statuts  = $pdo->query("SELECT id_statut, libelle FROM STATUT_RESERVATION")->fetchAll();
-$veh_list = $pdo->query("SELECT v.id_voiture, CONCAT(m.nom_marque,' ',v.modele) AS label FROM VOITURE v JOIN MARQUE m ON v.id_marque=m.id_marque ORDER BY m.nom_marque, v.modele")->fetchAll();
+$veh_list = $pdo->query("
+    SELECT v.id_voiture, CONCAT(m.nom_marque,' ',v.modele) AS label, v.prix_journalier
+    FROM VOITURE v JOIN MARQUE m ON v.id_marque=m.id_marque
+    ORDER BY m.nom_marque, v.modele
+")->fetchAll();
 
-/* ══════════════════════════════════════════════
-   Logs
-══════════════════════════════════════════════ */
-$stmt = $pdo->query("
-    SELECT
-        l.id_log,
-        l.id_reservation,
-        CONCAT(cl.prenom, ' ', cl.nom)  AS client,
-        l.action,
-        l.champ_modifie,
-        l.ancienne_valeur,
-        l.nouvelle_valeur,
-        l.date_action,
-        l.utilisateur
+/* ── Logs ── */
+$logs = $pdo->query("
+    SELECT l.id_log, l.id_reservation,
+           CONCAT(cl.prenom,' ',cl.nom) AS client,
+           l.action, l.champ_modifie,
+           l.ancienne_valeur, l.nouvelle_valeur,
+           l.date_action, l.utilisateur
     FROM LOGS_RESERVATION l
-    JOIN RESERVATION r  ON l.id_reservation = r.id_reservation
-    JOIN CLIENT cl      ON r.id_client      = cl.id_client
+    JOIN RESERVATION r ON l.id_reservation = r.id_reservation
+    JOIN CLIENT cl     ON r.id_client      = cl.id_client
     ORDER BY l.date_action DESC
-");
-$logs = $stmt->fetchAll();
+")->fetchAll();
 
-/* ── helpers ── */
-function fmt_money(float $v): string {
-    return number_format($v, 2, ',', ' ') . ' €';
+/* ── Helpers ── */
+function fmt_money(float $v): string { return number_format($v, 2, ',', ' ') . ' €'; }
+function fmt_date(string $d): string { return date('d/m/Y', strtotime($d)); }
+function fmt_dt(string $d): string   { return date('d/m/Y H:i', strtotime($d)); }
+function badge(string $s): string {
+    $cls = match($s) { 'confirmée'=>'confirmée','annulée'=>'annulée','en attente'=>'attente','terminée'=>'terminée',default=>'attente' };
+    return '<span class="badge '.$cls.'">'.htmlspecialchars(ucfirst($s)).'</span>';
 }
-function fmt_date(string $d): string {
-    return date('d/m/Y', strtotime($d));
-}
-function fmt_datetime(string $d): string {
-    return date('d/m/Y H:i', strtotime($d));
-}
-function badge(string $statut): string {
-    $cls = match($statut) {
-        'confirmée'  => 'confirmée',
-        'annulée'    => 'annulée',
-        'en attente' => 'attente',
-        'terminée'   => 'terminée',
-        default      => 'attente',
-    };
-    return '<span class="badge ' . $cls . '">' . htmlspecialchars(ucfirst($statut)) . '</span>';
+function sel(array $items, string $valKey, string $lblKey, mixed $current, string $name, string $id=''): string {
+    $idAttr = $id ? " id=\"$id\"" : '';
+    $out = "<select name=\"$name\"$idAttr>";
+    foreach ($items as $row) {
+        $sel = ($row[$valKey] == $current) ? ' selected' : '';
+        $out .= "<option value=\"".htmlspecialchars((string)$row[$valKey])."\"$sel>".htmlspecialchars((string)$row[$lblKey])."</option>";
+    }
+    return $out . '</select>';
 }
 ?>
 <!DOCTYPE html>
@@ -151,236 +243,123 @@ function badge(string $statut): string {
     <title>Voiti Nèf — Administration</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #f4f4f4; color: #1e293b; }
 
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background: #f4f4f4;
-            color: #1e293b;
-        }
-
-        /* ── HEADER ── */
+        /* HEADER */
         header {
-            background-color: #800020;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
+            background-color: #800020; height: 100px; display: flex; align-items: center;
+            padding: 0 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        header img.logo {
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-        }
-        header h1 {
-            color: white;
-            font-size: 22px;
-            margin-left: 16px;
-            flex: 1;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 14px;
-            font-size: 15px;
-            transition: opacity .2s;
-        }
+        header img.logo { border-radius: 50%; width: 80px; height: 80px; object-fit: cover; }
+        header h1 { color: white; font-size: 22px; margin-left: 16px; flex: 1; }
+        nav a { color: white; text-decoration: none; padding: 8px 14px; font-size: 15px; transition: opacity .2s; }
         nav a:hover { opacity: .75; }
-        nav a.active {
-            border-bottom: 3px solid white;
-            font-weight: 700;
-        }
+        nav a.active { border-bottom: 3px solid white; font-weight: 700; }
 
-        /* ── LAYOUT ── */
-        .wrapper {
-            margin-top: 130px;
-            padding: 24px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* LAYOUT */
+        .wrapper { margin-top: 130px; padding: 24px; max-width: 1200px; margin-left: auto; margin-right: auto; }
 
-        /* ── ONGLETS ── */
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
+        /* FLASH */
+        .flash { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; border-radius:8px; padding:12px 16px; margin-bottom:20px; font-weight:600; }
+
+        /* ONGLETS */
+        .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
         .tab-btn {
-            background: white;
-            border: 2px solid #800020;
-            color: #800020;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .2s;
+            background: white; border: 2px solid #800020; color: #800020;
+            padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all .2s;
         }
-        .tab-btn:hover, .tab-btn.active {
-            background: #800020;
-            color: white;
-        }
+        .tab-btn:hover, .tab-btn.active { background: #800020; color: white; }
 
-        /* ── SECTIONS ── */
+        /* SECTIONS */
         .section { display: none; }
         .section.active { display: block; }
 
-        /* ── CARDS KPI ── */
-        .kpi-row {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
+        /* KPI */
+        .kpi-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
         .kpi-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px 24px;
-            flex: 1;
-            min-width: 180px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border-left: 5px solid #800020;
+            background: white; border-radius: 10px; padding: 20px 24px;
+            flex: 1; min-width: 180px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 5px solid #800020;
         }
         .kpi-card .label { font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: .5px; }
         .kpi-card .value { font-size: 28px; font-weight: 700; color: #800020; margin-top: 6px; }
         .kpi-card .sub   { font-size: 12px; color: #94a3b8; margin-top: 4px; }
 
-        /* ── TABLEAUX ── */
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
-            margin-bottom: 24px;
-        }
+        /* TABLEAUX */
+        .card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 24px; }
         .card-header {
-            background: #800020;
-            color: white;
-            padding: 14px 20px;
-            font-size: 15px;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: #800020; color: white; padding: 14px 20px;
+            font-size: 15px; font-weight: 700; display: flex; justify-content: space-between; align-items: center;
         }
         .card-body { padding: 0; overflow-x: auto; }
-
         table { width: 100%; border-collapse: collapse; font-size: 13px; }
         thead th {
-            background: #f8fafc;
-            color: #475569;
-            font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            padding: 10px 14px;
-            text-align: left;
-            border-bottom: 2px solid #e2e8f0;
+            background: #f8fafc; color: #475569; font-weight: 700; font-size: 11px;
+            text-transform: uppercase; letter-spacing: .5px; padding: 10px 14px;
+            text-align: left; border-bottom: 2px solid #e2e8f0;
         }
         tbody tr { border-bottom: 1px solid #f1f5f9; transition: background .15s; }
         tbody tr:hover { background: #fef2f2; }
-        tbody td { padding: 10px 14px; }
+        tbody td { padding: 10px 14px; vertical-align: middle; }
 
-        /* ── BADGES STATUT ── */
-        .badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-        }
+        /* BADGES */
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
         .badge.confirmée { background: #dcfce7; color: #166534; }
         .badge.annulée   { background: #fee2e2; color: #991b1b; }
         .badge.attente   { background: #fef3c7; color: #92400e; }
         .badge.terminée  { background: #e0e7ff; color: #3730a3; }
 
-        /* ── BOUTON AJOUT ── */
-        .btn {
-            background: white;
-            border: 2px solid white;
-            color: #800020;
-            padding: 7px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all .2s;
-        }
+        /* BOUTONS */
+        .btn { background: white; border: 2px solid white; color: #800020; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .2s; }
         .btn:hover { background: #800020; color: white; border-color: #800020; }
+        .btn-edit { background: #800020; border: none; color: white; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; transition: opacity .2s; }
+        .btn-edit:hover { opacity: .8; }
 
-        /* ── FORMULAIRE MODAL ── */
+        /* MODAL */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 200;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center;
         }
         .modal-overlay.open { display: flex; }
         .modal {
-            background: white;
-            border-radius: 12px;
-            padding: 28px;
-            width: 480px;
-            max-width: 95vw;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            background: white; border-radius: 12px; padding: 28px;
+            width: 500px; max-width: 95vw; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            max-height: 90vh; overflow-y: auto;
         }
         .modal h2 { font-size: 17px; color: #800020; margin-bottom: 18px; }
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 5px; }
         .form-group input, .form-group select {
-            width: 100%;
-            padding: 9px 12px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 13px;
-            outline: none;
-            transition: border-color .2s;
+            width: 100%; padding: 9px 12px; border: 1.5px solid #e2e8f0;
+            border-radius: 6px; font-size: 13px; outline: none; transition: border-color .2s;
         }
         .form-group input:focus, .form-group select:focus { border-color: #800020; }
         .form-row { display: flex; gap: 12px; }
         .form-row .form-group { flex: 1; }
         .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
         .btn-cancel { background: #f1f5f9; border: none; color: #475569; padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
-        .btn-save { background: #800020; border: none; color: white; padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+        .btn-save   { background: #800020; border: none; color: white;   padding: 9px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
 
-        /* ── LOG PILL ── */
-        .log-action {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-            background: #e0e7ff;
-            color: #3730a3;
+        /* Montant calculé */
+        .montant-preview {
+            background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px;
+            padding: 10px 14px; font-size: 14px; font-weight: 700; color: #166534;
+            margin-bottom: 14px; text-align: center; min-height: 38px;
         }
 
-        /* ── DISPO TOGGLE ── */
+        /* LOG */
+        .log-action { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; background: #e0e7ff; color: #3730a3; }
+
+        /* DISPO */
         .dispo   { color: #166534; font-weight: 700; }
         .indispo { color: #991b1b; font-weight: 700; }
 
-        /* ── FOOTER ── */
-        footer {
-            background: #800020;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            font-size: 13px;
-            margin-top: 40px;
-        }
+        footer { background: #800020; color: white; text-align: center; padding: 16px; font-size: 13px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <img src="ressources%20voiti%20nef/logo.png" alt="Logo Voiti Nèf" class="logo">
     <h1>Administration — Voiti Nèf</h1>
@@ -395,19 +374,19 @@ function badge(string $statut): string {
 
 <div class="wrapper">
 
-    <!-- ONGLETS -->
+    <?php if ($flash): ?>
+    <div class="flash">⚠️ <?= $flash ?></div>
+    <?php endif; ?>
+
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('ca', this)">📊 Chiffre d'affaires</button>
-        <button class="tab-btn" onclick="showTab('vehicules', this)">🚗 Véhicules</button>
-        <button class="tab-btn" onclick="showTab('reservations', this)">📋 Réservations</button>
-        <button class="tab-btn" onclick="showTab('logs', this)">🗂️ Logs</button>
+        <button class="tab-btn <?= $active_tab==='ca'           ? 'active' : '' ?>" onclick="showTab('ca',this)">📊 Chiffre d'affaires</button>
+        <button class="tab-btn <?= $active_tab==='vehicules'    ? 'active' : '' ?>" onclick="showTab('vehicules',this)">🚗 Véhicules</button>
+        <button class="tab-btn <?= $active_tab==='reservations' ? 'active' : '' ?>" onclick="showTab('reservations',this)">📋 Réservations</button>
+        <button class="tab-btn <?= $active_tab==='logs'         ? 'active' : '' ?>" onclick="showTab('logs',this)">🗂️ Logs</button>
     </div>
 
-    <!-- ══════════════════════════════════
-         SECTION 1 : CHIFFRE D'AFFAIRES
-    ═══════════════════════════════════ -->
-    <div id="tab-ca" class="section active">
-
+    <!-- ══ CA ══ -->
+    <div id="tab-ca" class="section <?= $active_tab==='ca' ? 'active' : '' ?>">
         <div class="kpi-row">
             <div class="kpi-card">
                 <div class="label">CA Total confirmé</div>
@@ -417,7 +396,7 @@ function badge(string $statut): string {
             <div class="kpi-card">
                 <div class="label">Réservations confirmées</div>
                 <div class="value"><?= (int)$kpi_conf['nb_confirmees'] ?></div>
-                <div class="sub">sur <?= $total_res ?> réservation<?= $total_res > 1 ? 's' : '' ?></div>
+                <div class="sub">sur <?= $total_res ?> réservation<?= $total_res>1?'s':'' ?></div>
             </div>
             <div class="kpi-card">
                 <div class="label">Panier moyen</div>
@@ -430,41 +409,29 @@ function badge(string $statut): string {
                 <div class="sub">Montant perdu : <?= fmt_money((float)$kpi_ann['montant_annule']) ?></div>
             </div>
         </div>
-
         <div class="card">
             <div class="card-header">Détail de toutes les réservations</div>
             <div class="card-body">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Client</th>
-                            <th>Véhicule</th>
-                            <th>Du</th>
-                            <th>Au</th>
-                            <th>Jours</th>
-                            <th>Montant</th>
-                            <th>Statut</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Client</th><th>Véhicule</th><th>Du</th><th>Au</th><th>Jours</th><th>Montant</th><th>Statut</th></tr></thead>
                     <tbody>
-                        <?php foreach ($reservations_ca as $r): ?>
+                    <?php foreach ($reservations_ca as $r): ?>
                         <tr>
                             <td><?= $r['id_reservation'] ?></td>
                             <td><?= htmlspecialchars($r['client']) ?></td>
                             <td><?= htmlspecialchars($r['vehicule']) ?></td>
                             <td><?= fmt_date($r['date_debut']) ?></td>
                             <td><?= fmt_date($r['date_fin']) ?></td>
-                            <td><?= max(0, (int)$r['nb_jours']) ?></td>
+                            <td><?= max(0,(int)$r['nb_jours']) ?></td>
                             <td><strong><?= fmt_money((float)$r['montant_total']) ?></strong></td>
                             <td><?= badge($r['statut']) ?></td>
                         </tr>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                         <tr style="background:#fef2f2;">
-                            <td colspan="6" style="padding:10px 14px; font-weight:700; color:#800020;">TOTAL CA CONFIRMÉ</td>
-                            <td style="padding:10px 14px; font-weight:700; font-size:16px; color:#800020;"><?= fmt_money((float)$kpi_conf['ca_total']) ?></td>
+                            <td colspan="6" style="padding:10px 14px;font-weight:700;color:#800020;">TOTAL CA CONFIRMÉ</td>
+                            <td style="padding:10px 14px;font-weight:700;font-size:16px;color:#800020;"><?= fmt_money((float)$kpi_conf['ca_total']) ?></td>
                             <td></td>
                         </tr>
                     </tfoot>
@@ -473,82 +440,61 @@ function badge(string $statut): string {
         </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         SECTION 2 : VÉHICULES
-    ═══════════════════════════════════ -->
-    <div id="tab-vehicules" class="section">
+    <!-- ══ VÉHICULES ══ -->
+    <div id="tab-vehicules" class="section <?= $active_tab==='vehicules' ? 'active' : '' ?>">
         <div class="card">
             <div class="card-header">
                 Gestion des véhicules (<?= count($vehicules) ?>)
-                <button class="btn" onclick="openModal('modal-vehicule')">+ Ajouter un véhicule</button>
+                <button class="btn" onclick="openAddVehicule()">+ Ajouter un véhicule</button>
             </div>
             <div class="card-body">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Marque</th>
-                            <th>Modèle</th>
-                            <th>Année</th>
-                            <th>Cylindrée</th>
-                            <th>Puissance</th>
-                            <th>Carburant</th>
-                            <th>Prix/jour</th>
-                            <th>Disponible</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Marque</th><th>Modèle</th><th>Année</th><th>Cylindrée</th><th>Puissance</th><th>Carburant</th><th>Prix/jour</th><th>Disponible</th><th>Actions</th></tr></thead>
                     <tbody>
-                        <?php foreach ($vehicules as $v): ?>
+                    <?php foreach ($vehicules as $v): ?>
                         <tr>
                             <td><?= $v['id_voiture'] ?></td>
                             <td><?= htmlspecialchars($v['nom_marque']) ?></td>
                             <td><?= htmlspecialchars($v['modele']) ?></td>
                             <td><?= $v['annee'] ?></td>
                             <td><?= htmlspecialchars($v['cylindree'] ?? '—') ?></td>
-                            <td><?= $v['puissance_ch'] ? $v['puissance_ch'] . ' ch' : '—' ?></td>
+                            <td><?= $v['puissance_ch'] ? $v['puissance_ch'].' ch' : '—' ?></td>
                             <td><?= htmlspecialchars($v['type_carburant']) ?></td>
                             <td><?= fmt_money((float)$v['prix_journalier']) ?></td>
-                            <td class="<?= $v['disponible'] ? 'dispo' : 'indispo' ?>">
-                                <?= $v['disponible'] ? '✔ Oui' : '✘ Non' ?>
-                            </td>
+                            <td class="<?= $v['disponible'] ? 'dispo' : 'indispo' ?>"><?= $v['disponible'] ? '✔ Oui' : '✘ Non' ?></td>
                             <td>
-                                <button class="btn-save" style="padding:4px 10px;font-size:12px;border-radius:4px;border:none;cursor:pointer;"
-                                    onclick="openModal('modal-vehicule')">Modifier</button>
+                                <button class="btn-edit" onclick="openEditVehicule(
+                                    <?= $v['id_voiture'] ?>,
+                                    <?= $v['id_marque'] ?>,
+                                    <?= $v['id_carburant'] ?>,
+                                    '<?= addslashes(htmlspecialchars($v['modele'])) ?>',
+                                    <?= $v['annee'] ?>,
+                                    '<?= addslashes(htmlspecialchars($v['cylindree'] ?? '')) ?>',
+                                    <?= (int)$v['puissance_ch'] ?>,
+                                    <?= $v['prix_journalier'] ?>,
+                                    <?= (int)$v['disponible'] ?>
+                                )">✏️ Modifier</button>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         SECTION 3 : RÉSERVATIONS
-    ═══════════════════════════════════ -->
-    <div id="tab-reservations" class="section">
+    <!-- ══ RÉSERVATIONS ══ -->
+    <div id="tab-reservations" class="section <?= $active_tab==='reservations' ? 'active' : '' ?>">
         <div class="card">
             <div class="card-header">
                 Gestion des réservations (<?= count($reservations) ?>)
-                <button class="btn" onclick="openModal('modal-reservation')">+ Nouvelle réservation</button>
+                <button class="btn" onclick="openAddReservation()">+ Nouvelle réservation</button>
             </div>
             <div class="card-body">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Client</th>
-                            <th>Véhicule</th>
-                            <th>Date début</th>
-                            <th>Date fin</th>
-                            <th>Montant</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Client</th><th>Véhicule</th><th>Date début</th><th>Date fin</th><th>Montant</th><th>Statut</th><th>Actions</th></tr></thead>
                     <tbody>
-                        <?php foreach ($reservations as $r): ?>
+                    <?php foreach ($reservations as $r): ?>
                         <tr>
                             <td><?= $r['id_reservation'] ?></td>
                             <td><?= htmlspecialchars($r['client']) ?></td>
@@ -558,42 +504,35 @@ function badge(string $statut): string {
                             <td><?= fmt_money((float)$r['montant_total']) ?></td>
                             <td><?= badge($r['statut']) ?></td>
                             <td>
-                                <button class="btn-save" style="padding:4px 10px;font-size:12px;border-radius:4px;border:none;cursor:pointer;"
-                                    onclick="openModal('modal-reservation')">Modifier</button>
+                                <button class="btn-edit" onclick="openEditReservation(
+                                    <?= $r['id_reservation'] ?>,
+                                    <?= $r['id_client'] ?>,
+                                    <?= $r['id_voiture'] ?>,
+                                    '<?= $r['date_debut'] ?>',
+                                    '<?= $r['date_fin'] ?>',
+                                    <?= $r['id_statut'] ?>
+                                )">✏️ Modifier</button>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         SECTION 4 : LOGS
-    ═══════════════════════════════════ -->
-    <div id="tab-logs" class="section">
+    <!-- ══ LOGS ══ -->
+    <div id="tab-logs" class="section <?= $active_tab==='logs' ? 'active' : '' ?>">
         <div class="card">
-            <div class="card-header">Historique des modifications — Réservations (<?= count($logs) ?> entrée<?= count($logs) > 1 ? 's' : '' ?>)</div>
+            <div class="card-header">Historique des modifications — Réservations (<?= count($logs) ?> entrée<?= count($logs)>1?'s':'' ?>)</div>
             <div class="card-body">
                 <?php if (empty($logs)): ?>
                 <p style="padding:20px;color:#64748b;">Aucun log enregistré.</p>
                 <?php else: ?>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Réservation</th>
-                            <th>Action</th>
-                            <th>Champ modifié</th>
-                            <th>Ancienne valeur</th>
-                            <th>Nouvelle valeur</th>
-                            <th>Date</th>
-                            <th>Utilisateur</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Réservation</th><th>Action</th><th>Champ</th><th>Ancienne valeur</th><th>Nouvelle valeur</th><th>Date</th><th>Utilisateur</th></tr></thead>
                     <tbody>
-                        <?php foreach ($logs as $l): ?>
+                    <?php foreach ($logs as $l): ?>
                         <tr>
                             <td><?= $l['id_log'] ?></td>
                             <td>#<?= $l['id_reservation'] ?> — <?= htmlspecialchars($l['client']) ?></td>
@@ -601,10 +540,10 @@ function badge(string $statut): string {
                             <td><?= htmlspecialchars($l['champ_modifie'] ?? '—') ?></td>
                             <td><?= htmlspecialchars($l['ancienne_valeur'] ?? '—') ?></td>
                             <td><?= htmlspecialchars($l['nouvelle_valeur'] ?? '—') ?></td>
-                            <td><?= fmt_datetime($l['date_action']) ?></td>
+                            <td><?= fmt_dt($l['date_action']) ?></td>
                             <td><?= htmlspecialchars($l['utilisateur']) ?></td>
                         </tr>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
                 <?php endif; ?>
@@ -615,121 +554,130 @@ function badge(string $statut): string {
 </div><!-- /wrapper -->
 
 <!-- ══════════════════════════════════
-     MODAL : VÉHICULE
+     MODAL VÉHICULE
 ═══════════════════════════════════ -->
 <div class="modal-overlay" id="modal-vehicule">
     <div class="modal">
-        <h2>🚗 Ajouter / Modifier un véhicule</h2>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Marque</label>
-                <select>
-                    <?php foreach ($marques as $m): ?>
-                    <option value="<?= $m['id_marque'] ?>"><?= htmlspecialchars($m['nom_marque']) ?></option>
-                    <?php endforeach; ?>
-                </select>
+        <h2 id="veh-modal-title">🚗 Ajouter un véhicule</h2>
+        <form method="post" action="admin.php">
+            <input type="hidden" name="action"     id="veh-action"  value="add_vehicule">
+            <input type="hidden" name="id_voiture" id="veh-id"      value="">
+            <input type="hidden" name="tab"        value="vehicules">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Marque</label>
+                    <select name="id_marque" id="veh-id_marque">
+                        <?php foreach ($marques as $m): ?>
+                        <option value="<?= $m['id_marque'] ?>"><?= htmlspecialchars($m['nom_marque']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Modèle</label>
+                    <input type="text" name="modele" id="veh-modele" placeholder="ex : A3" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Modèle</label>
-                <input type="text" placeholder="ex : A3">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Année</label>
+                    <input type="number" name="annee" id="veh-annee" value="2024" min="2000" max="2030" required>
+                </div>
+                <div class="form-group">
+                    <label>Cylindrée</label>
+                    <input type="text" name="cylindree" id="veh-cylindree" placeholder="ex : 1.5L">
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Année</label>
-                <input type="number" value="2024" min="2000" max="2030">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Puissance (ch)</label>
+                    <input type="number" name="puissance_ch" id="veh-puissance_ch" placeholder="ex : 110" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Carburant</label>
+                    <select name="id_carburant" id="veh-id_carburant">
+                        <?php foreach ($carbs as $c): ?>
+                        <option value="<?= $c['id_carburant'] ?>"><?= htmlspecialchars($c['type_carburant']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Cylindrée</label>
-                <input type="text" placeholder="ex : 1.5L">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Prix / jour (€)</label>
+                    <input type="number" name="prix_journalier" id="veh-prix" placeholder="ex : 75" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Disponible</label>
+                    <select name="disponible" id="veh-disponible">
+                        <option value="1">✔ Oui</option>
+                        <option value="0">✘ Non</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Puissance (ch)</label>
-                <input type="number" placeholder="ex : 110">
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal('modal-vehicule')">Annuler</button>
+                <button type="submit" class="btn-save">💾 Enregistrer</button>
             </div>
-            <div class="form-group">
-                <label>Carburant</label>
-                <select>
-                    <?php foreach ($carbs as $c): ?>
-                    <option value="<?= $c['id_carburant'] ?>"><?= htmlspecialchars($c['type_carburant']) ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Prix / jour (€)</label>
-                <input type="number" placeholder="ex : 75" step="0.01">
-            </div>
-            <div class="form-group">
-                <label>Disponible</label>
-                <select>
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
-                </select>
-            </div>
-        </div>
-        <div class="modal-actions">
-            <button class="btn-cancel" onclick="closeModal('modal-vehicule')">Annuler</button>
-            <button class="btn-save">Enregistrer</button>
-        </div>
+        </form>
     </div>
 </div>
 
 <!-- ══════════════════════════════════
-     MODAL : RÉSERVATION
+     MODAL RÉSERVATION
 ═══════════════════════════════════ -->
 <div class="modal-overlay" id="modal-reservation">
     <div class="modal">
-        <h2>📋 Modifier la réservation</h2>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Client</label>
-                <select>
-                    <?php foreach ($clients as $cl): ?>
-                    <option value="<?= $cl['id_client'] ?>"><?= htmlspecialchars($cl['nom_complet']) ?></option>
-                    <?php endforeach; ?>
-                </select>
+        <h2 id="res-modal-title">📋 Nouvelle réservation</h2>
+        <form method="post" action="admin.php">
+            <input type="hidden" name="action"         id="res-action" value="add_reservation">
+            <input type="hidden" name="id_reservation" id="res-id"     value="">
+            <input type="hidden" name="tab"            value="reservations">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Client</label>
+                    <select name="id_client" id="res-id_client">
+                        <?php foreach ($clients as $cl): ?>
+                        <option value="<?= $cl['id_client'] ?>"><?= htmlspecialchars($cl['nom_complet']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Véhicule</label>
+                    <select name="id_voiture" id="res-id_voiture" onchange="calcMontant()">
+                        <?php foreach ($veh_list as $vl): ?>
+                        <option value="<?= $vl['id_voiture'] ?>" data-prix="<?= $vl['prix_journalier'] ?>">
+                            <?= htmlspecialchars($vl['label']) ?> — <?= fmt_money((float)$vl['prix_journalier']) ?>/j
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Véhicule</label>
-                <select>
-                    <?php foreach ($veh_list as $vl): ?>
-                    <option value="<?= $vl['id_voiture'] ?>"><?= htmlspecialchars($vl['label']) ?></option>
-                    <?php endforeach; ?>
-                </select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Date début</label>
+                    <input type="date" name="date_debut" id="res-date_debut" onchange="calcMontant()" required>
+                </div>
+                <div class="form-group">
+                    <label>Date fin</label>
+                    <input type="date" name="date_fin" id="res-date_fin" onchange="calcMontant()" required>
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Date début</label>
-                <input type="date">
-            </div>
-            <div class="form-group">
-                <label>Date fin</label>
-                <input type="date">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>Montant total (€)</label>
-                <input type="number" placeholder="ex : 250.00" step="0.01">
-            </div>
+            <div class="montant-preview" id="montant-preview">Sélectionnez un véhicule et des dates</div>
             <div class="form-group">
                 <label>Statut</label>
-                <select>
+                <select name="id_statut" id="res-id_statut">
                     <?php foreach ($statuts as $s): ?>
                     <option value="<?= $s['id_statut'] ?>"><?= htmlspecialchars(ucfirst($s['libelle'])) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
-        </div>
-        <div class="modal-actions">
-            <button class="btn-cancel" onclick="closeModal('modal-reservation')">Annuler</button>
-            <button class="btn-save">Enregistrer</button>
-        </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal('modal-reservation')">Annuler</button>
+                <button type="submit" class="btn-save">💾 Enregistrer</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -738,27 +686,111 @@ function badge(string $statut): string {
 </footer>
 
 <script>
-    function showTab(name, btn) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('tab-' + name).classList.add('active');
-        btn.classList.add('active');
+/* ── Navigation onglets ── */
+function showTab(name, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    history.replaceState(null, '', '?tab=' + name);
+}
+
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+});
+
+/* ════════════════════════
+   MODAL VÉHICULE
+════════════════════════ */
+function openAddVehicule() {
+    document.getElementById('veh-modal-title').textContent = '🚗 Ajouter un véhicule';
+    document.getElementById('veh-action').value = 'add_vehicule';
+    document.getElementById('veh-id').value = '';
+    // Reset form fields
+    document.getElementById('veh-modele').value    = '';
+    document.getElementById('veh-annee').value     = '2024';
+    document.getElementById('veh-cylindree').value = '';
+    document.getElementById('veh-puissance_ch').value = '';
+    document.getElementById('veh-prix').value      = '';
+    document.getElementById('veh-id_marque').selectedIndex   = 0;
+    document.getElementById('veh-id_carburant').selectedIndex = 0;
+    document.getElementById('veh-disponible').value = '1';
+    openModal('modal-vehicule');
+}
+
+function openEditVehicule(id, id_marque, id_carburant, modele, annee, cylindree, puissance, prix, disponible) {
+    document.getElementById('veh-modal-title').textContent = '✏️ Modifier le véhicule';
+    document.getElementById('veh-action').value     = 'edit_vehicule';
+    document.getElementById('veh-id').value         = id;
+    document.getElementById('veh-id_marque').value  = id_marque;
+    document.getElementById('veh-id_carburant').value = id_carburant;
+    document.getElementById('veh-modele').value     = modele;
+    document.getElementById('veh-annee').value      = annee;
+    document.getElementById('veh-cylindree').value  = cylindree;
+    document.getElementById('veh-puissance_ch').value = puissance;
+    document.getElementById('veh-prix').value       = prix;
+    document.getElementById('veh-disponible').value = disponible;
+    openModal('modal-vehicule');
+}
+
+/* ════════════════════════
+   MODAL RÉSERVATION
+════════════════════════ */
+function openAddReservation() {
+    document.getElementById('res-modal-title').textContent = '📋 Nouvelle réservation';
+    document.getElementById('res-action').value = 'add_reservation';
+    document.getElementById('res-id').value     = '';
+    document.getElementById('res-id_client').selectedIndex   = 0;
+    document.getElementById('res-id_voiture').selectedIndex  = 0;
+    document.getElementById('res-id_statut').selectedIndex   = 0;
+    document.getElementById('res-date_debut').value = '';
+    document.getElementById('res-date_fin').value   = '';
+    document.getElementById('montant-preview').textContent = 'Sélectionnez un véhicule et des dates';
+    openModal('modal-reservation');
+}
+
+function openEditReservation(id, id_client, id_voiture, date_debut, date_fin, id_statut) {
+    document.getElementById('res-modal-title').textContent = '✏️ Modifier la réservation #' + id;
+    document.getElementById('res-action').value      = 'edit_reservation';
+    document.getElementById('res-id').value          = id;
+    document.getElementById('res-id_client').value   = id_client;
+    document.getElementById('res-id_voiture').value  = id_voiture;
+    document.getElementById('res-date_debut').value  = date_debut;
+    document.getElementById('res-date_fin').value    = date_fin;
+    document.getElementById('res-id_statut').value   = id_statut;
+    calcMontant();
+    openModal('modal-reservation');
+}
+
+/* ════════════════════════
+   Calcul montant auto
+════════════════════════ */
+function calcMontant() {
+    const sel   = document.getElementById('res-id_voiture');
+    const deb   = document.getElementById('res-date_debut').value;
+    const fin   = document.getElementById('res-date_fin').value;
+    const prev  = document.getElementById('montant-preview');
+
+    if (!sel.value || !deb || !fin) {
+        prev.textContent = 'Sélectionnez un véhicule et des dates';
+        return;
     }
 
-    function openModal(id) {
-        document.getElementById(id).classList.add('open');
+    const prix  = parseFloat(sel.options[sel.selectedIndex].dataset.prix);
+    const ms    = new Date(fin) - new Date(deb);
+    const jours = Math.max(1, Math.round(ms / 86400000));
+
+    if (isNaN(prix) || ms <= 0) {
+        prev.textContent = 'Dates invalides';
+        return;
     }
 
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('open');
-    }
-
-    // Fermer modal en cliquant à l'extérieur
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) this.classList.remove('open');
-        });
-    });
+    const total = (prix * jours).toFixed(2).replace('.', ',');
+    prev.textContent = `${jours} jour${jours>1?'s':''} × ${prix.toFixed(2).replace('.',',')} €/j = ${total} €`;
+}
 </script>
 
 </body>
