@@ -289,8 +289,12 @@ function data_comps(string $id, array $map): string {
                             <h3 class="card-title">Vwati Nef</h3>
                             <div class="card-links">
                                 <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/main_2/realisations/Vwati%20nef"
-                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Voir sur GitHub">
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Code source — GitHub (main)">
                                     <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://github.com/Xen0-Prime/Portfolio_2/tree/E6/realisations/Vwati%20nef"
+                                   target="_blank" rel="noopener noreferrer" class="card-github" title="Livrables E6 — GitHub (branche E6)">
+                                    <i class="fab fa-github"></i><span style="font-size:9px;font-family:monospace;margin-left:2px;">E6</span>
                                 </a>
                                 <a href="http://killiannarasson.alwaysdata.net/realisations/vwati-nef/Accueil.html"
                                    target="_blank" rel="noopener noreferrer" class="card-demo" title="Voir le projet en ligne">
@@ -308,18 +312,19 @@ function data_comps(string $id, array $map): string {
 
                     <div class="card-body">
                         <p class="card-desc">
-                            Site web de concessionnaire automobile avec catalogue de véhicules,
-                            système de filtres avancés et interface d'administration complète.
+                            Site web de concessionnaire automobile en Guadeloupe avec catalogue de véhicules,
+                            système de filtres avancés, base de données modélisée et interface d'administration complète.
                         </p>
 
                         <div>
                             <div class="card-section-label">Fonctionnalités</div>
                             <ul class="card-features">
                                 <li>Catalogue de véhicules avec filtres multi-critères</li>
-                                <li>Fiche détail par véhicule</li>
-                                <li>Interface d'administration (CRUD)</li>
-                                <li>Formulaire de contact intégré</li>
-                                <li>Design responsive</li>
+                                <li>Fiche détail par véhicule &amp; formulaire de contact</li>
+                                <li>Base de données MySQL modélisée (MLD + scripts SQL)</li>
+                                <li>Page d'administration : gestion véhicules, réservations, CA, logs</li>
+                                <li>Système d'avis clients avec note moyenne</li>
+                                <li>Suivi des modifications via table LOGS</li>
                             </ul>
                         </div>
 
@@ -328,6 +333,7 @@ function data_comps(string $id, array $map): string {
                             <span class="tech-tag">HTML / CSS</span>
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">SQL</span>
                         </div>
                     </div>
                 </div>
