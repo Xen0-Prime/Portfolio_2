@@ -214,7 +214,7 @@ $logs = $pdo->query("
     FROM LOGS_RESERVATION l
     JOIN RESERVATION r ON l.id_reservation = r.id_reservation
     JOIN CLIENT cl     ON r.id_client      = cl.id_client
-    ORDER BY l.date_action DESC
+    ORDER BY l.id_log
 ")->fetchAll();
 
 /* ── Helpers ── */
@@ -557,9 +557,7 @@ function sel(array $items, string $valKey, string $lblKey, mixed $current, strin
     </div>
 </div>
 
-<footer>
-    <p>© 2024 Voiti Nèf — Administration · Tous droits réservés</p>
-</footer>
+<?php include 'footer.php'; ?>
 
 <script>
 /* ── Navigation onglets ── */

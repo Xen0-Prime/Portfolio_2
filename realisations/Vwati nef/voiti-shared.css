@@ -10,6 +10,9 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ── Header ── */
@@ -77,6 +80,7 @@ footer {
     text-align: center;
     padding: 18px 20px;
     font-size: 13px;
+    margin-top: auto;   /* colle au bas quand le contenu est court */
 }
 
 footer p + p {
