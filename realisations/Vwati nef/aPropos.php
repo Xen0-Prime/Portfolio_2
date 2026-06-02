@@ -82,13 +82,13 @@ $nbMarques   = $pdo->query("SELECT COUNT(DISTINCT id_marque) FROM VOITURE")->fet
         <div class="equipe-grid">
             <div class="membre">
                 <div class="avatar">👨‍💼</div>
-                <div class="nom">Jean-Marc Loiseau</div>
-                <div class="role">Directeur commercial</div>
+                <div class="nom">Killian Narasson-Mohamedaly</div>
+                <div class="role">Developpeur Frontend/Backend</div>
             </div>
             <div class="membre">
-                <div class="avatar">👩‍💼</div>
-                <div class="nom">Marie-Ange Céleste</div>
-                <div class="role">Conseillère clientèle</div>
+                <div class="avatar">👨‍💼</div>
+                <div class="nom">Jonathan Edom</div>
+                <div class="role">Chef de projet</div>
             </div>
             <div class="membre">
                 <div class="avatar">🔧</div>
