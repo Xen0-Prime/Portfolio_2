@@ -157,6 +157,15 @@ $csrf = csrf_token();
         }
         .btn-login:hover  { opacity: .88; }
         .btn-login:active { transform: scale(.98); }
+        .forgot-link {
+            display: block;
+            text-align: right;
+            margin-top: .5rem;
+            font-family: var(--font-mono);
+            font-size: 11px;
+        }
+        .forgot-link a { color: var(--text-light); text-decoration: none; }
+        .forgot-link a:hover { color: var(--secondary-color); }
         .back-link {
             display: block;
             text-align: center;
@@ -215,6 +224,9 @@ $csrf = csrf_token();
                         required
                         autocomplete="current-password"
                     >
+                    <span class="forgot-link">
+                        <a href="reset_password.php">Mot de passe oublié ?</a>
+                    </span>
                 </div>
 
                 <button type="submit" class="btn-login">

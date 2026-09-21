@@ -5,26 +5,46 @@ auth_session_start();
 $error   = '';
 $success = false;
 
+// Limitation des tentatives (par session) : 5 essais puis blocage 5 minutes
+const RESET_MAX_ATTEMPTS = 5;
+const RESET_LOCK_SECONDS = 300;
+
+$locked = !empty($_SESSION['reset_locked_until']) && $_SESSION['reset_locked_until'] > time();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token    = $_POST['token']    ?? '';
     $password = $_POST['password'] ?? '';
     $confirm  = $_POST['confirm']  ?? '';
 
-    if (!hash_equals(RESET_TOKEN, $token)) {
+    if ($locked) {
+        $error = 'Trop de tentatives. Réessaie dans quelques minutes.';
+    } elseif (!csrf_verify($_POST['csrf_token'] ?? '')) {
+        $error = 'Requête invalide. Recharge la page et réessaie.';
+    } elseif (!defined('RESET_TOKEN') || RESET_TOKEN === '' || !hash_equals(RESET_TOKEN, $token)) {
+        $_SESSION['reset_attempts'] = ($_SESSION['reset_attempts'] ?? 0) + 1;
+        if ($_SESSION['reset_attempts'] >= RESET_MAX_ATTEMPTS) {
+            $_SESSION['reset_locked_until'] = time() + RESET_LOCK_SECONDS;
+            $_SESSION['reset_attempts']     = 0;
+        }
         $error = 'Token incorrect.';
+        sleep(1); // ralentit le brute-force
     } elseif (strlen($password) < 8) {
         $error = 'Le mot de passe doit faire au moins 8 caractères.';
     } elseif ($password !== $confirm) {
         $error = 'Les mots de passe ne correspondent pas.';
     } else {
         $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-        if (file_put_contents(HASH_FILE, $hash) !== false) {
+        if (file_put_contents(HASH_FILE, $hash, LOCK_EX) !== false) {
+            @chmod(HASH_FILE, 0600);
+            unset($_SESSION['reset_attempts'], $_SESSION['reset_locked_until']);
             $success = true;
         } else {
             $error = 'Impossible d\'écrire le fichier hash. Vérifie les permissions.';
         }
     }
 }
+
+$csrf = csrf_token();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -81,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST">
+        <form method="POST" autocomplete="off">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf) ?>">
             <div class="form-group">
                 <label>Token secret</label>
                 <input type="password" name="token" placeholder="Token de reset" required autofocus>
