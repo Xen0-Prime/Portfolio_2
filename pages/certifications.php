@@ -4,6 +4,9 @@ require_once __DIR__ . '/../config/supabase.php';
 // ── Fetch all certifications ordered by 'ordre' ─────────────────────────────
 $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
 
+$objectif_row = supabase_request('GET', '/rest/v1/settings?key=eq.certif_objectif&select=value') ?? [];
+$objectif     = $objectif_row[0]['value'] ?? 'À définir';
+
 // ── Track definitions (order matters for rendering) ──────────────────────────
 $tracks_def = [
     'dev'     => ['label' => 'Dev track',              'icon' => 'fa-code',           'css' => 'tc-dev'],
@@ -96,7 +99,7 @@ function get_tags(array $c): array
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certifications — Portfolio BTS SIO SLAM · Killian Narasson</title>
+    <title>Certifications — Portfolio L3 MIAGE · Killian Narasson</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/certifications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -127,8 +130,8 @@ function get_tags(array $c): array
             <div class="certif-masthead">
                 <h1 class="certif-title">Certifications</h1>
                 <div class="certif-meta">
-                    <span class="meta-tag">BTS SIO SLAM</span>
-                    <?= $total_count ?> formations · <?= count($tracks_def) ?> tracks · 2025–2026
+                    <span class="meta-tag">L3 MIAGE</span>
+                    <?= $total_count ?> formations · <?= count($tracks_def) ?> tracks · 2026–2027
                 </div>
             </div>
         </div>
@@ -149,7 +152,7 @@ function get_tags(array $c): array
                     <div class="stat-lbl">Restantes</div>
                 </div>
                 <div class="certif-stat-card">
-                    <div class="stat-num">Juin 2026</div>
+                    <div class="stat-num"><?= htmlspecialchars($objectif) ?></div>
                     <div class="stat-lbl">Objectif</div>
                 </div>
             </div>
@@ -227,7 +230,7 @@ function get_tags(array $c): array
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM · Killian Narasson Mohamedaly</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE · Killian Narasson Mohamedaly</p>
         </div>
     </footer>
 

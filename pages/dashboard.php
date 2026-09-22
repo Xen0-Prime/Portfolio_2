@@ -6,6 +6,9 @@ require_once __DIR__ . '/../config/supabase.php';
 
 $rows = supabase_request('GET', '/rest/v1/certifications?order=ordre') ?? [];
 
+$objectif_row = supabase_request('GET', '/rest/v1/settings?key=eq.certif_objectif&select=value') ?? [];
+$objectif     = $objectif_row[0]['value'] ?? '';
+
 $track_labels = [
     'dev'     => 'Dev',
     'systeme'    => 'Systèmes et Réseaux',
@@ -291,6 +294,21 @@ $track_labels = [
         .btn-delete:active { transform: scale(.96); }
         .btn-delete:disabled { opacity: .5; cursor: not-allowed; }
 
+        /* ── Objectif ─────────────────────────────────────────── */
+        .objectif-panel {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            max-width: 420px;
+        }
+        .objectif-row {
+            display: flex;
+            gap: .6rem;
+        }
+        .objectif-row .add-input { flex: 1; }
+
         /* ── Bouton ajouter ─────────────────────────────────── */
         .btn-add {
             display: inline-flex;
@@ -464,6 +482,18 @@ $track_labels = [
     <main class="dash-section">
         <div class="container">
 
+            <!-- ─── Objectif ─── -->
+            <div class="objectif-panel">
+                <label class="add-label" for="objectif-input">Objectif</label>
+                <div class="objectif-row">
+                    <input class="add-input" id="objectif-input" type="text" value="<?= htmlspecialchars($objectif) ?>" placeholder="ex: Juin 2026">
+                    <button class="btn-save" id="btn-save-objectif" onclick="saveObjectif()">
+                        <i class="fas fa-floppy-disk"></i> Sauvegarder
+                    </button>
+                </div>
+                <p class="add-error" id="objectif-error"></p>
+            </div>
+
             <!-- Bouton + panneau d'ajout -->
             <button class="btn-add" onclick="toggleAddPanel()">
                 <i class="fas fa-plus"></i> Ajouter une certification
@@ -617,12 +647,46 @@ $track_labels = [
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM · Killian Narasson Mohamedaly</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE · Killian Narasson Mohamedaly</p>
         </div>
     </footer>
 
     <script src="../js/script.js"></script>
     <script>
+    // ── Objectif ─────────────────────────────────────────────────────────────
+    async function saveObjectif() {
+        const input = document.getElementById('objectif-input');
+        const err   = document.getElementById('objectif-error');
+        const btn   = document.getElementById('btn-save-objectif');
+        const value = input.value.trim();
+
+        if (!value) {
+            err.textContent = '⚠ L\'objectif ne peut pas être vide.';
+            err.style.display = 'block';
+            return;
+        }
+        err.style.display = 'none';
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+        try {
+            const res  = await fetch('../api/save_objectif.php', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify({ value }),
+            });
+            const json = await res.json();
+            if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
+        } catch (e) {
+            err.textContent = '❌ ' + e.message;
+            err.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-floppy-disk"></i> Sauvegarder';
+        }
+    }
+
     // ── Panneau d'ajout ───────────────────────────────────────────────────────
     function toggleAddPanel() {
         const panel = document.getElementById('addPanel');

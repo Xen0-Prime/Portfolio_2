@@ -189,7 +189,7 @@ $csrf = csrf_token();
                     <i class="fas fa-lock"></i>
                 </div>
                 <h1>Espace admin</h1>
-                <p>Portfolio · BTS SIO SLAM</p>
+                <p>Portfolio · L3 MIAGE</p>
             </div>
 
 <?php if ($error): ?>
@@ -245,7 +245,7 @@ $csrf = csrf_token();
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM · Killian Narasson Mohamedaly</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE · Killian Narasson Mohamedaly</p>
         </div>
     </footer>
 

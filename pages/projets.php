@@ -65,7 +65,7 @@ function data_comps(string $id, array $map): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets · Portfolio BTS SIO SLAM</title>
+    <title>Projets · Portfolio L3 MIAGE</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projets.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -98,7 +98,7 @@ function data_comps(string $id, array $map): string {
             <div class="projects-masthead">
                 <h1 class="projects-title">Mes Projets</h1>
                 <div class="projects-meta">
-                    <span class="meta-tag">BTS SIO SLAM</span>
+                    <span class="meta-tag">L3 MIAGE</span>
                     7 projets · Portfolio de développements
                 </div>
             </div>
@@ -497,7 +497,7 @@ function data_comps(string $id, array $map): string {
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM · Killian Narasson Mohamedaly</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE · Killian Narasson Mohamedaly</p>
         </div>
     </footer>
 

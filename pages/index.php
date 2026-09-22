@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio BTS SIO SLAM — Killian Narasson</title>
+    <title>Portfolio L3 MIAGE — Killian Narasson</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Killian Narasson Mohamedaly</h1>
-                <p class="hero-subtitle">BTS SIO — option SLAM · LGT Baimbridge · 2024–2026</p>
+                <p class="hero-subtitle">L3 MIAGE · Université des Antilles · 2026–2027</p>
                 <div class="hero-buttons">
                     <a href="../stages/docs/CV-NARASSON-MOHAMEDALY Killian.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Voir mon CV</a>
                     <a href="contact.php" class="btn btn-secondary">Me contacter</a>
@@ -170,10 +170,26 @@
                 <div class="timeline-item">
                     <div class="timeline-marker timeline-current"></div>
                     <div class="timeline-content">
+                        <div class="timeline-period">2026 – 2027</div>
+                        <h3 class="timeline-title">L3 MIAGE</h3>
+                        <span class="timeline-school">Université des Antilles</span>
+                        <span class="timeline-badge">En cours</span>
+                        <ul class="timeline-subjects">
+                            <li>Génie logiciel &amp; gestion de projet</li>
+                            <li>Bases de données avancées</li>
+                            <li>Systèmes d'information</li>
+                            <li>Développement web &amp; applications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
                         <div class="timeline-period">2024 – 2026</div>
                         <h3 class="timeline-title">BTS SIO — option SLAM</h3>
                         <span class="timeline-school">LGT Baimbridge, Guadeloupe</span>
-                        <span class="timeline-badge">En cours</span>
+                        <span class="timeline-badge">Terminé</span>
                         <ul class="timeline-subjects">
                             <li>CEJM — Culture économique, juridique et managériale</li>
                             <li>AP — Ateliers Professionnels</li>
@@ -206,7 +222,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM · Killian Narasson Mohamedaly</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE · Killian Narasson Mohamedaly</p>
         </div>
     </footer>
 

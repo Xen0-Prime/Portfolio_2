@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Stages - Portfolio BTS SIO</title>
+    <title>Mes Stages - Portfolio L3 MIAGE</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/stages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -449,7 +449,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Portfolio BTS SIO SLAM - Tous droits réservés</p>
+            <p>&copy; 2025 Portfolio L3 MIAGE - Tous droits réservés</p>
         </div>
     </footer>
 
