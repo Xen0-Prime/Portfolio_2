@@ -270,6 +270,27 @@ $track_labels = [
         .btn-save:active { transform: scale(.96); }
         .btn-save:disabled { opacity: .5; cursor: not-allowed; }
 
+        .btn-delete {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: .4rem .9rem;
+            border-radius: 6px;
+            border: 1px solid rgba(239,68,68,.4);
+            background: rgba(239,68,68,.08);
+            color: #ef4444;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+            white-space: nowrap;
+            margin-left: .4rem;
+        }
+        .btn-delete:hover  { background: rgba(239,68,68,.18); }
+        .btn-delete:active { transform: scale(.96); }
+        .btn-delete:disabled { opacity: .5; cursor: not-allowed; }
+
         /* ── Bouton ajouter ─────────────────────────────────── */
         .btn-add {
             display: inline-flex;
@@ -575,6 +596,13 @@ $track_labels = [
                                 <button class="btn-save" onclick="save(<?= $id ?>)">
                                     <i class="fas fa-floppy-disk"></i> Sauvegarder
                                 </button>
+                                <button
+                                    class="btn-delete"
+                                    onclick="deleteCertif(<?= $id ?>)"
+                                    <?= $statut !== 'prevu' ? 'style="display:none;"' : '' ?>
+                                >
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
                             </td>
                         </tr>
 <?php endforeach; ?>
@@ -677,7 +705,9 @@ $track_labels = [
     // ── Statut change → enable/disable range ─────────────────────────────────
     function onStatutChange(select) {
         const id    = select.dataset.id;
-        const range = document.querySelector('.prog-range[data-id="' + id + '"]');
+        const row   = document.getElementById('row-' + id);
+        const range = row.querySelector('.prog-range');
+        const del   = row.querySelector('.btn-delete');
         const isProgress = select.value === 'en_cours';
 
         // update select color class
@@ -689,6 +719,38 @@ $track_labels = [
             const val = select.value === 'obtenue' ? 100 : 0;
             range.value = val;
             document.getElementById('pct-' + id).textContent = val + '%';
+        }
+
+        // le bouton supprimer n'a de sens que tant que la certif est "prévue"
+        del.style.display = select.value === 'prevu' ? '' : 'none';
+    }
+
+    // ── Delete ────────────────────────────────────────────────────────────────
+    async function deleteCertif(id) {
+        const row = document.getElementById('row-' + id);
+        const nom = row.querySelector('.cell-nom').textContent.trim();
+
+        if (!confirm('Supprimer définitivement « ' + nom + ' » ?')) return;
+
+        const btn = row.querySelector('.btn-delete');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+        try {
+            const res  = await fetch('../api/delete_certif.php', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify({ id }),
+            });
+            const json = await res.json();
+            if (!res.ok || json.error) throw new Error(json.error ?? 'Erreur serveur');
+
+            row.remove();
+        } catch (e) {
+            console.error(e);
+            alert('❌ ' + e.message);
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-trash"></i> Supprimer';
         }
     }
 
