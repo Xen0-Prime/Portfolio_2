@@ -45,11 +45,23 @@ if (($existing[0]['statut'] ?? '') !== 'prevu') {
     exit;
 }
 
-$result = supabase_request('DELETE', '/rest/v1/certifications?id=eq.' . $id);
+supabase_request('DELETE', '/rest/v1/certifications?id=eq.' . $id);
 
-if ($result === null) {
+// supabase_request() ne met pas "Prefer: return=representation" sur DELETE,
+// donc PostgREST répond 204 (corps vide) et la fonction renvoie toujours null
+// même en cas de succès. On vérifie donc le résultat réel via un GET plutôt
+// que de se fier à sa valeur de retour.
+$check = supabase_request('GET', '/rest/v1/certifications?id=eq.' . $id . '&select=id');
+
+if ($check === null) {
     http_response_code(502);
-    echo json_encode(['error' => 'Erreur lors de la suppression Supabase']);
+    echo json_encode(['error' => 'Suppression envoyée mais impossible de vérifier le résultat']);
+    exit;
+}
+
+if (!empty($check)) {
+    http_response_code(502);
+    echo json_encode(['error' => 'La suppression a échoué côté Supabase']);
     exit;
 }
 
