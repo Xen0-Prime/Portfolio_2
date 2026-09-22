@@ -36,7 +36,7 @@
             <div class="masthead-inner">
                 <h1 class="masthead-title">Veille Technologique</h1>
                 <div class="masthead-meta">
-                    <span class="edition">BTS SIO SLAM — Option SLAM</span>
+                    <span class="edition">L3 MIAGE - Université des Antilles</span>
                     Mis à jour : Avril 2026<br>
                     5 domaines · 15 sources
                 </div>
