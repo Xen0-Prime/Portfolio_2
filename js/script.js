@@ -149,25 +149,38 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-// ===== Dark Mode Toggle (optionnel) =====
-// Décommentez si vous voulez ajouter un mode sombre
-/*
-const darkModeToggle = document.getElementById('darkModeToggle');
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-    });
+// ===== Thème clair / sombre =====
+(function () {
+    const THEME_KEY = 'theme';
+    const toggle = document.getElementById('themeToggle');
 
-    // Charger la préférence
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark-mode');
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
     }
-}
-*/
+
+    // Le thème par défaut du site est sombre ; on n'applique 'light'
+    // que si l'utilisateur l'a explicitement choisi précédemment.
+    try {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'light') applyTheme('light');
+    } catch (e) { /* localStorage indisponible (mode privé…) : on garde le thème par défaut */ }
+
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            const next = isLight ? 'dark' : 'light';
+            applyTheme(next);
+            try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* ignore */ }
+        });
+    }
+})();
 
 // ===== Console Message =====
-console.log('%c Portfolio BTS SIO SLAM ', 'background: #3498db; color: #fff; font-size: 16px; padding: 10px;');
+console.log('%c Portfolio L3 MIAGE ', 'background: #3498db; color: #fff; font-size: 16px; padding: 10px;');
 console.log('%c Développé avec ❤️ ', 'font-size: 12px; color: #666;');
 
 // ===== Back to Top Button =====

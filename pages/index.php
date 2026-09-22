@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio L3 MIAGE — Killian Narasson</title>
+    <meta name="description" content="Portfolio de Killian Narasson Mohamedaly, étudiant en L3 MIAGE à l'Université des Antilles : projets, certifications, stages et veille technologique.">
+    <link rel="canonical" href="https://killiannarasson.alwaysdata.net/pages/index.php">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Portfolio L3 MIAGE — Killian Narasson">
+    <meta property="og:description" content="Portfolio de Killian Narasson Mohamedaly, étudiant en L3 MIAGE à l'Université des Antilles : projets, certifications, stages et veille technologique.">
+    <meta property="og:url" content="https://killiannarasson.alwaysdata.net/pages/index.php">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,6 +20,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php" class="active">Accueil</a></li>
                 <li><a href="projets.php">Projets</a></li>
@@ -21,8 +29,13 @@
                 <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>

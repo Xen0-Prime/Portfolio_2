@@ -1,9 +1,21 @@
+<?php
+require_once __DIR__ . '/../config/auth.php';
+auth_session_start();
+$csrf = csrf_token();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — Portfolio L3 MIAGE</title>
+    <meta name="description" content="Contactez Killian Narasson Mohamedaly, étudiant en L3 MIAGE, pour une opportunité de stage, d'alternance ou une collaboration.">
+    <link rel="canonical" href="https://killiannarasson.alwaysdata.net/pages/contact.php">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Contact — Portfolio L3 MIAGE">
+    <meta property="og:description" content="Contactez Killian Narasson Mohamedaly, étudiant en L3 MIAGE, pour une opportunité de stage, d'alternance ou une collaboration.">
+    <meta property="og:url" content="https://killiannarasson.alwaysdata.net/pages/contact.php">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,6 +26,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="projets.php">Projets</a></li>
@@ -22,8 +35,13 @@
                 <li><a href="certifications.php">Certifications</a></li>
                 <li><a href="contact.php" class="active">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>
@@ -54,6 +72,13 @@
                     </div>
 
                     <form id="contactForm" class="contact-form" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf) ?>">
+
+                        <!-- Honeypot anti-spam : champ invisible pour les humains, appâtant pour les bots -->
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="website">Site web</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
 
                         <div class="form-row">
                             <div class="form-group">

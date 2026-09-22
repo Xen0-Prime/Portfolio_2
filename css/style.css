@@ -18,6 +18,21 @@
     --font-body:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* ===== Variables CSS — Light Theme ===== */
+:root[data-theme="light"] {
+    --primary-color:   #0f172a;
+    --secondary-color: #0284c7;
+    --accent2:         #059669;
+    --accent3:         #d97706;
+    --text-color:      #334155;
+    --text-light:      #64748b;
+    --bg-light:        #f8fafc;
+    --bg-surface:      #eef2f7;
+    --white:           #ffffff;
+    --border-color:    #e2e8f0;
+    --shadow:          0 4px 20px rgba(15,23,42,0.08);
+}
+
 /* ===== Reset & Base ===== */
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
@@ -27,6 +42,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
+    transition: background-color .2s ease, color .2s ease;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -85,11 +101,36 @@ a:hover { opacity: 0.8; }
     letter-spacing: 0.05em;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 2rem;
 }
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: none;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--secondary-color); border-color: var(--secondary-color); }
+.theme-toggle .fa-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .fa-sun  { display: none; }
+:root[data-theme="light"] .theme-toggle .fa-moon { display: inline; }
 
 .nav-menu a {
     font-family: var(--font-mono);

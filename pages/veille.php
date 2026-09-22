@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veille Technologique - Portfolio BTS SIO</title>
+    <meta name="description" content="Veille technologique de Killian Narasson Mohamedaly : intelligence artificielle, smartphones, hardware et développement.">
+    <link rel="canonical" href="https://killiannarasson.alwaysdata.net/pages/veille.php">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Veille Technologique - Portfolio">
+    <meta property="og:description" content="Veille technologique de Killian Narasson Mohamedaly : intelligence artificielle, smartphones, hardware et développement.">
+    <meta property="og:url" content="https://killiannarasson.alwaysdata.net/pages/veille.php">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/veille.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,6 +21,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="index.php#about">À propos</a></li>
@@ -24,8 +32,13 @@
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>

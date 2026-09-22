@@ -14,6 +14,7 @@ ini_set('display_errors', '0');
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../config/auth.php';
 
 // ---------- Helpers ----------
 function json_response(bool $ok, string $message, array $extra = []): void {
@@ -29,6 +30,19 @@ function sanitize(string $v): string {
 // ---------- Vérification méthode ----------
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     json_response(false, 'Méthode non autorisée.');
+}
+
+auth_session_start();
+
+// ---------- Anti-spam ----------
+// Honeypot : un bot remplit ce champ invisible, un humain non. On répond
+// "succès" sans rien faire, pour ne pas révéler au bot qu'il a été détecté.
+if (!empty($_POST['website'])) {
+    json_response(true, 'Message envoyé avec succès !');
+}
+
+if (!csrf_verify($_POST['csrf_token'] ?? '')) {
+    json_response(false, 'Requête invalide. Rechargez la page et réessayez.');
 }
 
 // ---------- Récupération & validation ----------

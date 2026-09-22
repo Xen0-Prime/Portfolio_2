@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /pages/
+Allow: /stages/
+Disallow: /api/
+Disallow: /config/
+Disallow: /pages/dashboard.php
+Disallow: /pages/login.php
+Disallow: /pages/reset_password.php
+Disallow: /pages/logout.php
+
+Sitemap: https://killiannarasson.alwaysdata.net/sitemap.xml

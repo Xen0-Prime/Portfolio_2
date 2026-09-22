@@ -66,6 +66,13 @@ function data_comps(string $id, array $map): string {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projets · Portfolio L3 MIAGE</title>
+    <meta name="description" content="Découvrez les projets de développement de Killian Narasson Mohamedaly : applications web, dashboards IoT, et réalisations en L3 MIAGE.">
+    <link rel="canonical" href="https://killiannarasson.alwaysdata.net/pages/projets.php">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Projets · Portfolio L3 MIAGE">
+    <meta property="og:description" content="Découvrez les projets de développement de Killian Narasson Mohamedaly : applications web, dashboards IoT, et réalisations en L3 MIAGE.">
+    <meta property="og:url" content="https://killiannarasson.alwaysdata.net/pages/projets.php">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projets.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -76,6 +83,7 @@ function data_comps(string $id, array $map): string {
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="index.php#about">À propos</a></li>
@@ -86,8 +94,13 @@ function data_comps(string $id, array $map): string {
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="../stages/stages.php">Stages</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>

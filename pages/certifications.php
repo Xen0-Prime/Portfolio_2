@@ -100,6 +100,13 @@ function get_tags(array $c): array
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certifications — Portfolio L3 MIAGE · Killian Narasson</title>
+    <meta name="description" content="Suivi des certifications et formations en cours de Killian Narasson Mohamedaly : développement, systèmes &amp; réseaux, data et culture méthodes.">
+    <link rel="canonical" href="https://killiannarasson.alwaysdata.net/pages/certifications.php">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Certifications — Portfolio L3 MIAGE · Killian Narasson">
+    <meta property="og:description" content="Suivi des certifications et formations en cours de Killian Narasson Mohamedaly : développement, systèmes &amp; réseaux, data et culture méthodes.">
+    <meta property="og:url" content="https://killiannarasson.alwaysdata.net/pages/certifications.php">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/certifications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -110,6 +117,7 @@ function get_tags(array $c): array
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="projets.php">Projets</a></li>
@@ -118,8 +126,13 @@ function get_tags(array $c): array
                 <li><a href="certifications.php" class="active">Certifications</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>

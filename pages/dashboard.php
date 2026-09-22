@@ -444,6 +444,7 @@ $track_labels = [
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Portfolio</div>
+            <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="projets.php">Projets</a></li>
@@ -453,8 +454,13 @@ $track_labels = [
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="dashboard.php" class="active">Dashboard</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
+            </div>
             </div>
         </div>
     </nav>
